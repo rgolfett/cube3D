@@ -27,7 +27,7 @@ int	ft_check_map_composure(char **map)
 	return (0);
 }
 
-int	ft_fill_map(char *map_name, int map_fd, char **map)
+int	ft_fill_map(char *map_name, int map_fd, t_map *s_map)
 {
 	int	i;
 	int	j;
@@ -36,26 +36,31 @@ int	ft_fill_map(char *map_name, int map_fd, char **map)
 	i = 0;
 	j = 0;
 	tmp = "0";
+	s_map->index = 1;
 	map_fd = open(map_name, O_RDONLY);
 	while (tmp != NULL)
 	{
 		tmp = get_next_line(map_fd);
 		if (tmp == NULL)
 			break ;
-		map[j] = malloc(sizeof(char) * (ft_strlen(tmp) + 1));
-		if (map[j] == NULL)
+		if (s_map->index > 0)
+		{
+			s_map->index--;
+			continue ;
+		}
+		s_map->map[j] = malloc(sizeof(char) * (ft_strlen(tmp) + 1));
+		if (s_map->map[j] == NULL)
 			return (printf("malloc failed\n"), 1);	
 		while (tmp[i])
 		{
-			map[j][i] = tmp[i];
+			s_map->map[j][i] = tmp[i];
 			i++;
 		}
-		map[j][i] = '\0';
+		s_map->map[j][i] = '\0';
 		j++;
 		i = 0;
 	}
-	//map[j] = malloc(sizeof(char) * (1));
-	map[j] = NULL;
+	s_map->map[j] = NULL;
 	close (map_fd);
 	return (0);
 }
@@ -65,11 +70,12 @@ int	ft_create_map(char *map_name, int map_fd, t_map *s_map)
 
 	while (get_next_line(map_fd) != NULL)
 		s_map->y++;
+	s_map->y -= s_map->index;
 	s_map->map = malloc(sizeof (char *) * (s_map->y + 1));
 	if (!s_map->map)
 		return (1);
 	close (map_fd);
-	ft_fill_map(map_name, map_fd, s_map->map);
+	ft_fill_map(map_name, map_fd, s_map);
 	return (0);
 }
 

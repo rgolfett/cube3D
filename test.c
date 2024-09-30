@@ -39,6 +39,7 @@ int	ft_loop(t_cube *data)
 	my_mlx_pixel_put(&data->image, data->player.x, data->player.y, 0xff0000);
 
 	mlx_put_image_to_window(data->mlx, data->window, data->image.image, 0, 0);
+	return (0);
 }
 
 int	ft_test()

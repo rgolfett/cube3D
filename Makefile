@@ -5,6 +5,9 @@ SRCS = 	main.c \
 		get_next_line_utils.c \
 		map_parsing.c \
 		utils.c \
+		texture_parsing.c \
+		texture_files_check.c \
+		texture_utils.c \
 		map_walls_parsing.c \
 		test.c \
 

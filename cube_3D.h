@@ -20,12 +20,28 @@
 # define WINDOW_X 500
 # define PLAYER_SIZE 9
 
+
+
 typedef struct s_map
 {
 	char	*map_name;
 	char	**map;
 	int	y;
+	int	index;
 }	t_map;
+
+typedef	struct s_arg
+{
+	char **content;
+	char *NO_file;
+	char *EA_file;
+	char *WE_file;
+	char *SU_file;
+	char *Roof;
+	char *Floor;
+	t_map s_map;
+	int	h;
+}	t_arg;
 
 typedef struct s_player
 {
@@ -53,8 +69,18 @@ typedef struct s_cube
 }	t_cube;
 
 int main(int argc, char **argv);
+
 int	ft_cpy(char *s1, char *s2);
 int	ft_strcmp(char *s1, char *s2);
+void	*ft_memset(void *str, int c, size_t size);
+
+int	is_whitespace(int c);
+
+int check_file(char *file, t_arg *arg);
+int	ft_create_arg(char *file_name, int file_fd, t_arg *arg);
+int	ft_fill_arg(char *file_name, int file_fd, t_arg *arg);
+int	ft_is_north(char *str, int tab[4], t_arg *arg);
+
 int	ft_is_valid(char c);
 int	ft_nmb_player(char c, int cmp);
 int	ft_check_map_walls(char **map);
