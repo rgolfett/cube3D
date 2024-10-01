@@ -44,16 +44,28 @@ int	ft_strcmp(char *s1, char *s2)
 	return (s1[i] - s2[i]);
 }
 
-void	*ft_memset(void *str, int c, size_t size)
+void	ft_memset(int *tab, int c, size_t size)
 {
-	char *cpy;
+	size_t	i;
 
-	cpy = str;
-	while (size)
+	i = 0;
+	while (i < size)
 	{
-		*cpy = (unsigned char)c;
-		cpy++;
-		size--;
+		tab[i] = c;
+		i++;
 	}
-	return (str);
 }
+
+// void	*ft_memset(void *str, int c, size_t size)
+// {
+// 	char *cpy;
+
+// 	cpy = str;
+// 	while (size)
+// 	{
+// 		*cpy = (unsigned char)c;
+// 		cpy++;
+// 		size--;
+// 	}
+// 	return (str);
+// }

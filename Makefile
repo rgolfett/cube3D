@@ -5,10 +5,13 @@ SRCS = 	main.c \
 		get_next_line_utils.c \
 		map_parsing.c \
 		utils.c \
+		ft_atoi.c \
 		texture_parsing.c \
 		texture_files_check.c \
 		texture_utils.c \
+		limits.c \
 		map_walls_parsing.c \
+		parsing_utils.c \
 		test.c \
 
 INCLUDES = get_next_line.h \
@@ -18,7 +21,7 @@ OBJS =	$(SRCS:%.c=%.o)
 
 CC = cc
 
-CFLAGS = -Wall -Wextra  -Iminilibx-linux #-Werror
+CFLAGS = -Wall -Wextra -g3 -Iminilibx-linux #-Werror
 
 all : $(NAME)
 

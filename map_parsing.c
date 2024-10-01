@@ -15,7 +15,10 @@ int	ft_check_map_composure(char **map)
 		while (map[i][j])
 		{
 			if (ft_is_valid(map[i][j]) == 1)
+			{
+				printf("map[%i][%i] = %c\n", i, j, map[i][j]); //
 				return (1);
+			}
 			player = ft_nmb_player(map[i][j], player);
 			j++;
 		}
@@ -36,7 +39,6 @@ int	ft_fill_map(char *map_name, int map_fd, t_map *s_map)
 	i = 0;
 	j = 0;
 	tmp = "0";
-	s_map->index = 1;
 	map_fd = open(map_name, O_RDONLY);
 	while (tmp != NULL)
 	{
