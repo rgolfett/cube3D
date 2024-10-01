@@ -36,7 +36,7 @@ typedef	struct s_arg
 	char *NO_file;
 	char *EA_file;
 	char *WE_file;
-	char *SU_file;
+	char *SO_file;
 	char *Roof;
 	char *Floor;
 	t_map s_map;
