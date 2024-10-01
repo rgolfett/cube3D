@@ -9,15 +9,16 @@ int main(int argc, char **argv)
 
 	if (argc != 2)
 		return (1);
-	if (check_file(argv[1], &arg) == 1)
+	// if (check_file(argv[1], &arg) == 1)
+	// 	return (1);
+	// int i = 0;
+	// while (arg.content[i])
+	// {
+	// 	printf("content[%i] = %s\n", i, arg.content[i]);
+	// 	i++;
+	// }
+	if (ft_check_valid_map(argv[1], &arg.map) == 1)
 		return (1);
-	int i = 0;
-	while (arg.content[i])
-	{
-		printf("content[%i] = %s\n", i, arg.content[i]);
-		i++;
-	}
-	if (ft_check_valid_map(argv[1], &arg.s_map) == 1)
-		return (1);
-	ft_test();
+	ft_raycasting(arg);
+	// ft_test();
 }

@@ -10,6 +10,10 @@ SRCS = 	main.c \
 		texture_utils.c \
 		map_walls_parsing.c \
 		test.c \
+		srcs/deal_key.c \
+		srcs/ft_raycasting.c \
+		srcs/next_frame.c \
+		srcs/utils_next_frame.c \
 
 INCLUDES = get_next_line.h \
 		   cube_3D.h \
