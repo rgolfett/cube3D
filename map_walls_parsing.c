@@ -24,6 +24,7 @@ int	ft_check_map_walls(char **map)
 
 	i = 0;
 	j = 0;
+	printf("map[0] = %s\n", map[0]);
 	while (map[i])
 	{
 		while (map[i][j])

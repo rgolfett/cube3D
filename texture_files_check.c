@@ -15,7 +15,7 @@ char	*get_texture_name(char *str, char *texture)
 	if (!texture)
 		return (NULL);
 	ft_cpy(&str[i], texture);
-	printf("texture = -%s-\n", texture);
+	// printf("texture = -%s-\n", texture);
 	return (texture);
 }
 
@@ -38,7 +38,7 @@ int	ft_is_north(char *str, int tab[4], t_arg *arg)
 	else
 		return (printf("Invalid NO\n"), 1);
 	arg->NO_file = get_texture_name(&str[i], arg->NO_file);
-	printf("here str = *%s*\n", arg->NO_file);
+	// printf("here str = *%s*\n", arg->NO_file);
 	if (arg->NO_file == NULL)
 		return (printf("Invalid NO file\n"), 1);
 	return (0);

@@ -10,6 +10,7 @@ void	ft_print_all(t_arg *arg)
 		printf("content[%i] = %s\n", i, arg->content[i]);
 		i++;
 	}
+	printf("\n\n");
 	printf("n = %s\n", arg->NO_file);
 	printf("e = %s\n", arg->EA_file);
 	printf("w = %s\n", arg->WE_file);
@@ -21,6 +22,24 @@ void	ft_print_all(t_arg *arg)
 	printf("arg->ceiling-> R = %i\n", arg->ceiling.R);
 	printf("arg->ceiling-> G = %i\n", arg->ceiling.G);
 	printf("arg->ceiling-> B = %i\n", arg->ceiling.B);
+	printf("\n\n");
+}
+void	free_utils(t_arg *arg)
+{
+	if (arg->NO_file)
+		free(arg->NO_file);
+	if (arg->EA_file)
+		free(arg->EA_file);
+	if (arg->WE_file)
+		free(arg->WE_file);
+	if (arg->SO_file)
+		free(arg->SO_file);
+	if (arg->content)
+		free_str(arg->content);
+	if (arg->s_map.map)
+		free_str(arg->s_map.map);
+	if (arg->s_map.map_name)
+		free(arg->s_map.map_name);
 }
 int main(int argc, char **argv)
 {
@@ -34,10 +53,11 @@ int main(int argc, char **argv)
 	
 	if (check_file(argv[1], &arg) == 1)
 		return (1);
-	printf("AAAAAAAAAAAAAAAAAAAH\n");
+
 	ft_print_all(&arg);
-	arg.s_map.index += 3;//
+	//arg.s_map.index += 3;//
 	if (ft_check_valid_map(argv[1], &arg.s_map) == 1)
 		return (1);
+	free_utils(&arg);
 	ft_test();
 }

@@ -51,7 +51,8 @@ int	is_cardinal(char *str, int tab[4], t_arg *arg)
 	else if 
 		(str[i] == 'F' || str[i] == 'C')
 		{
-			if (ft_limits_check(&str[i], arg) == 1);
+				printf("str[%i] = %c\n", i, str[i]);
+			if (ft_limits_check(&str[i], arg) == 1)
 				return (printf("wrong limits_check\n"), 1);
 			return (0);
 		}
@@ -75,6 +76,7 @@ int	check_cardinal(char *str, int tab[4], t_arg *arg)
 	 	i++;
 	if (str[i])
 	{
+		//printf("str = %s\n", str);
 		if (is_cardinal(&str[i], tab, arg) == 1)
 			return (1);
 	}
@@ -89,7 +91,6 @@ int	check_arg(int tab[4], t_arg *arg)
 	(void)arg;
 	while (i <= 3)
 	{
-		printf("test tab[%i] = %i\n", i, tab[i]);
 		if (tab[i] != 1)
 			return (1);
 		i++;
@@ -121,7 +122,7 @@ int check_file(char *file, t_arg *arg)
 			return (printf("wrong cardinal\n"), 1);
 		if (check_arg(tab, arg) == 0)
 			{
-				arg->s_map.index = i;
+				arg->s_map.index = (i + 1);//
 				return (0);
 			}
 		i++;

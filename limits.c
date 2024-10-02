@@ -39,6 +39,8 @@ int	ft_fill_utils(char *str)
 
 	i = 0;
 	j = 0;
+	while (str[i] && is_whitespace(str[i]) == 1)
+		i++;
 	while (str[i] && ft_isdigit(str[i]) == 0)
 	{
 		if (j > 3)
@@ -66,19 +68,35 @@ int	ft_fill_floor(char *str, t_arg *arg)
 		arg->floor.R = ft_fill_utils(&str[i]);
 		while (str[i] && ft_isdigit(str[i]) == 0)
 			i++;
+		while (str[i] && is_whitespace(str[i]) == 1)
+			i++;
 		if (!str[i] || str[i] != ',')
 			return (1);
-		while (str[i] && ft_isdigit(str[i]) == 0)
-			i++;
 		i++;
+		while (str[i] && is_whitespace(str[i]) == 1)
+			i++;
+		// while (str[i] && ft_isdigit(str[i]) == 0)
+		// 	i++;
 		arg->floor.G = ft_fill_utils(&str[i]);
 		while (str[i] && ft_isdigit(str[i]) == 0)
 			i++;
+		while (str[i] && is_whitespace(str[i]) == 1)
+			i++;
 		if (!str[i] || str[i] != ',')
 			return (1);
 		i++;
+		while (str[i] && is_whitespace(str[i]) == 1)
+			i++;
 		if (str[i])
-			arg->floor.B = ft_fill_utils(&str[i]);
+		{
+				arg->floor.B = ft_fill_utils(&str[i]);
+			while (str[i] && ft_isdigit(str[i]) == 0)
+				i++;
+			while (str[i] && is_whitespace(str[i]) == 1)
+				i++;
+			if (str[i] && str[i] != '\n')
+				return (1);
+		}
 		else
 			return (1);
 		return (0);
@@ -102,19 +120,35 @@ int	ft_fill_ceiling(char *str, t_arg *arg)
 		arg->ceiling.R = ft_fill_utils(&str[i]);
 		while (str[i] && ft_isdigit(str[i]) == 0)
 			i++;
+		while (str[i] && is_whitespace(str[i]) == 1)
+			i++;
 		if (!str[i] || str[i] != ',')
 			return (1);
-		while (str[i] && ft_isdigit(str[i]) == 0)
-			i++;
 		i++;
+		while (str[i] && is_whitespace(str[i]) == 1)
+			i++;
+		// while (str[i] && ft_isdigit(str[i]) == 0)
+		// 	i++;
 		arg->ceiling.G = ft_fill_utils(&str[i]);
 		while (str[i] && ft_isdigit(str[i]) == 0)
 			i++;
+		while (str[i] && is_whitespace(str[i]) == 1)
+			i++;
 		if (!str[i] || str[i] != ',')
 			return (1);
 		i++;
+		while (str[i] && is_whitespace(str[i]) == 1)
+			i++;
 		if (str[i])
+		{
 			arg->ceiling.B = ft_fill_utils(&str[i]);
+			while (str[i] && ft_isdigit(str[i]) == 0)
+				i++;
+			while (str[i] && is_whitespace(str[i]) == 1)
+				i++;
+			if (str[i] && str[i] != '\n')
+				return (1);
+		}
 		else
 			return (1);
 		return (0);
@@ -129,8 +163,8 @@ int	ft_fill_ceiling(char *str, t_arg *arg)
 int	ft_limits_check(char *str, t_arg *arg)
 {
 	int	i;
-
 	i = 0;
+	printf("str = %s\n", str);
 	if (str[0] == 'F')
 	{
 		i++;

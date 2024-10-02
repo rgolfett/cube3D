@@ -52,7 +52,7 @@ int	ft_fill_map(char *map_name, int map_fd, t_map *s_map)
 		}
 		s_map->map[j] = malloc(sizeof(char) * (ft_strlen(tmp) + 1));
 		if (s_map->map[j] == NULL)
-			return (printf("malloc failed\n"), 1);	
+			return (free_str(s_map->map), 1);	
 		while (tmp[i])
 		{
 			s_map->map[j][i] = tmp[i];

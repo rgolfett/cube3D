@@ -27,7 +27,7 @@ int	ft_fill_arg(char *file_name, int file_fd, t_arg *arg)
 			break ;
 		arg->content[j] = malloc(sizeof(char) * (ft_strlen(tmp) + 1));
 		if (arg->content[j] == NULL)
-			return (printf("malloc failed\n"), 1);	
+			return (free_str(arg->content), 1);	
 		while (tmp[i])
 		{
 			arg->content[j][i] = tmp[i];
@@ -61,4 +61,19 @@ int	ft_isdigit(int c)
 		return (0);
 	else
 		return (1);
+}
+
+void	free_str(char **str)
+{
+	int	i;
+
+	i = 0;
+	if (str == NULL)
+		return ;
+	while (str[i])
+	{
+		free(str[i]);
+		i++;
+	}
+	free (str);
 }

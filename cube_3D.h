@@ -88,6 +88,7 @@ int	is_whitespace(int c);
 int	ft_isdigit(int c);
 //long	ft_strtol(const char *p);
 int	ft_atoi(const char *str);
+void	free_str(char **str);
 
 int	file_is_valid(char *file_name);
 int	text_utils(char *str);
