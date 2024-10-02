@@ -6,7 +6,7 @@
 /*   By: kiparis <kiparis@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/29 11:00:36 by kiparis           #+#    #+#             */
-/*   Updated: 2024/10/01 17:35:14 by kiparis          ###   ########.fr       */
+/*   Updated: 2024/10/02 12:40:23 by kiparis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ void	tracersegment(double x1, double y1, double x2, double y2, t_cube *data)
 	while (k < steps)
 	{
 		// write(1, "test\n", 5);
-		ft_pixel_put(data, x, y, 0xff00ff);
+		ft_pixel_put(data, x, y, data->ray_color);
 		x += x_incr;
 		y += y_incr;
 		k++;
@@ -89,7 +89,7 @@ void	fill_background(t_cube *data)
 		x = 0;
 		while (x <= WINDOW_X)
 		{
-			my_mlx_pixel_put(&(data)->image, x, y, 0x005555);
+			my_mlx_pixel_put(&(data)->image, x, y, 0x777777);
 			x++;
 		}
 		y++;
@@ -119,12 +119,12 @@ void	accurate_raycasting(t_cube *data, double theta)
 	// data->player.x2 *= data->arg.zoom;
 	// data->player.y2 *= data->arg.zoom;
 	printf("sin == %f, cos == %f, theta = %f\n", sin(theta), cos(theta), theta * 180 / M_PI);
-	tmp_x = (int)data->player.x1;
-	// if (cos(theta) <= 0)
-		// tmp_x = -tmp_x;
-	tmp_y = (int)data->player.y1;
-	// if (sin(theta) <= 0)
-		// tmp_y = -tmp_y;
+	tmp_x = (int)data->player.x1 * -cos(theta);
+	// if (cos(theta) >= 0)
+		// tmp_x += cos(theta);
+	tmp_y = (int)data->player.y1 * -sin(theta);
+	// if (sin(theta) >= 0)
+		// tmp_y += sin(theta);
 	diff_x = tmp_x % data->arg.zoom;
 	diff_y = tmp_y % data->arg.zoom;
 	// printf("x1 = %f, y1 = %f, diff_x = %f, diff_y = %f\n", data->player.x1, data->player.y1, diff_x, diff_y);
@@ -222,21 +222,21 @@ int	next_frame(t_cube *data)
 		while (data->arg.map.map[y][x])
 		{
 			if (data->arg.map.map[y][x] == '1')
-				trace_square(x, y, data, 0x00ff00);
-			if (data->arg.map.map[y][x] == 'N')
-				trace_square(x, y, data, 0xff0000);
+				trace_square(x, y, data, 0x0000ff);
 			x++;
 		}
 		y++;
 	}
 
-
+	data->ray_color = 0x00ff00;
 	while (tmp_theta <= data->player.theta + FOV / 2)
 	{
 		// algo_iso(data, tmp_theta);
 		algo_raycasting(data, tmp_theta);
 		tracersegment(data->player.x1, data->player.y1, data->player.x2, data->player.y2, data);
 		tmp_theta += 1;
+		data->ray_color -= (255 / FOV << 8);
+		data->ray_color += (255 / FOV << 16);
 	}
 	mlx_put_image_to_window(data->mlx, data->window, data->image.image, 0, 0);
 	return (0);

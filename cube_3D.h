@@ -76,7 +76,7 @@ typedef struct s_cube
 	t_image	image;
 	t_player	player;
 	t_arg		arg;
-
+	int			ray_color;
 }	t_cube;
 
 

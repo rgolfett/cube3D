@@ -6,7 +6,7 @@
 /*   By: kiparis <kiparis@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/29 10:32:37 by kiparis           #+#    #+#             */
-/*   Updated: 2024/10/01 16:47:26 by kiparis          ###   ########.fr       */
+/*   Updated: 2024/10/02 14:32:40 by kiparis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,6 @@ void	ft_raycasting(t_arg arg)
 	t_cube	data;
 
 	init_data(&data, arg);
-	data.mlx = mlx_init();
 	data.mlx = mlx_init();
 	data.window = mlx_new_window(data.mlx, WINDOW_X, \
 								WINDOW_Y, "Ma Fenetre");
