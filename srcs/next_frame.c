@@ -6,7 +6,7 @@
 /*   By: kiparis <kiparis@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/29 11:00:36 by kiparis           #+#    #+#             */
-/*   Updated: 2024/10/02 12:40:23 by kiparis          ###   ########.fr       */
+/*   Updated: 2024/10/03 15:27:01 by kiparis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,27 +109,81 @@ void	algo_iso(t_cube *data, double d_theta)
 	data->player.y2 = (double)(y + 40 * sin(theta));
 }
 
+// void	accurate_raycasting(t_cube *data, double theta)
+// {
+	
+// 	double	diff_x;
+// 	double	diff_y;
+// 	int		tmp_x;
+// 	int		tmp_y;
+
+// 	data->player.x2 *= data->arg.zoom;
+// 	data->player.y2 *= data->arg.zoom;
+// 	if (data->arg.map.map[((int)(data->player.y1 / data->arg.zoom))][((int)(data->player.x1 / data->arg.zoom))] == '1')
+// 		return ;
+// 	printf("sin == %f, cos == %f, theta = %f\n", sin(theta), cos(theta), theta * 180 / M_PI);
+// 	tmp_x = (int)data->player.x1 * -cos(theta);
+// 	if (cos(theta) >= 0)
+// 		tmp_x += cos(theta);
+// 	tmp_y = (int)data->player.y1 * -sin(theta);
+// 	if (sin(theta) >= 0)
+// 		tmp_y += sin(theta);
+// 	diff_x = tmp_x % data->arg.zoom;
+// 	diff_y = tmp_y % data->arg.zoom;
+// 	printf("x1 = %f, y1 = %f, diff_x = %f, diff_y = %f\n", data->player.x1, data->player.y1, diff_x, diff_y);
+// 	data->player.x2 += diff_x * cos(theta);
+// 	data->player.y2 += diff_y * sin(theta);
+// }
 void	accurate_raycasting(t_cube *data, double theta)
 {
-	double	diff_x;
-	double	diff_y;
 	int		tmp_x;
 	int		tmp_y;
+	double	diff_x;
+	double	diff_y;
 
-	// data->player.x2 *= data->arg.zoom;
-	// data->player.y2 *= data->arg.zoom;
-	printf("sin == %f, cos == %f, theta = %f\n", sin(theta), cos(theta), theta * 180 / M_PI);
-	tmp_x = (int)data->player.x1 * -cos(theta);
-	// if (cos(theta) >= 0)
-		// tmp_x += cos(theta);
-	tmp_y = (int)data->player.y1 * -sin(theta);
-	// if (sin(theta) >= 0)
-		// tmp_y += sin(theta);
-	diff_x = tmp_x % data->arg.zoom;
-	diff_y = tmp_y % data->arg.zoom;
-	// printf("x1 = %f, y1 = %f, diff_x = %f, diff_y = %f\n", data->player.x1, data->player.y1, diff_x, diff_y);
-	data->player.x2 += diff_x * cos(theta);
-	data->player.y2 += diff_y * sin(theta);
+	// tmp_x = (int)data->player.x2 * -cos(data->player.theta);
+	// tmp_y = (int)data->player.y2 * -sin(data->player.theta);
+	tmp_x = (int)data->player.x2;
+	tmp_y = (int)data->player.y2;
+	// while ((tmp_y % data->arg.zoom) != 0)
+	// {
+	// 	while ((tmp_x % data->arg.zoom) != 0)
+	// 	{
+	// 		if ((((int)data->player.theta % 360) > 90) && (((int)data->player.theta % 360) < 270))
+	// 			tmp_x--;
+	// 		else if (((((int)data->player.theta % 360) > 270) && (((int)data->player.theta % 360) <= 359))
+	// 			| ((((int)data->player.theta % 360) < 90) && (((int)data->player.theta % 360) >= 0)))
+	// 			tmp_x++;
+	// 		else 
+	// 			break ;
+	// 		// tmp_x += 1 * cos(data->player.theta);
+	// 	}
+	// 	if ((((int)data->player.theta % 360) > 0) && (((int)data->player.theta % 360) < 180))
+	// 		tmp_y++;
+	// 	else if ((((int)data->player.theta % 360) > 180) && (((int)data->player.theta % 360) <= 359))
+	// 		tmp_y--;
+	// 	else 
+	// 		break ;
+	// 	// tmp_y += 1 * sin(data->player.theta);
+	// }
+	// while (((tmp_y % data->arg.zoom) != 0) || (tmp_x % data->arg.zoom) != 0)
+	// {
+	// 	while ((tmp_x % data->arg.zoom) != 0)
+	// 		tmp_x += 1 * cos(data->player.theta);
+	// 	tmp_y += 1 * sin(data->player.theta);
+	// }
+	// data->player.x2 += tmp_x;
+	// data->player.y2 += tmp_y;
+
+
+
+
+
+	// diff_x = tmp_x % data->arg.zoom;
+	// diff_y = tmp_y % data->arg.zoom;
+	// // printf("diff_x = %d, diff_y = %d\n",diff_x, diff_y);
+	// data->player.x2 += diff_x * cos(data->player.theta);
+	// data->player.y2 += diff_y * sin(data->player.theta);
 
 }
 
@@ -234,6 +288,7 @@ int	next_frame(t_cube *data)
 		// algo_iso(data, tmp_theta);
 		algo_raycasting(data, tmp_theta);
 		tracersegment(data->player.x1, data->player.y1, data->player.x2, data->player.y2, data);
+		my_mlx_pixel_put(&data->image, data->player.x1, data->player.y1, 0xffff00);
 		tmp_theta += 1;
 		data->ray_color -= (255 / FOV << 8);
 		data->ray_color += (255 / FOV << 16);

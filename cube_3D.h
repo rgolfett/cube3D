@@ -17,11 +17,11 @@
 # define KEY_LEFT 65361
 # define KEY_ESC 65307
 
-# define WINDOW_Y 1000
-# define WINDOW_X 1500
+# define WINDOW_Y 500
+# define WINDOW_X 750
 # define PLAYER_SIZE 9
 
-# define FOV 30
+# define FOV 0
 
 typedef struct s_map
 {
