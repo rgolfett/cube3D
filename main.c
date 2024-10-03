@@ -55,7 +55,6 @@ int main(int argc, char **argv)
 		return (1);
 
 	ft_print_all(&arg);
-	//arg.s_map.index += 3;//
 	if (ft_check_valid_map(argv[1], &arg.s_map) == 1)
 		return (1);
 	free_utils(&arg);

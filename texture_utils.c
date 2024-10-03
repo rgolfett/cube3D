@@ -1,7 +1,5 @@
 
 #include "cube_3D.h"
-#include "get_next_line.h"
-#include "minilibx-linux/mlx.h"
 
 int	is_whitespace(int c)
 {

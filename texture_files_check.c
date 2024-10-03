@@ -19,19 +19,19 @@ char	*get_texture_name(char *str, char *texture)
 	return (texture);
 }
 
-int	ft_is_north(char *str, int tab[4], t_arg *arg)
+int	ft_is_north(char *str, int tab[6], t_arg *arg)
 {
 	int	i;
 
 	i = 1;
 	if (!str[i])
 		return (1);
-	if (str[i] == ' ')
-		tab[1]++;
+	if (is_whitespace(str[i]) == 1)
+		tab[0]++;
 	else if (str[i] == 'O')
 	{
 		i++;
-		if (str[i] != ' ')
+		if (is_whitespace(str[i]) == 0)
 			return (1);
 		tab[0]++;
 	}
@@ -44,19 +44,19 @@ int	ft_is_north(char *str, int tab[4], t_arg *arg)
 	return (0);
 }
 
-int	ft_is_east(char *str, int tab[4], t_arg *arg)
+int	ft_is_east(char *str, int tab[6], t_arg *arg)
 {
 	int	i;
 
 	i = 1;
 	if (!str[i])
 		return (1);
-	if (str[i] == ' ')
-		tab[2]++;
+	if (is_whitespace(str[i]) == 1)
+		tab[1]++;
 	else if (str[i] == 'A')
 	{
 		i++;
-		if (str[i] != ' ')
+		if (is_whitespace(str[i]) == 0)
 			return (1);
 		tab[1]++;
 	}
@@ -68,19 +68,19 @@ int	ft_is_east(char *str, int tab[4], t_arg *arg)
 	return (0);
 }
 
-int	ft_is_west(char *str, int tab[4], t_arg *arg)
+int	ft_is_west(char *str, int tab[6], t_arg *arg)
 {
 	int	i;
 
 	i = 1;
 	if (!str[i])
 		return (1);
-	if (str[i] == ' ')
-		tab[3]++;
+	if (is_whitespace(str[i]) == 1)
+		tab[2]++;
 	else if (str[i] == 'E')
 	{
 		i++;
-		if (str[i] != ' ')
+		if (is_whitespace(str[i]) == 0)
 			return (1);
 		tab[2]++;
 	}
@@ -92,19 +92,19 @@ int	ft_is_west(char *str, int tab[4], t_arg *arg)
 	return (0);
 }
 
-int	ft_is_south(char *str, int tab[4], t_arg *arg)
+int	ft_is_south(char *str, int tab[6], t_arg *arg)
 {
 	int	i;
 
 	i = 1;
 	if (!str[i])
 		return (1);
-	if (str[i] == ' ')
-		tab[4]++;
+	if (is_whitespace(str[i]) == 1)
+		tab[3]++;
 	else if (str[i] == 'O')
 	{
 		i++;
-		if (str[i] != ' ')
+		if (is_whitespace(str[i]) == 0)
 			return (1);
 		tab[3]++;
 	}

@@ -3,7 +3,7 @@
 #include "minilibx-linux/mlx.h"
 
 
-int	file_parsing(char *str, int tab[4], t_arg *arg)
+int	file_parsing(char *str, int tab[6], t_arg *arg)
 {
 	int	i;
 
@@ -31,7 +31,7 @@ int	file_parsing(char *str, int tab[4], t_arg *arg)
 	return (0);
 }
 
-int	is_cardinal(char *str, int tab[4], t_arg *arg)
+int	is_cardinal(char *str, int tab[6], t_arg *arg)
 {
 	int	i;
 
@@ -52,7 +52,7 @@ int	is_cardinal(char *str, int tab[4], t_arg *arg)
 		(str[i] == 'F' || str[i] == 'C')
 		{
 				printf("str[%i] = %c\n", i, str[i]);
-			if (ft_limits_check(&str[i], arg) == 1)
+			if (ft_limits_check(&str[i], tab, arg) == 1)
 				return (printf("wrong limits_check\n"), 1);
 			return (0);
 		}
@@ -67,7 +67,7 @@ int	is_cardinal(char *str, int tab[4], t_arg *arg)
 	return (0);
 }
 
-int	check_cardinal(char *str, int tab[4], t_arg *arg)
+int	check_cardinal(char *str, int tab[6], t_arg *arg)
 {
 	int	i;
 
@@ -83,13 +83,13 @@ int	check_cardinal(char *str, int tab[4], t_arg *arg)
 	return (0);
 }
 
-int	check_arg(int tab[4], t_arg *arg)
+int	check_arg(int tab[6], t_arg *arg)
 {
 	int	i;
 
 	i = 0;
 	(void)arg;
-	while (i <= 3)
+	while (i <= 5)
 	{
 		if (tab[i] != 1)
 			return (1);
@@ -107,13 +107,13 @@ int check_file(char *file, t_arg *arg)
 {
 	int	i;
 	int file_fd;
-	int tab[4];
+	int tab[6];
 
 	i = 1;
 	file_fd = open(file, O_RDONLY);
 	if (file_fd == -1)
 		return (printf("wrong fd\n"), 1);
-	ft_memset(tab, 0, 4);
+	ft_memset(tab, 0, 6);
 	if (ft_create_arg(file, file_fd, arg) == 1)
 		return (printf("wrong arg\n"), 1);
 	while (arg->content[i])

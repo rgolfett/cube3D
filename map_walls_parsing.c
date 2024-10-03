@@ -3,7 +3,8 @@
 
 int	ft_walls_utils(char **map, int i, int j)
 {
-	if (map[i][j] == '0')
+	if (map[i][j] == '0' || map[i][j] == 'N' || map[i][j] == 'E' \
+				|| map[i][j] == 'W' || map[i][j] == 'S')
 	{
 		if (!map[i-1][j] || map[i-1][j] == '\n' || map[i-1][j] == ' ')//haut
 			return (printf("map[%i][%i] = invalid upper walls : *%c*\n", i, j, map[i-1][j]), 1);

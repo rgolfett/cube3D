@@ -160,13 +160,14 @@ int	ft_fill_ceiling(char *str, t_arg *arg)
 	return (0);
 }
 
-int	ft_limits_check(char *str, t_arg *arg)
+int	ft_limits_check(char *str, int tab[6], t_arg *arg)
 {
 	int	i;
 	i = 0;
-	printf("str = %s\n", str);
+	//printf("str = %s\n", str);
 	if (str[0] == 'F')
 	{
+		tab[4]++;
 		i++;
 		if (!str[i])
 			return (printf("empty str\n"), 1);
@@ -175,6 +176,7 @@ int	ft_limits_check(char *str, t_arg *arg)
 	}
 	else if (str[0] == 'C')
 	{
+		tab[5]++;
 		i++;
 		if (!str[i])
 			return (printf("empty str\n"), 1);

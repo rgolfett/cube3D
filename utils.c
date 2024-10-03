@@ -1,5 +1,16 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   utils.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: rgolfett <rgolfett@student.42lyon.fr>      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/10/03 11:51:17 by rgolfett          #+#    #+#             */
+/*   Updated: 2024/10/03 11:51:28 by rgolfett         ###   ########lyon.fr   */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "cube_3D.h"
-#include "get_next_line.h"
 
 int	ft_is_valid(char c)
 {
@@ -8,6 +19,7 @@ int	ft_is_valid(char c)
 		return (1);
 	return (0);
 }
+
 int	ft_nmb_player(char c, int cmp)
 {
 	if (c == 'W' || c == 'S' || c == 'E' || c == 'N')
@@ -30,6 +42,7 @@ int	ft_cpy(char *s1, char *s2)
 	s2[i] = '\0';
 	return (0);
 }
+
 int	ft_strcmp(char *s1, char *s2)
 {
 	int	i;
@@ -55,17 +68,3 @@ void	ft_memset(int *tab, int c, size_t size)
 		i++;
 	}
 }
-
-// void	*ft_memset(void *str, int c, size_t size)
-// {
-// 	char *cpy;
-
-// 	cpy = str;
-// 	while (size)
-// 	{
-// 		*cpy = (unsigned char)c;
-// 		cpy++;
-// 		size--;
-// 	}
-// 	return (str);
-// }

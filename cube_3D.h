@@ -6,6 +6,7 @@
 #include <sys/stat.h>
 #include <fcntl.h>
 #include <limits.h>
+#include "get_next_line.h"
 #include "minilibx-linux/mlx.h"
 
 
@@ -96,12 +97,12 @@ int check_file(char *file, t_arg *arg);
 int	ft_create_arg(char *file_name, int file_fd, t_arg *arg);
 int	ft_fill_arg(char *file_name, int file_fd, t_arg *arg);
 
-int	ft_limits_check(char *str, t_arg *arg);
+int	ft_limits_check(char *str, int tab[6], t_arg *arg);
 char	*get_texture_name(char *str, char *texture);
-int	ft_is_north(char *str, int tab[4], t_arg *arg);
-int	ft_is_east(char *str, int tab[4], t_arg *arg);
-int	ft_is_west(char *str, int tab[4], t_arg *arg);
-int	ft_is_south(char *str, int tab[4], t_arg *arg);
+int	ft_is_north(char *str, int tab[6], t_arg *arg);
+int	ft_is_east(char *str, int tab[6], t_arg *arg);
+int	ft_is_west(char *str, int tab[6], t_arg *arg);
+int	ft_is_south(char *str, int tab[6], t_arg *arg);
 
 int	ft_is_valid(char c);
 int	ft_nmb_player(char c, int cmp);
