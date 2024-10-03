@@ -1,6 +1,16 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   parsing_utils.c                                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: rgolfett <rgolfett@student.42lyon.fr>      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/10/03 12:30:31 by rgolfett          #+#    #+#             */
+/*   Updated: 2024/10/03 12:30:32 by rgolfett         ###   ########lyon.fr   */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "cube_3D.h"
-#include "get_next_line.h"
-#include "minilibx-linux/mlx.h"
 
 int	file_is_valid(char *file_name)
 {

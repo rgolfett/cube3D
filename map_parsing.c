@@ -1,11 +1,22 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   map_parsing.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: rgolfett <rgolfett@student.42lyon.fr>      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/10/03 12:38:41 by rgolfett          #+#    #+#             */
+/*   Updated: 2024/10/03 12:40:17 by rgolfett         ###   ########lyon.fr   */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "cube_3D.h"
-#include "get_next_line.h"
 
 int	ft_check_map_composure(char **map)
 {
 	int	i;
 	int	j;
-	int player;
+	int	player;
 
 	i = 0;
 	j = 0;
@@ -15,10 +26,7 @@ int	ft_check_map_composure(char **map)
 		while (map[i][j])
 		{
 			if (ft_is_valid(map[i][j]) == 1)
-			{
-				printf("map[%i][%i] = %c\n", i, j, map[i][j]); //
 				return (1);
-			}
 			player = ft_nmb_player(map[i][j], player);
 			j++;
 		}
@@ -32,11 +40,9 @@ int	ft_check_map_composure(char **map)
 
 int	ft_fill_map(char *map_name, int map_fd, t_map *s_map)
 {
-	int	i;
-	int	j;
+	int		j;
 	char	*tmp;
 
-	i = 0;
 	j = 0;
 	tmp = "0";
 	map_fd = open(map_name, O_RDONLY);
@@ -52,15 +58,9 @@ int	ft_fill_map(char *map_name, int map_fd, t_map *s_map)
 		}
 		s_map->map[j] = malloc(sizeof(char) * (ft_strlen(tmp) + 1));
 		if (s_map->map[j] == NULL)
-			return (free_str(s_map->map), 1);	
-		while (tmp[i])
-		{
-			s_map->map[j][i] = tmp[i];
-			i++;
-		}
-		s_map->map[j][i] = '\0';
+			return (free_str(s_map->map), 1);
+		ft_cpy(tmp, s_map->map[j]);
 		j++;
-		i = 0;
 	}
 	s_map->map[j] = NULL;
 	close (map_fd);
@@ -69,7 +69,6 @@ int	ft_fill_map(char *map_name, int map_fd, t_map *s_map)
 
 int	ft_create_map(char *map_name, int map_fd, t_map *s_map)
 {
-
 	while (get_next_line(map_fd) != NULL)
 		s_map->y++;
 	s_map->y -= s_map->index;
@@ -108,4 +107,3 @@ int	ft_check_valid_map(char *map_name, t_map *s_map)
 		return (printf("invalid map walls\n"), 1);
 	return (0);
 }
-

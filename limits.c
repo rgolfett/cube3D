@@ -1,59 +1,45 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   limits.c                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: rgolfett <rgolfett@student.42lyon.fr>      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/10/03 13:31:05 by rgolfett          #+#    #+#             */
+/*   Updated: 2024/10/03 13:36:05 by rgolfett         ###   ########lyon.fr   */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "cube_3D.h"
 #include "get_next_line.h"
 #include "minilibx-linux/mlx.h"
 
-int	ft_check_color_validity(t_arg *arg)
+int	ft_fill_f_tools(char *str, int i, t_arg *arg)
 {
-	if (arg->ceiling.R == -1)
-		return (1);
-	if (arg->ceiling.G == -1)
-		return (1);
-	if (arg->ceiling.B == -1)
-		return (1);
-	if (arg->floor.R == -1)
-		return (1);
-	if (arg->floor.G == -1)
-		return (1);
-	if (arg->floor.B == -1)
-		return (1);
-	return (0);
-}
-
-int	ft_floor_utils(char *nb)
-{
-	int	color;
-
-	color = 0;
-	color = ft_atoi(nb);
-	if (color < 0 || color > 255)
-		return (-1);
-	return (color);
-}
-
-
-int	ft_fill_utils(char *str)
-{
-	int		i;
-	int		j;
-	char	nb[3];
-
-	i = 0;
-	j = 0;
-	while (str[i] && is_whitespace(str[i]) == 1)
-		i++;
-	while (str[i] && ft_isdigit(str[i]) == 0)
+	if (str[i])
 	{
-		if (j > 3)
+		arg->floor.b = ft_fill_utils(&str[i]);
+		i += ft_isdigit_utils(&str[i]);
+		i += ft_whitespace_utils(&str[i]);
+		if (str[i] && str[i] != '\n')
 			return (-1);
-		nb[j] = str[i];
-		i++;
-		j++;
+		return (i);
 	}
-	if (j < 3)
-		nb[j] = '\0';
-	if (j == 0)
-		return (-1);
-	return (ft_floor_utils(nb));
+	return (-1);
+}
+
+int	ft_fill_c_tools(char *str, int i, t_arg *arg)
+{
+	if (str[i])
+	{
+		arg->ceiling.b = ft_fill_utils(&str[i]);
+		i += ft_isdigit_utils(&str[i]);
+		i += ft_whitespace_utils(&str[i]);
+		if (str[i] && str[i] != '\n')
+			return (-1);
+		return (i);
+	}
+	return (-1);
 }
 
 int	ft_fill_floor(char *str, t_arg *arg)
@@ -61,50 +47,27 @@ int	ft_fill_floor(char *str, t_arg *arg)
 	int		i;
 
 	i = 0;
-	while (str[i] && is_whitespace(str[i]) == 1)
-		i++;
+	i += ft_whitespace_utils(&str[i]);
 	while (str[i] && ft_isdigit(str[i]) == 0)
 	{
-		arg->floor.R = ft_fill_utils(&str[i]);
-		while (str[i] && ft_isdigit(str[i]) == 0)
-			i++;
-		while (str[i] && is_whitespace(str[i]) == 1)
-			i++;
+		arg->floor.r = ft_fill_utils(&str[i]);
+		i += ft_isdigit_utils(&str[i]);
+		i += ft_whitespace_utils(&str[i]);
 		if (!str[i] || str[i] != ',')
 			return (1);
 		i++;
-		while (str[i] && is_whitespace(str[i]) == 1)
-			i++;
-		// while (str[i] && ft_isdigit(str[i]) == 0)
-		// 	i++;
-		arg->floor.G = ft_fill_utils(&str[i]);
-		while (str[i] && ft_isdigit(str[i]) == 0)
-			i++;
-		while (str[i] && is_whitespace(str[i]) == 1)
-			i++;
+		i += ft_whitespace_utils(&str[i]);
+		arg->floor.g = ft_fill_utils(&str[i]);
+		i += ft_isdigit_utils(&str[i]);
+		i += ft_whitespace_utils(&str[i]);
 		if (!str[i] || str[i] != ',')
 			return (1);
 		i++;
-		while (str[i] && is_whitespace(str[i]) == 1)
-			i++;
-		if (str[i])
-		{
-				arg->floor.B = ft_fill_utils(&str[i]);
-			while (str[i] && ft_isdigit(str[i]) == 0)
-				i++;
-			while (str[i] && is_whitespace(str[i]) == 1)
-				i++;
-			if (str[i] && str[i] != '\n')
-				return (1);
-		}
-		else
+		i += ft_whitespace_utils(&str[i]);
+		i = ft_fill_f_tools(str, i, arg);
+		if (i == -1)
 			return (1);
-		return (0);
 	}
-	while (str[i] && is_whitespace(str[i]) == 0)
-		i++;
-	if (str[i] != '\n' || str[i] != '\0')
-		return (1);
 	return (0);
 }
 
@@ -113,58 +76,35 @@ int	ft_fill_ceiling(char *str, t_arg *arg)
 	int		i;
 
 	i = 0;
-	while (str[i] && is_whitespace(str[i]) == 1)
-		i++;
+	i += ft_whitespace_utils(&str[i]);
 	while (str[i] && ft_isdigit(str[i]) == 0)
 	{
-		arg->ceiling.R = ft_fill_utils(&str[i]);
-		while (str[i] && ft_isdigit(str[i]) == 0)
-			i++;
-		while (str[i] && is_whitespace(str[i]) == 1)
-			i++;
+		arg->ceiling.r = ft_fill_utils(&str[i]);
+		i += ft_isdigit_utils(&str[i]);
+		i += ft_whitespace_utils(&str[i]);
 		if (!str[i] || str[i] != ',')
 			return (1);
 		i++;
-		while (str[i] && is_whitespace(str[i]) == 1)
-			i++;
-		// while (str[i] && ft_isdigit(str[i]) == 0)
-		// 	i++;
-		arg->ceiling.G = ft_fill_utils(&str[i]);
-		while (str[i] && ft_isdigit(str[i]) == 0)
-			i++;
-		while (str[i] && is_whitespace(str[i]) == 1)
-			i++;
+		i += ft_whitespace_utils(&str[i]);
+		arg->ceiling.g = ft_fill_utils(&str[i]);
+		i += ft_isdigit_utils(&str[i]);
+		i += ft_whitespace_utils(&str[i]);
 		if (!str[i] || str[i] != ',')
 			return (1);
 		i++;
-		while (str[i] && is_whitespace(str[i]) == 1)
-			i++;
-		if (str[i])
-		{
-			arg->ceiling.B = ft_fill_utils(&str[i]);
-			while (str[i] && ft_isdigit(str[i]) == 0)
-				i++;
-			while (str[i] && is_whitespace(str[i]) == 1)
-				i++;
-			if (str[i] && str[i] != '\n')
-				return (1);
-		}
-		else
+		i += ft_whitespace_utils(&str[i]);
+		i = ft_fill_c_tools(str, i, arg);
+		if (i == -1)
 			return (1);
-		return (0);
 	}
-	while (str[i] && is_whitespace(str[i]) == 0)
-		i++;
-	if (str[i] != '\n' || str[i] != '\0')
-		return (1);
 	return (0);
 }
 
 int	ft_limits_check(char *str, int tab[6], t_arg *arg)
 {
 	int	i;
+
 	i = 0;
-	//printf("str = %s\n", str);
 	if (str[0] == 'F')
 	{
 		tab[4]++;

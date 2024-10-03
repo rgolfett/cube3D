@@ -10,6 +10,7 @@ SRCS = 	main.c \
 		texture_files_check.c \
 		texture_utils.c \
 		limits.c \
+		limits_utils.c \
 		map_walls_parsing.c \
 		parsing_utils.c \
 		test.c \

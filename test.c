@@ -42,7 +42,7 @@ int	ft_loop(t_cube *data)
 	return (0);
 }
 
-int	ft_test()
+int	ft_test(void)
 {
 	t_cube data;
 	data.mlx = mlx_init();

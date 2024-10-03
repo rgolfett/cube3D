@@ -1,3 +1,14 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   texture_utils.c                                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: rgolfett <rgolfett@student.42lyon.fr>      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/10/03 12:07:30 by rgolfett          #+#    #+#             */
+/*   Updated: 2024/10/03 12:07:36 by rgolfett         ###   ########lyon.fr   */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "cube_3D.h"
 
@@ -10,11 +21,9 @@ int	is_whitespace(int c)
 
 int	ft_fill_arg(char *file_name, int file_fd, t_arg *arg)
 {
-	int	i;
-	int	j;
+	int		j;
 	char	*tmp;
 
-	i = 0;
 	j = 0;
 	tmp = "0";
 	file_fd = open(file_name, O_RDONLY);
@@ -25,15 +34,9 @@ int	ft_fill_arg(char *file_name, int file_fd, t_arg *arg)
 			break ;
 		arg->content[j] = malloc(sizeof(char) * (ft_strlen(tmp) + 1));
 		if (arg->content[j] == NULL)
-			return (free_str(arg->content), 1);	
-		while (tmp[i])
-		{
-			arg->content[j][i] = tmp[i];
-			i++;
-		}
-		arg->content[j][i] = '\0';
+			return (free_str(arg->content), 1);
+		ft_cpy(tmp, arg->content[j]);
 		j++;
-		i = 0;
 	}
 	arg->content[j] = NULL;
 	close (file_fd);
@@ -42,7 +45,6 @@ int	ft_fill_arg(char *file_name, int file_fd, t_arg *arg)
 
 int	ft_create_arg(char *file_name, int file_fd, t_arg *arg)
 {
-
 	while (get_next_line(file_fd) != NULL)
 		arg->lines++;
 	arg->content = malloc(sizeof (char *) * (arg->lines + 1));
