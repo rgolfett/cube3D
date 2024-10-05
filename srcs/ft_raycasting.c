@@ -6,7 +6,7 @@
 /*   By: kiparis <kiparis@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/29 10:32:37 by kiparis           #+#    #+#             */
-/*   Updated: 2024/10/03 15:27:18 by kiparis          ###   ########.fr       */
+/*   Updated: 2024/10/05 15:24:45 by kiparis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ void	init_data(t_cube *data, t_arg arg)
 {
 	// data->player.theta = arg.map.direction;
 	data->arg = arg;
-	data->arg.zoom = 1;
+	data->arg.zoom = 10;
 	data->player.theta = find_spawn_point(data);
 	data->player.x1 = data->player.spawn_x * data->arg.zoom + data->arg.zoom / 2;
 	data->player.y1 = data->player.spawn_y * data->arg.zoom + data->arg.zoom / 2;
