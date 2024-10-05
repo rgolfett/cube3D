@@ -6,7 +6,7 @@
 /*   By: rgolfett <rgolfett@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/03 13:37:35 by rgolfett          #+#    #+#             */
-/*   Updated: 2024/10/03 13:37:36 by rgolfett         ###   ########lyon.fr   */
+/*   Updated: 2024/10/05 17:50:37 by rgolfett         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 # include <sys/stat.h>
 # include <fcntl.h>
 # include <limits.h>
+# include <math.h>
 # include "get_next_line.h"
 # include "minilibx-linux/mlx.h"
 
@@ -65,8 +66,11 @@ typedef struct s_arg
 
 typedef struct s_player
 {
-	int	x;
-	int	y;
+	double	x1;
+	double	x2;
+	double	y1;
+	double	y2;
+	double	theta;
 }	t_player;
 
 typedef struct s_image
