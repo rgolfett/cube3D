@@ -6,7 +6,7 @@
 /*   By: kiparis <kiparis@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/29 10:32:37 by kiparis           #+#    #+#             */
-/*   Updated: 2024/10/05 15:24:45 by kiparis          ###   ########.fr       */
+/*   Updated: 2024/10/07 17:40:33 by kiparis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,21 +43,22 @@ void	init_data(t_cube *data, t_arg arg)
 	data->player.theta = find_spawn_point(data);
 	data->player.x1 = data->player.spawn_x * data->arg.zoom + data->arg.zoom / 2;
 	data->player.y1 = data->player.spawn_y * data->arg.zoom + data->arg.zoom / 2;
+	data->image.image = mlx_new_image(data->mlx, WINDOW_X, WINDOW_Y);
+	data->image.adress = mlx_get_data_addr(data->image.image, \
+		&data->image.bits_per_adress, &data->image.size_line, &data->image.endian);
 }
 
 void	ft_raycasting(t_arg arg)
 {
 	t_cube	data;
 
-	init_data(&data, arg);
 	data.mlx = mlx_init();
+	init_data(&data, arg);
 	data.window = mlx_new_window(data.mlx, WINDOW_X, \
 								WINDOW_Y, "Ma Fenetre");
-	data.image.image = mlx_new_image(data.mlx, WINDOW_X, WINDOW_Y);
-	data.image.adress = mlx_get_data_addr(data.image.image, \
-		&data.image.bits_per_adress, &data.image.size_line, &data.image.endian);
 	mlx_hook(data.window, 2, 1, deal_key, &data);
 	mlx_hook(data.window, 17, 0, mlx_loop_end, data.mlx);
 	mlx_loop_hook(data.mlx, next_frame, &data);
 	mlx_loop(data.mlx);
+	mlx_destroy_image(data.mlx, data.image.image);
 }

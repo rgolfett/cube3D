@@ -6,7 +6,7 @@
 /*   By: kiparis <kiparis@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/29 11:00:36 by kiparis           #+#    #+#             */
-/*   Updated: 2024/10/05 15:50:37 by kiparis          ###   ########.fr       */
+/*   Updated: 2024/10/07 18:07:19 by kiparis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,85 +107,31 @@ void	algo_iso(t_cube *data, double d_theta)
 	data->player.y2 = (double)(y + 40 * sin(theta));
 }
 
-void	accurate_raycasting(t_cube *data, double theta)
+void	minimap(t_cube *data, double d_theta)
 {
-	int		tmp_x;
-	int		tmp_y;
-	double	diff_x;
-	double	diff_y;
-
-	// tmp_x = (int)data->player.x2 * -cos(data->player.theta);
-	// tmp_y = (int)data->player.y2 * -sin(data->player.theta);
-	tmp_x = (int)data->player.x2;
-	tmp_y = (int)data->player.y2;
-	// while ((tmp_y % data->arg.zoom) != 0)
-	// {
-	// 	while ((tmp_x % data->arg.zoom) != 0)
-	// 	{
-	// 		if ((((int)data->player.theta % 360) > 90) && (((int)data->player.theta % 360) < 270))
-	// 			tmp_x--;
-	// 		else if (((((int)data->player.theta % 360) > 270) && (((int)data->player.theta % 360) <= 359))
-	// 			| ((((int)data->player.theta % 360) < 90) && (((int)data->player.theta % 360) >= 0)))
-	// 			tmp_x++;
-	// 		else 
-	// 			break ;
-	// 		// tmp_x += 1 * cos(data->player.theta);
-	// 	}
-	// 	if ((((int)data->player.theta % 360) > 0) && (((int)data->player.theta % 360) < 180))
-	// 		tmp_y++;
-	// 	else if ((((int)data->player.theta % 360) > 180) && (((int)data->player.theta % 360) <= 359))
-	// 		tmp_y--;
-	// 	else 
-	// 		break ;
-	// 	// tmp_y += 1 * sin(data->player.theta);
-	// }
-	// while (((tmp_y % data->arg.zoom) != 0) || (tmp_x % data->arg.zoom) != 0)
-	// {
-	// 	while ((tmp_x % data->arg.zoom) != 0)
-	// 		tmp_x += 1 * cos(data->player.theta);
-	// 	tmp_y += 1 * sin(data->player.theta);
-	// }
-	// data->player.x2 += tmp_x;
-	// data->player.y2 += tmp_y;
-
-
-
-
-
-	// diff_x = tmp_x % data->arg.zoom;
-	// diff_y = tmp_y % data->arg.zoom;
-	// // printf("diff_x = %d, diff_y = %d\n",diff_x, diff_y);
-	// data->player.x2 += diff_x * cos(data->player.theta);
-	// data->player.y2 += diff_y * sin(data->player.theta);
-
-}
-
-void	algo_raycasting(t_cube *data, double d_theta)
-{
-	double	tmp_x;
-	double	tmp_y;
-	double	end_x = 1;
-	double	end_y = 1;
-	double	theta;
+	double tmp_x;
+	double tmp_y;
+	double end_x;
+	double end_y;
+	double theta;
 
 	data->player.x_pos_map = data->player.x1 / data->arg.zoom;
 	data->player.y_pos_map = data->player.y1 / data->arg.zoom;
-	data->player.x2 = data->player.x1;
-	data->player.y2 = data->player.y1;
 	theta = d_theta / 180.0 * M_PI;
-
-	tmp_x = (double)(data->player.x_pos_map + cos(theta));
-	tmp_y = (double)(data->player.y_pos_map + sin(theta));
-	while (data->arg.map.map[(int)tmp_y][(int)tmp_x] != '1' && data->arg.map.map[(int)tmp_y][(int)tmp_x])
+	end_x = 0;
+	end_y = 0;
+	while (1)
 	{
-		data->player.x2 = tmp_x * data->arg.zoom;
-		data->player.y2 = tmp_y * data->arg.zoom;
+		tmp_x = data->player.x_pos_map + end_x * cos(theta);
+		tmp_y = data->player.y_pos_map + end_y * sin(theta);
+		if (data->arg.map.map[(int)tmp_y][(int)tmp_x] == '1')
+			break;
 		end_x += STEP_SIZE;
 		end_y += STEP_SIZE;
-		tmp_x = (double)(data->player.x_pos_map + end_x * cos(theta));
-		tmp_y = (double)(data->player.y_pos_map + end_y * sin(theta));
 	}
-	accurate_raycasting(data, theta);
+
+	data->player.x2 = tmp_x * data->arg.zoom;
+	data->player.y2 = tmp_y * data->arg.zoom;
 }
 
 void	trace_square(size_t x, size_t y, t_cube *data, int color)
@@ -222,8 +168,42 @@ void	map(t_cube *data)
 	}
 }
 
+void	cube(t_cube *data, double ray_num)
+{
+	int	i = 0;
+	int	x;
+	int	y;
+	double	p_x = data->player.x1 / data->arg.zoom;
+	double	p_y = data->player.y1 / data->arg.zoom;
+	double	r_x = data->player.x2 / data->arg.zoom;
+	double	r_y = data->player.y2 / data->arg.zoom;
+	double	coord_x_wall;
+	double	coord_y_wall;
+	double	coord_x_wall_end;
+	double	coord_y_wall_end;
+	int	width = WINDOW_X / FOV;
+	int	mid_y = WINDOW_Y / 2;
+	int	zoom_map = 10;
+	double	ray_len;
+	while (i < width)
+	{
+		ray_len = sqrt((abs(data->player.x2 - data->player.x1) ^ 2) + (abs(data->player.y2 - data->player.y1) ^ 2)) - 1;
+		// if (ray_num == FOV / 2)
+		// 	printf("len == %f\n", ray_len);
+		coord_x_wall = i + ray_num * width;
+		coord_x_wall_end = i + ray_num * width;
+		coord_y_wall =  mid_y + (mid_y / ray_len);
+		coord_y_wall_end = mid_y - (mid_y / ray_len);
+		tracersegment(coord_x_wall, coord_y_wall, coord_x_wall_end, coord_y_wall_end, data);
+		i++;
+	}
+}
+
+
 void	next_frame(t_cube *data)
 {
+	ft_memset(data->image.adress, 0, sizeof(unsigned int) * WINDOW_X * WINDOW_Y);
+	double	ray_num = 0;
 	double tmp_theta = data->player.theta - FOV / 2;
 	fill_background(data);
 	map(data);
@@ -231,12 +211,15 @@ void	next_frame(t_cube *data)
 	while (tmp_theta <= data->player.theta + FOV / 2)
 	{
 		// algo_iso(data, tmp_theta);
-		algo_raycasting(data, tmp_theta);
+		minimap(data, tmp_theta);
+		cube(data, ray_num);
+		map(data);
 		tracersegment(data->player.x1, data->player.y1, data->player.x2, data->player.y2, data);
-		my_mlx_pixel_put(&data->image, data->player.x1, data->player.y1, 0xffff00);
-		tmp_theta += 1;
-		data->ray_color -= (255 / FOV << 8);
-		data->ray_color += (255 / FOV << 16);
+		my_mlx_pixel_put(&data->image, data->player.x1, data->player.y1, 0xff00ff);
+		tmp_theta += 0.5;
+		ray_num += 0.5;
+		data->ray_color -= (1 << 8);
+		data->ray_color += (1 << 16);
 	}
 	mlx_put_image_to_window(data->mlx, data->window, data->image.image, 0, 0);
 }
