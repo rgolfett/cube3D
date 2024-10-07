@@ -6,7 +6,7 @@
 /*   By: rgolfett <rgolfett@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/03 13:37:35 by rgolfett          #+#    #+#             */
-/*   Updated: 2024/10/05 17:50:37 by rgolfett         ###   ########lyon.fr   */
+/*   Updated: 2024/10/07 17:53:28 by rgolfett         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@
 # define KEY_ESC 65307
 
 # define WINDOW_Y 500
-# define WINDOW_X 500
+# define WINDOW_X 5000
 # define PLAYER_SIZE 9
 
 typedef struct s_map
@@ -99,6 +99,7 @@ void	ft_memset(int *tab, int c, size_t size);
 int		is_whitespace(int c);
 int		ft_isdigit(int c);
 int		ft_atoi(const char *str);
+char	*ft_itoa(int n);
 void	free_str(char **str);
 
 int		file_is_valid(char *file_name);
@@ -109,6 +110,7 @@ int		ft_fill_arg(char *file_name, int file_fd, t_arg *arg);
 
 int		ft_limits_check(char *str, int tab[6], t_arg *arg);
 int		ft_check_color_validity(t_arg *arg);
+int		get_color(int r, int g, int b);
 int		ft_floor_utils(char *nb);
 int		ft_fill_utils(char *str);
 int		ft_whitespace_utils(char *str);

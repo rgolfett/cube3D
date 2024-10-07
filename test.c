@@ -50,7 +50,17 @@ void    my_mlx_pixel_put(t_image *image, int x, int y, int color)
     }
 }
 
-int	draw_line(t_cube *data)
+int	draw_new(t_cube *data, double radiant)
+{
+	double new1 = 0;
+	double new2 = 0;
+
+	new1 = cos(data->player.x1) +  sin(data->player.y1);
+	new2 = cos(data->player.x2) -  sin(data->player.y2);
+	my_mlx_pixel_put(&data->image, (int)new1, (int)new2, 0x0fffff);
+}
+
+int	draw_line(t_cube *data, double radiant)
 {
 	double diff_x;
 	double	diff_y;
@@ -60,9 +70,9 @@ int	draw_line(t_cube *data)
 	double	x;
 	double y;
 
-
-	diff_x = (data->player.x2 -data->player.x1);
-	diff_y = (data->player.y2 -data->player.y1);
+	
+	diff_x = (data->player.x2 -data->player.x1); // 0, 0
+	diff_y = (data->player.y2 -data->player.y1); // 0, 0
 	if (abss(diff_x) >= abss(diff_y))
 		steps = abss(diff_x);
 	else
@@ -72,11 +82,11 @@ int	draw_line(t_cube *data)
 	x = data->player.x1;
 	y = data->player.y1;
 
-	printf("steps = %i\n", steps);
-	printf("x = %f\n", x);
-	printf("y = %f\n", y);
-	printf("incr_x = %f\n", incr_x);
-	printf("in y  = %f\n", incr_y);
+	// printf("steps = %i\n", steps);
+	// printf("x = %f\n", x);
+	// printf("y = %f\n", y);
+	// printf("incr_x = %f\n", incr_x);
+	// printf("in y  = %f\n", incr_y);
 	while (steps--)
 	{
 		my_mlx_pixel_put(&data->image, (int)x, (int)y, 0x000fff);
@@ -86,27 +96,37 @@ int	draw_line(t_cube *data)
 
 }
 
-int	algo(t_cube *data)
+int	algo(t_cube *data, int radiant)
 {
 	double n_theta;
 
-	n_theta = data->player.theta /180 * M_PI;
+	n_theta = data->player.theta /180 * M_PI + radiant;
 	data->player.x2 = (data->player.x1 + 100 * cos(n_theta));
 	data->player.y2 = (data->player.y1 + 100 * sin(n_theta));
 		
-
-
+	
 }
 
 int	ft_loop(t_cube *data)
 {
+	int	radiant = 0;
+	int  nb_rad = 5;
+
 	data->image.image = mlx_new_image(data->mlx, WINDOW_X, WINDOW_Y);
 	data->image.adress = mlx_get_data_addr(data->image.image, 
 		&data->image.bits_per_adress, &data->image.size_line, &data->image.endian);
 		mlx_put_image_to_window(data->mlx,data->window, data->image.image, 0, 0);
 	//mlx_clear_window(data->mlx, data->window);
-	algo(data);
-	draw_line(data);
+	while (nb_rad > 0)
+	{
+		draw_new(data, radiant);
+		algo(data, radiant);
+		draw_line(data, radiant);
+		radiant += (M_PI/6);
+		nb_rad--;
+	}
+	//draw_line(data, radiant);
+	printf("bits = %i, size = %i, endian = %i\n",data->image.bits_per_adress, data->image.size_line, data->image.endian);
 	my_mlx_pixel_put(&data->image, data->player.x1, data->player.y1, 0xffff00);
 	mlx_put_image_to_window(data->mlx, data->window, data->image.image, 0, 0);
 

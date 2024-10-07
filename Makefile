@@ -6,10 +6,12 @@ SRCS = 	main.c \
 		map_parsing.c \
 		utils.c \
 		ft_atoi.c \
+		ft_itoa.c \
 		texture_parsing.c \
 		texture_files_check.c \
 		texture_utils.c \
 		limits.c \
+		color.c \
 		limits_utils.c \
 		map_walls_parsing.c \
 		parsing_utils.c \

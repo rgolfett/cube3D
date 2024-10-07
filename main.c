@@ -6,7 +6,7 @@
 /*   By: rgolfett <rgolfett@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/03 12:40:12 by rgolfett          #+#    #+#             */
-/*   Updated: 2024/10/03 13:41:35 by rgolfett         ###   ########lyon.fr   */
+/*   Updated: 2024/10/07 17:44:22 by rgolfett         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,6 +77,7 @@ int	main(int argc, char **argv)
 	if (check_file(argv[1], &arg) == 1)
 		return (1);
 	ft_print_all(&arg);
+	get_color(arg.ceiling.r, arg.ceiling.b, arg.ceiling.b);
 	if (ft_check_valid_map(argv[1], &arg.s_map) == 1)
 		return (1);
 	free_utils(&arg);
