@@ -6,7 +6,7 @@
 /*   By: kiparis <kiparis@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/29 11:00:36 by kiparis           #+#    #+#             */
-/*   Updated: 2024/10/07 18:07:19 by kiparis          ###   ########.fr       */
+/*   Updated: 2024/10/07 19:15:10 by kiparis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ size_t	ft_line_len(const char *str)
 	return (i);
 }
 
-int	abs(int n)
+double	ft_abs(double n)
 {
 	if (n < 0)
 		return (-n);
@@ -40,10 +40,10 @@ double	calc_incr(int x1, int y1, int x2, int y2, int option)
 
 	dx = x2 - x1;
 	dy = y2 - y1;
-	if (abs((int)dx) > abs((int)dy))
-		steps = abs((int)dx);
+	if (ft_abs(dx) > ft_abs(dy))
+		steps = ft_abs(dx);
 	else
-		steps = abs((int)dy);
+		steps = ft_abs(dy);
 	if (option == 1)
 		return (dx / steps);
 	else if (option == 2)
@@ -87,7 +87,7 @@ void	fill_background(t_cube *data)
 		x = 0;
 		while (x <= WINDOW_X)
 		{
-			my_mlx_pixel_put(&(data)->image, x, y, 0x777777);
+			my_mlx_pixel_put(&(data)->image, x, y, 0x0fd126);
 			x++;
 		}
 		y++;
@@ -126,9 +126,42 @@ void	minimap(t_cube *data, double d_theta)
 		tmp_y = data->player.y_pos_map + end_y * sin(theta);
 		if (data->arg.map.map[(int)tmp_y][(int)tmp_x] == '1')
 			break;
+		end_x += STEP_SIZE * 100;
+		end_y += STEP_SIZE * 100;
+	}
+	end_x = 0;
+	end_y = 0;
+	while (1)
+	{
+		tmp_x = data->player.x_pos_map + end_x * cos(theta);
+		tmp_y = data->player.y_pos_map + end_y * sin(theta);
+		if (data->arg.map.map[(int)tmp_y][(int)tmp_x] == '1')
+			break;
+		end_x += STEP_SIZE * 10;
+		end_y += STEP_SIZE * 10;
+	}
+	end_x = 0;
+	end_y = 0;
+	while (1)
+	{
+		tmp_x = data->player.x_pos_map + end_x * cos(theta);
+		tmp_y = data->player.y_pos_map + end_y * sin(theta);
+		if (data->arg.map.map[(int)tmp_y][(int)tmp_x] == '1')
+			break;
 		end_x += STEP_SIZE;
 		end_y += STEP_SIZE;
 	}
+	// end_x = 0;
+	// end_y = 0;
+	// while (1)
+	// {
+	// 	tmp_x = data->player.x_pos_map + end_x * cos(theta);
+	// 	tmp_y = data->player.y_pos_map + end_y * sin(theta);
+	// 	if (data->arg.map.map[(int)tmp_y][(int)tmp_x] == '1')
+	// 		break;
+	// 	end_x += STEP_SIZE;
+	// 	end_y += STEP_SIZE;
+	// }
 
 	data->player.x2 = tmp_x * data->arg.zoom;
 	data->player.y2 = tmp_y * data->arg.zoom;
@@ -170,9 +203,7 @@ void	map(t_cube *data)
 
 void	cube(t_cube *data, double ray_num)
 {
-	int	i = 0;
-	int	x;
-	int	y;
+	double	i = 0;
 	double	p_x = data->player.x1 / data->arg.zoom;
 	double	p_y = data->player.y1 / data->arg.zoom;
 	double	r_x = data->player.x2 / data->arg.zoom;
@@ -181,19 +212,20 @@ void	cube(t_cube *data, double ray_num)
 	double	coord_y_wall;
 	double	coord_x_wall_end;
 	double	coord_y_wall_end;
-	int	width = WINDOW_X / FOV;
-	int	mid_y = WINDOW_Y / 2;
-	int	zoom_map = 10;
+	double	width = WINDOW_X / FOV;
+	double	mid_y = WINDOW_Y / 2;
+	double	zoom_map = 10;
 	double	ray_len;
-	while (i < width)
+	while (i <= width)
 	{
-		ray_len = sqrt((abs(data->player.x2 - data->player.x1) ^ 2) + (abs(data->player.y2 - data->player.y1) ^ 2)) - 1;
+		ray_len = sqrt((ft_abs(data->player.x2 - data->player.x1) * ft_abs(data->player.x2 - data->player.x1)) + (ft_abs(data->player.y2 - data->player.y1) * ft_abs(data->player.y2 - data->player.y1))) - 1;
 		// if (ray_num == FOV / 2)
 		// 	printf("len == %f\n", ray_len);
 		coord_x_wall = i + ray_num * width;
 		coord_x_wall_end = i + ray_num * width;
-		coord_y_wall =  mid_y + (mid_y / ray_len);
-		coord_y_wall_end = mid_y - (mid_y / ray_len);
+		// printf("head == %f\n", data->head);
+		coord_y_wall =  data->head + (mid_y / ray_len * zoom_map);
+		coord_y_wall_end = data->head - (mid_y / ray_len * zoom_map);
 		tracersegment(coord_x_wall, coord_y_wall, coord_x_wall_end, coord_y_wall_end, data);
 		i++;
 	}
@@ -207,19 +239,20 @@ void	next_frame(t_cube *data)
 	double tmp_theta = data->player.theta - FOV / 2;
 	fill_background(data);
 	map(data);
-	data->ray_color = 0x00ff00;
+	// data->ray_color = 0x00ff00;
 	while (tmp_theta <= data->player.theta + FOV / 2)
 	{
+		data->ray_color = 0xf19c10;
 		// algo_iso(data, tmp_theta);
 		minimap(data, tmp_theta);
 		cube(data, ray_num);
 		map(data);
 		tracersegment(data->player.x1, data->player.y1, data->player.x2, data->player.y2, data);
 		my_mlx_pixel_put(&data->image, data->player.x1, data->player.y1, 0xff00ff);
-		tmp_theta += 0.5;
-		ray_num += 0.5;
-		data->ray_color -= (1 << 8);
-		data->ray_color += (1 << 16);
+		tmp_theta += 0.25;
+		ray_num += 0.25;
+		// data->ray_color -= (1 << 8);
+		// data->ray_color += (1 << 16);
 	}
 	mlx_put_image_to_window(data->mlx, data->window, data->image.image, 0, 0);
 }

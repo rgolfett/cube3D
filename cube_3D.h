@@ -18,9 +18,9 @@
 # define KEY_ESC 65307
 
 # define WINDOW_Y 1000
-# define WINDOW_X 1500
+# define WINDOW_X 1540
 # define PLAYER_SIZE 9
-# define STEP_SIZE 0.05
+# define STEP_SIZE 0.01
 
 # define FOV 90
 
@@ -78,6 +78,7 @@ typedef struct s_cube
 	t_player	player;
 	t_arg		arg;
 	int			ray_color;
+	double		head;
 }	t_cube;
 
 
@@ -100,6 +101,7 @@ int	ft_check_map_walls(char **map);
 int	ft_check_valid_map(char *map_name, t_map *s_map);
 int	ft_test();
 int	deal_key(int key, t_cube *data);
+int	deal_mouse(int button, int x, int y, t_cube *data);
 void	next_frame(t_cube *data);
 void	ft_pixel_put(t_cube *data, int x, int y, int color);
 void	my_mlx_pixel_put(t_image *image, int x, int y, int color);
