@@ -6,7 +6,7 @@
 /*   By: rgolfett <rgolfett@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/03 12:07:30 by rgolfett          #+#    #+#             */
-/*   Updated: 2024/10/03 12:07:36 by rgolfett         ###   ########lyon.fr   */
+/*   Updated: 2024/10/12 17:41:13 by rgolfett         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,9 +25,9 @@ int	ft_fill_arg(char *file_name, int file_fd, t_arg *arg)
 	char	*tmp;
 
 	j = 0;
-	tmp = "0";
+	tmp = "";
 	file_fd = open(file_name, O_RDONLY);
-	while (tmp != NULL)
+	while (1)
 	{
 		tmp = get_next_line(file_fd);
 		if (tmp == NULL)
@@ -36,6 +36,7 @@ int	ft_fill_arg(char *file_name, int file_fd, t_arg *arg)
 		if (arg->content[j] == NULL)
 			return (free_str(arg->content), 1);
 		ft_cpy(tmp, arg->content[j]);
+		free(tmp);
 		j++;
 	}
 	arg->content[j] = NULL;
@@ -45,8 +46,16 @@ int	ft_fill_arg(char *file_name, int file_fd, t_arg *arg)
 
 int	ft_create_arg(char *file_name, int file_fd, t_arg *arg)
 {
-	while (get_next_line(file_fd) != NULL)
+	char	*tmp;
+
+	while (1)
+	{
+		tmp = get_next_line(file_fd);
+		if (tmp == NULL)
+			break;
+		free(tmp);
 		arg->lines++;
+	}
 	arg->content = malloc(sizeof (char *) * (arg->lines + 1));
 	if (!arg->content)
 		return (1);

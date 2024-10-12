@@ -6,7 +6,7 @@
 /*   By: rgolfett <rgolfett@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/03 13:37:35 by rgolfett          #+#    #+#             */
-/*   Updated: 2024/10/12 15:40:38 by rgolfett         ###   ########lyon.fr   */
+/*   Updated: 2024/10/12 18:06:46 by rgolfett         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,10 +33,11 @@
 
 
 # define WINDOW_Y 1000
-# define WINDOW_X 1500
+# define WINDOW_X 1540
 # define PLAYER_SIZE 9
+# define STEP_SIZE 0.01
 
-# define FOV 30
+# define FOV 90
 
 typedef struct s_map
 {
@@ -100,6 +101,7 @@ typedef struct s_cube
 	t_player	player;
 	t_arg		arg;
 	int			ray_color;
+	double		head;
 }	t_cube;
 
 int		main(int argc, char **argv);
@@ -121,7 +123,6 @@ int		ft_fill_arg(char *file_name, int file_fd, t_arg *arg);
 
 int		ft_limits_check(char *str, int tab[6], t_arg *arg);
 int		ft_check_color_validity(t_arg *arg);
-int		get_color(int r, int g, int b);
 int		ft_floor_utils(char *nb);
 int		ft_fill_utils(char *str);
 int		ft_whitespace_utils(char *str);
@@ -139,7 +140,10 @@ int		ft_check_map_walls(char **map);
 int		ft_check_valid_map(char *map_name, t_map *s_map);
 //int		ft_test(void);
 int		deal_key(int key, t_cube *data);
-int		next_frame(t_cube *data);
+
+void	ft_raycasting(t_arg arg);
+int		deal_mouse(int button, int x, int y, t_cube *data);
+void	next_frame(t_cube *data);
 void	ft_pixel_put(t_cube *data, int x, int y, int color);
 void	my_mlx_pixel_put(t_image *image, int x, int y, int color);
 

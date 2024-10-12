@@ -6,7 +6,7 @@
 /*   By: rgolfett <rgolfett@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/03 13:31:20 by rgolfett          #+#    #+#             */
-/*   Updated: 2024/10/03 13:36:05 by rgolfett         ###   ########lyon.fr   */
+/*   Updated: 2024/10/12 17:28:15 by rgolfett         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,8 @@ int	ft_floor_utils(char *nb)
 	int	color;
 
 	color = 0;
+	if (nb == NULL)
+		return (-1);
 	color = ft_atoi(nb);
 	if (color < 0 || color > 255)
 		return (-1);
@@ -44,7 +46,7 @@ int	ft_fill_utils(char *str)
 {
 	int		i;
 	int		j;
-	char	nb[3];
+	char	nb[4];
 
 	i = 0;
 	j = 0;
@@ -58,8 +60,7 @@ int	ft_fill_utils(char *str)
 		i++;
 		j++;
 	}
-	if (j < 3)
-		nb[j] = '\0';
+	nb[j] = '\0';
 	if (j == 0)
 		return (-1);
 	return (ft_floor_utils(nb));

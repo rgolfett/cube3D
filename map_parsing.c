@@ -6,7 +6,7 @@
 /*   By: rgolfett <rgolfett@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/03 12:38:41 by rgolfett          #+#    #+#             */
-/*   Updated: 2024/10/12 16:15:58 by rgolfett         ###   ########lyon.fr   */
+/*   Updated: 2024/10/12 18:17:53 by rgolfett         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,10 +26,7 @@ int	ft_check_map_composure(char **map)
 		while (map[i][j])
 		{
 			if (ft_is_valid(map[i][j]) == 1)
-			{
-				printf("map : '%c'\n", map[i][j]);	
 				return (1);
-			}
 			player = ft_nmb_player(map[i][j], player);
 			j++;
 		}
@@ -47,9 +44,8 @@ int	ft_fill_map(char *map_name, int map_fd, t_map *s_map)
 	char	*tmp;
 
 	j = 0;
-	tmp = "0";
 	map_fd = open(map_name, O_RDONLY);
-	while (tmp != NULL)
+	while (1)
 	{
 		tmp = get_next_line(map_fd);
 		if (tmp == NULL)
@@ -57,23 +53,32 @@ int	ft_fill_map(char *map_name, int map_fd, t_map *s_map)
 		if (s_map->index > 0)
 		{
 			s_map->index--;
+			free(tmp);
 			continue ;
 		}
 		s_map->map[j] = malloc(sizeof(char) * (ft_strlen(tmp) + 1));
 		if (s_map->map[j] == NULL)
 			return (free_str(s_map->map), 1);
 		ft_cpy(tmp, s_map->map[j]);
+		free(tmp);
 		j++;
 	}
 	s_map->map[j] = NULL;
-	close (map_fd);
-	return (0);
+	return (close (map_fd), 0);
 }
 
 int	ft_create_map(char *map_name, int map_fd, t_map *s_map)
 {
-	while (get_next_line(map_fd) != NULL)
+	char	*tmp;
+
+	while (1)
+	{
+		tmp = get_next_line(map_fd);
+		if (tmp == NULL)
+			break;
 		s_map->y++;
+		free(tmp);
+	}
 	s_map->y -= s_map->index;
 	s_map->map = malloc(sizeof (char *) * (s_map->y + 1));
 	if (!s_map->map)

@@ -11,7 +11,6 @@ SRCS = 	main.c \
 		texture_files_check.c \
 		texture_utils.c \
 		limits.c \
-		color.c \
 		limits_utils.c \
 		map_walls_parsing.c \
 		parsing_utils.c \
@@ -28,7 +27,7 @@ OBJS =	$(SRCS:%.c=%.o)
 
 CC = cc
 
-CFLAGS = -Wall -Wextra -g3 -Iminilibx-linux #-Werror
+CFLAGS = -Wall -Wextra -g3 -Iminilibx-linux -fsanitize=address#-Werror
 
 all : $(NAME)
 
