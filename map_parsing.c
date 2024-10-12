@@ -6,7 +6,7 @@
 /*   By: rgolfett <rgolfett@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/03 12:38:41 by rgolfett          #+#    #+#             */
-/*   Updated: 2024/10/03 12:40:17 by rgolfett         ###   ########lyon.fr   */
+/*   Updated: 2024/10/12 16:15:58 by rgolfett         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,10 @@ int	ft_check_map_composure(char **map)
 		while (map[i][j])
 		{
 			if (ft_is_valid(map[i][j]) == 1)
+			{
+				printf("map : '%c'\n", map[i][j]);	
 				return (1);
+			}
 			player = ft_nmb_player(map[i][j], player);
 			j++;
 		}
