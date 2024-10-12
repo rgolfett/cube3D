@@ -6,7 +6,7 @@
 /*   By: rgolfett <rgolfett@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/03 13:37:35 by rgolfett          #+#    #+#             */
-/*   Updated: 2024/10/07 17:53:28 by rgolfett         ###   ########lyon.fr   */
+/*   Updated: 2024/10/12 15:40:38 by rgolfett         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,9 +30,13 @@
 # define KEY_LEFT 65361
 # define KEY_ESC 65307
 
-# define WINDOW_Y 500
-# define WINDOW_X 5000
+
+
+# define WINDOW_Y 1000
+# define WINDOW_X 1500
 # define PLAYER_SIZE 9
+
+# define FOV 30
 
 typedef struct s_map
 {
@@ -62,15 +66,21 @@ typedef struct s_arg
 	t_color	ceiling;
 	t_map	s_map;
 	int		lines;
+	int	h;
+	int	zoom;
 }	t_arg;
 
 typedef struct s_player
 {
 	double	x1;
-	double	x2;
 	double	y1;
+	double	x2;
 	double	y2;
 	double	theta;
+	int	spawn_x;
+	int	spawn_y;
+	double	x_pos_map;
+	double	y_pos_map;
 }	t_player;
 
 typedef struct s_image
@@ -88,7 +98,8 @@ typedef struct s_cube
 	void		*window;
 	t_image		image;
 	t_player	player;
-
+	t_arg		arg;
+	int			ray_color;
 }	t_cube;
 
 int		main(int argc, char **argv);
@@ -126,6 +137,10 @@ int		ft_is_valid(char c);
 int		ft_nmb_player(char c, int cmp);
 int		ft_check_map_walls(char **map);
 int		ft_check_valid_map(char *map_name, t_map *s_map);
-int		ft_test(void);
+//int		ft_test(void);
+int		deal_key(int key, t_cube *data);
+int		next_frame(t_cube *data);
+void	ft_pixel_put(t_cube *data, int x, int y, int color);
+void	my_mlx_pixel_put(t_image *image, int x, int y, int color);
 
 #endif
