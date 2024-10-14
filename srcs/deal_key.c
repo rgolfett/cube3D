@@ -6,7 +6,7 @@
 /*   By: kiparis <kiparis@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/29 10:59:10 by kiparis           #+#    #+#             */
-/*   Updated: 2024/10/07 19:41:28 by kiparis          ###   ########.fr       */
+/*   Updated: 2024/10/14 13:18:03 by kiparis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int	deal_key(int key, t_cube *data)
 {
-	printf("key == %d\n", key);
+	// printf("key == %d\n", key);
 
 	if (key == 65307)
 		mlx_loop_end(data->mlx);

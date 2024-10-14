@@ -6,7 +6,7 @@
 /*   By: kiparis <kiparis@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/03 13:37:35 by rgolfett          #+#    #+#             */
-/*   Updated: 2024/10/14 12:12:22 by kiparis          ###   ########.fr       */
+/*   Updated: 2024/10/14 14:44:18 by kiparis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,8 +32,8 @@
 
 
 
-# define WINDOW_Y 1000
-# define WINDOW_X 1540
+# define WINDOW_Y 1080
+# define WINDOW_X 1920
 # define PLAYER_SIZE 9
 # define STEP_SIZE 0.01
 # define RAY_NB 360

@@ -6,7 +6,7 @@
 /*   By: kiparis <kiparis@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/29 10:32:37 by kiparis           #+#    #+#             */
-/*   Updated: 2024/10/14 11:52:29 by kiparis          ###   ########.fr       */
+/*   Updated: 2024/10/14 13:30:45 by kiparis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,8 +46,6 @@ void	init_data(t_cube *data, t_arg arg)
 	data->arg.floor.color = (data->arg.floor.r << 16) | \
 							(data->arg.floor.g << 8) | \
 							data->arg.floor.b;
-	printf("ceiling color = %d, florr color = %d\n", data->arg.ceiling.color,\
-	data->arg.floor.color);
 	data->arg.zoom = 10;
 	data->head = WINDOW_Y / 2;
 	data->player.theta = find_spawn_point(data);

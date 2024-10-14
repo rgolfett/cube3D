@@ -6,7 +6,7 @@
 /*   By: kiparis <kiparis@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/29 11:00:36 by kiparis           #+#    #+#             */
-/*   Updated: 2024/10/14 12:12:29 by kiparis          ###   ########.fr       */
+/*   Updated: 2024/10/14 15:36:35 by kiparis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -376,38 +376,61 @@ void	draw_line(double x1, double y1, double x2, double y2, t_cube *data)
 void	raycast(t_cube *data, double ray_num)
 {
 	double	n_band;
-	double	band_tot;
+	double	band_w;
 	double	coord_x_wall;
 	double	coord_y_wall;
 	double	ray_len;
 
-	band_tot = WINDOW_X / FOV;
+	band_w = (double)WINDOW_X / (double)FOV;
+	// printf("band_w = %f\n", band_w);
 	n_band = 0;
-	while (n_band < band_tot)
+	while (n_band < band_w)
 	{
 		ray_len = sqrt((ft_abs(data->player.x2 - data->player.x1) * \
 		ft_abs(data->player.x2 - data->player.x1)) + (ft_abs(data->player.y2 \
 		- data->player.y1) * ft_abs(data->player.y2 - data->player.y1))) - 1;
-		draw_line(n_band + ray_num * band_tot, data->head + WINDOW_Y * 0.5 / \
-		ray_len * 10, n_band + ray_num * band_tot, data->head - WINDOW_Y * \
+		draw_line(n_band + ray_num * band_w, data->head + WINDOW_Y * 0.5 / \
+		ray_len * 10, n_band + ray_num * band_w, data->head - WINDOW_Y * \
 		0.5 / ray_len * 10, data);
 		n_band++;
 	}
+	// printf("n_band = %f\n", n_band);
 }
+#include <time.h>
 
 void	next_frame(t_cube *data)
 {
+	// static int		frameCount = 0;
+	// static clock_t	startTime = 0;
+	// double			elapsedTime;
+	// if (startTime == 0)
+	// 	startTime = clock();
+
+
 	double	ray_num;
-	double	ray_incr;
+	double	incr;
+	double	tmp_theta = data->player.theta - FOV / 2;
 
 	ray_num = 0;
-	ray_incr = (double)FOV / (double)RAY_NB;
+	incr = (double)FOV / (double)RAY_NB;
+	// printf("incr = %f\n", incr);
 	fill_background(data);
-	while ((data->player.theta + ray_num - FOV / 2) <= data->player.theta + FOV / 2)
+	while (tmp_theta < (data->player.theta + ((double)FOV / 2)))
 	{
 		algo_ray_end(data, ray_num);
 		raycast(data, ray_num);
-		ray_num += ray_incr;
+		tmp_theta += incr;
+		ray_num += incr;
 	}
+	// printf("ray num = %f\n", ray_num);
 	mlx_put_image_to_window(data->mlx, data->window, data->image.image, 0, 0);
+	
+	// frameCount++;
+	// elapsedTime = (double)(clock() - startTime) / CLOCKS_PER_SEC;
+    // if (elapsedTime >= 1.0)
+	// {
+	// 	printf("FPS: %d\n", frameCount);
+	// 	frameCount = 0;
+	// 	startTime = clock();
+    // }
 }
