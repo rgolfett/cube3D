@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cube_3D.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rgolfett <rgolfett@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: kiparis <kiparis@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/03 13:37:35 by rgolfett          #+#    #+#             */
-/*   Updated: 2024/10/12 18:06:46 by rgolfett         ###   ########lyon.fr   */
+/*   Updated: 2024/10/14 12:12:22 by kiparis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@
 # define WINDOW_X 1540
 # define PLAYER_SIZE 9
 # define STEP_SIZE 0.01
+# define RAY_NB 360
 
 # define FOV 90
 
@@ -101,6 +102,9 @@ typedef struct s_cube
 	t_player	player;
 	t_arg		arg;
 	int			ray_color;
+	int			ceiling_color;
+	int			floor_color;
+	double		axes_mul;
 	double		head;
 }	t_cube;
 
