@@ -6,7 +6,7 @@
 /*   By: kiparis <kiparis@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/29 10:59:10 by kiparis           #+#    #+#             */
-/*   Updated: 2024/10/14 13:18:03 by kiparis          ###   ########.fr       */
+/*   Updated: 2024/10/15 13:21:01 by kiparis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,23 +20,23 @@ int	deal_key(int key, t_cube *data)
 		mlx_loop_end(data->mlx);
 	else if (key == 's')
 	{
-		data->player.x1 += 5 * -cos(data->player.theta /180 * M_PI);
-		data->player.y1 += 5 * -sin(data->player.theta /180 * M_PI);
+		data->player.x1 += 5 * -cos(data->player.theta /180 * MY_PI);
+		data->player.y1 += 5 * -sin(data->player.theta /180 * MY_PI);
 	}
 	else if (key == 'w')
 	{
-		data->player.x1 += 5 * cos(data->player.theta /180 * M_PI);
-		data->player.y1 += 5 * sin(data->player.theta /180 * M_PI);
+		data->player.x1 += 5 * cos(data->player.theta /180 * MY_PI);
+		data->player.y1 += 5 * sin(data->player.theta /180 * MY_PI);
 	}
 	else if (key == 'a')
 	{
-		data->player.x1 += 5 * cos((data->player.theta - 90) /180 * M_PI);
-		data->player.y1 += 5 * sin((data->player.theta - 90) /180 * M_PI);
+		data->player.x1 += 5 * cos((data->player.theta - 90) /180 * MY_PI);
+		data->player.y1 += 5 * sin((data->player.theta - 90) /180 * MY_PI);
 	}
 	else if (key == 'd')
 	{
-		data->player.x1 += 5 * cos((data->player.theta + 90) /180 * M_PI);
-		data->player.y1 += 5 * sin((data->player.theta + 90) /180 * M_PI);
+		data->player.x1 += 5 * cos((data->player.theta + 90) /180 * MY_PI);
+		data->player.y1 += 5 * sin((data->player.theta + 90) /180 * MY_PI);
 	}
 	else if (key == 65361)
 		data->player.theta -= 3;
@@ -53,6 +53,8 @@ int	deal_key(int key, t_cube *data)
 		data->head -= 5;
 	else if (key == 65362)
 		data->head += 5;
+	else if (key == 'f')
+		data->show_fps *= -1;
 	// printf("zoom = %d\n", data->arg.zoom);
 	// printf("theta == %f\n", data->player.theta);
 	// printf("x2 == %f\n", data->player.x2);
@@ -64,4 +66,8 @@ int	deal_mouse(int button, int x, int y, t_cube *data)
 {
 	printf("mouse\n");
 	return (0);
+	(void)button;
+	(void)data;
+	(void)y;
+	(void)x;
 }

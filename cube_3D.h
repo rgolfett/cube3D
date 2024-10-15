@@ -6,7 +6,7 @@
 /*   By: kiparis <kiparis@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/03 13:37:35 by rgolfett          #+#    #+#             */
-/*   Updated: 2024/10/15 11:58:02 by kiparis          ###   ########.fr       */
+/*   Updated: 2024/10/15 14:59:15 by kiparis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@
 # define WINDOW_X 1800
 # define PLAYER_SIZE 9
 # define STEP_SIZE 0.01
-# define RAY_NB 360
+# define RAY_NB 900
 
 # define FOV 90
 
@@ -110,6 +110,8 @@ typedef struct s_cube
 	double		head;
 	double		band_w;
 	double		incr;
+	int			show_fps;
+	double		end_axes;
 }	t_cube;
 
 int		main(int argc, char **argv);
