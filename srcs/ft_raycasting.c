@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_raycasting.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rgolfett <rgolfett@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: rgolfett <rgolfett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/29 10:32:37 by kiparis           #+#    #+#             */
-/*   Updated: 2024/10/15 14:23:23 by rgolfett         ###   ########lyon.fr   */
+/*   Updated: 2024/10/15 22:12:13 by rgolfett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,10 +37,20 @@ double	find_spawn_point(t_cube *data)
 
 void	init_data(t_cube *data, t_arg arg)
 {
-	// data->player.theta = arg.map.direction;
 	data->arg = arg;
+	// data->player.theta = arg.map.direction;
+	data->ray_color = 0xf19c10;
+	data->arg.ceiling.color = (data->arg.ceiling.r << 16) | \
+							(data->arg.ceiling.g << 8) | \
+							data->arg.ceiling.b;
+	data->arg.floor.color = (data->arg.floor.r << 16) | \
+							(data->arg.floor.g << 8) | \
+							data->arg.floor.b;
 	data->arg.zoom = 10;
-	data->head = WINDOW_Y / 2;
+	data->arg.coef_zoom = 1 / data->arg.zoom;
+	data->head = WINDOW_Y * 0.5;
+	data->band_w = (double)WINDOW_X / (double)FOV;
+	data->incr = (double)FOV / (double)RAY_NB;
 	data->player.theta = find_spawn_point(data);
 	data->player.x1 = data->player.spawn_x * data->arg.zoom + data->arg.zoom / 2;
 	data->player.y1 = data->player.spawn_y * data->arg.zoom + data->arg.zoom / 2;
@@ -57,6 +67,12 @@ void	ft_raycasting(t_arg arg)
 
 	data.mlx = mlx_init();
 	init_data(&data, arg);
+	// int i = 0;
+	// while (data.arg.s_map.map[i])
+	// {
+	// 	printf("map[%d] == |%s|\n", i, data.arg.s_map.map[i]);
+	// 	i++;
+	// }
 	data.window = mlx_new_window(data.mlx, WINDOW_X, \
 								WINDOW_Y, "Ma Fenetre");
 	mlx_mouse_hide(data.mlx, data.window);
@@ -71,4 +87,8 @@ void	ft_raycasting(t_arg arg)
 	mlx_loop(data.mlx);
 	mlx_destroy_image(data.mlx, data.image.image);
 	mlx_mouse_show(data.mlx, data.window);
+	// mlx_clear_window();
+	mlx_destroy_window(data.mlx, data.window);
+	mlx_destroy_display(data.mlx);
+	free(data.mlx);
 }

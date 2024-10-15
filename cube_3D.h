@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cube_3D.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rgolfett <rgolfett@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: rgolfett <rgolfett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/03 13:37:35 by rgolfett          #+#    #+#             */
-/*   Updated: 2024/10/15 14:59:47 by rgolfett         ###   ########lyon.fr   */
+/*   Updated: 2024/10/15 22:11:09 by rgolfett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,12 +30,14 @@
 # define KEY_LEFT 65361
 # define KEY_ESC 65307
 
+# define MY_PI 3.14159265358979323846
+# define INV_180 (1.0 / 180.0)
 
-
-# define WINDOW_Y 1000
-# define WINDOW_X 1540
+# define WINDOW_Y 1080
+# define WINDOW_X 1800
 # define PLAYER_SIZE 9
 # define STEP_SIZE 0.01
+# define RAY_NB 360
 
 # define FOV 90
 
@@ -99,7 +101,8 @@ typedef struct s_arg
 	t_key	m_key;
 	int		lines;
 	int	h;
-	int	zoom;
+	double	zoom;
+	double	coef_zoom;
 }	t_arg;
 
 typedef struct s_player
@@ -124,7 +127,12 @@ typedef struct s_cube
 	t_player	player;
 	t_arg		arg;
 	int			ray_color;
+	int			ceiling_color;
+	int			floor_color;
+	double		axes_mul;
 	double		head;
+	double		band_w;
+	double		incr;
 }	t_cube;
 
 int		main(int argc, char **argv);
