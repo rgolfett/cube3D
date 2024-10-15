@@ -6,7 +6,7 @@
 /*   By: kiparis <kiparis@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/29 11:00:36 by kiparis           #+#    #+#             */
-/*   Updated: 2024/10/14 15:36:35 by kiparis          ###   ########.fr       */
+/*   Updated: 2024/10/15 12:11:26 by kiparis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,7 +102,7 @@
 
 // 	x = data->player.x1;
 // 	y = data->player.y1;
-// 	theta = d_theta / 180.0 * M_PI;
+// 	theta = d_theta / 180.0 * MY_PI;
 // 	data->player.x2 = (double)(x + 40 * cos(theta));
 // 	data->player.y2 = (double)(y + 40 * sin(theta));
 // }
@@ -117,7 +117,7 @@
 
 // 	data->player.x_pos_map = data->player.x1 / data->arg.zoom;
 // 	data->player.y_pos_map = data->player.y1 / data->arg.zoom;
-// 	theta = d_theta / 180.0 * M_PI;
+// 	theta = d_theta / 180.0 * MY_PI;
 // 	end_x = 0;
 // 	end_y = 0;
 // 	while (1)
@@ -292,7 +292,7 @@ void	calc_end_axes(t_cube *data, double *tmp_x, double *tmp_y, double ray_num)
 	double	theta;
 
 	end_axes = 0;
-	theta = (data->player.theta + ray_num - FOV / 2) / 180 * M_PI;
+	theta = (data->player.theta + ray_num - FOV * 0.5) * INV_180 * MY_PI;
 	while (1)
 	{
 		*tmp_x = data->player.x_pos_map + end_axes * cos(theta);
@@ -309,8 +309,8 @@ void	algo_ray_end(t_cube *data, double ray_num)
 	double	tmp_x;
 	double	tmp_y;
 
-	data->player.x_pos_map = data->player.x1 / data->arg.zoom;
-	data->player.y_pos_map = data->player.y1 / data->arg.zoom;
+	data->player.x_pos_map = data->player.x1 * data->arg.coef_zoom;
+	data->player.y_pos_map = data->player.y1 * data->arg.coef_zoom;
 	data->axes_mul = 100;
 	while (data->axes_mul >= 1)
 	{
@@ -366,6 +366,8 @@ void	draw_line(double x1, double y1, double x2, double y2, t_cube *data)
 	k = 0;
 	while (k < steps)
 	{
+		// if (x > 1920 || y > 1080)
+		// 	printf("x = %f, y =%f\n", x, y);
 		ft_pixel_put(data, x, y, data->ray_color);
 		x += x_incr;
 		y += y_incr;
@@ -375,26 +377,28 @@ void	draw_line(double x1, double y1, double x2, double y2, t_cube *data)
 
 void	raycast(t_cube *data, double ray_num)
 {
-	double	n_band;
-	double	band_w;
-	double	coord_x_wall;
-	double	coord_y_wall;
+	double	i_band;
+	double	coord_y_wall_diff;
 	double	ray_len;
 
-	band_w = (double)WINDOW_X / (double)FOV;
-	// printf("band_w = %f\n", band_w);
-	n_band = 0;
-	while (n_band < band_w)
+	// printf("band_w = %f\n", data->band_w);
+	i_band = 0;
+	while (i_band <= data->band_w)
 	{
 		ray_len = sqrt((ft_abs(data->player.x2 - data->player.x1) * \
 		ft_abs(data->player.x2 - data->player.x1)) + (ft_abs(data->player.y2 \
 		- data->player.y1) * ft_abs(data->player.y2 - data->player.y1))) - 1;
-		draw_line(n_band + ray_num * band_w, data->head + WINDOW_Y * 0.5 / \
-		ray_len * 10, n_band + ray_num * band_w, data->head - WINDOW_Y * \
-		0.5 / ray_len * 10, data);
-		n_band++;
+		coord_y_wall_diff = WINDOW_Y * 0.5 / ray_len * 10;
+		if (coord_y_wall_diff > data->head)
+			coord_y_wall_diff = data->head;
+		draw_line(i_band + (ray_num - data->incr) * data->band_w, data->head + coord_y_wall_diff, \
+				i_band + (ray_num - data->incr) * data->band_w, data->head - coord_y_wall_diff, data);
+		// printf("ray_num = %f\n", ray_num);
+		if ((ray_num >= 89) && (i_band == data->band_w))
+			printf("band_w = %f, i_band = %f, nbr = %f, ray_num = %f\n", data->band_w, i_band, i_band + ray_num * data->band_w, ray_num);
+		i_band++;
 	}
-	// printf("n_band = %f\n", n_band);
+	// printf("i_band = %f\n", i_band);
 }
 #include <time.h>
 
@@ -408,19 +412,17 @@ void	next_frame(t_cube *data)
 
 
 	double	ray_num;
-	double	incr;
-	double	tmp_theta = data->player.theta - FOV / 2;
+	double	tmp_theta = data->player.theta - FOV * 0.5;
 
 	ray_num = 0;
-	incr = (double)FOV / (double)RAY_NB;
-	// printf("incr = %f\n", incr);
+	printf("incr = %f\n", data->incr);
 	fill_background(data);
-	while (tmp_theta < (data->player.theta + ((double)FOV / 2)))
+	while (tmp_theta < (data->player.theta + ((double)FOV * 0.5)))
 	{
 		algo_ray_end(data, ray_num);
 		raycast(data, ray_num);
-		tmp_theta += incr;
-		ray_num += incr;
+		tmp_theta += data->incr;
+		ray_num += data->incr;
 	}
 	// printf("ray num = %f\n", ray_num);
 	mlx_put_image_to_window(data->mlx, data->window, data->image.image, 0, 0);

@@ -6,7 +6,7 @@
 /*   By: kiparis <kiparis@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/03 13:37:35 by rgolfett          #+#    #+#             */
-/*   Updated: 2024/10/14 14:44:18 by kiparis          ###   ########.fr       */
+/*   Updated: 2024/10/15 11:58:02 by kiparis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,10 +30,11 @@
 # define KEY_LEFT 65361
 # define KEY_ESC 65307
 
-
+# define MY_PI 3.14159265358979323846
+# define INV_180 (1.0 / 180.0)
 
 # define WINDOW_Y 1080
-# define WINDOW_X 1920
+# define WINDOW_X 1800
 # define PLAYER_SIZE 9
 # define STEP_SIZE 0.01
 # define RAY_NB 360
@@ -69,7 +70,8 @@ typedef struct s_arg
 	t_map	s_map;
 	int		lines;
 	int	h;
-	int	zoom;
+	double	zoom;
+	double	coef_zoom;
 }	t_arg;
 
 typedef struct s_player
@@ -106,6 +108,8 @@ typedef struct s_cube
 	int			floor_color;
 	double		axes_mul;
 	double		head;
+	double		band_w;
+	double		incr;
 }	t_cube;
 
 int		main(int argc, char **argv);
