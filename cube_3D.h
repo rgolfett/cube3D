@@ -6,7 +6,7 @@
 /*   By: rgolfett <rgolfett@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/03 13:37:35 by rgolfett          #+#    #+#             */
-/*   Updated: 2024/10/12 18:06:46 by rgolfett         ###   ########lyon.fr   */
+/*   Updated: 2024/10/15 12:44:13 by rgolfett         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,26 @@
 
 # define FOV 90
 
+typedef struct s_image
+{
+	void	*image;
+	char	*address;
+	int		*ad;
+	int		bits_per_address;
+	int		size_line;
+	int		endian;
+	int		width;
+	int		height;
+}	t_image;
+
+typedef struct s_wall
+{
+	t_image	north;
+	t_image	east;
+	t_image	west;
+	t_image	south;
+}	t_wall;
+
 typedef struct s_map
 {
 	char	*map_name;
@@ -66,6 +86,7 @@ typedef struct s_arg
 	t_color	floor;
 	t_color	ceiling;
 	t_map	s_map;
+	t_wall	wall;
 	int		lines;
 	int	h;
 	int	zoom;
@@ -84,14 +105,6 @@ typedef struct s_player
 	double	y_pos_map;
 }	t_player;
 
-typedef struct s_image
-{
-	void	*image;
-	char	*adress;
-	int		bits_per_adress;
-	int		size_line;
-	int		endian;
-}	t_image;
 
 typedef struct s_cube
 {
@@ -146,5 +159,8 @@ int		deal_mouse(int button, int x, int y, t_cube *data);
 void	next_frame(t_cube *data);
 void	ft_pixel_put(t_cube *data, int x, int y, int color);
 void	my_mlx_pixel_put(t_image *image, int x, int y, int color);
+void	draw_texture(int x, int y, t_cube *data);
+
+int	ft_load_sprites(t_cube *cube, t_image *wall);
 
 #endif

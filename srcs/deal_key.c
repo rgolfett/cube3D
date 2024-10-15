@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   deal_key.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kiparis <kiparis@student.42.fr>            +#+  +:+       +#+        */
+/*   By: rgolfett <rgolfett@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/29 10:59:10 by kiparis           #+#    #+#             */
-/*   Updated: 2024/10/07 19:41:28 by kiparis          ###   ########.fr       */
+/*   Updated: 2024/10/14 12:05:09 by rgolfett         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,9 @@
 
 int	deal_key(int key, t_cube *data)
 {
+	t_player cpy;
+
+	cpy = data->player;
 	printf("key == %d\n", key);
 
 	if (key == 65307)
@@ -53,10 +56,12 @@ int	deal_key(int key, t_cube *data)
 		data->head -= 5;
 	else if (key == 65362)
 		data->head += 5;
+	if (data->arg.s_map.map[(int)data->player.y1 / 10][(int)data->player.x1 / 10] == '1')
+		data->player = cpy;
 	// printf("zoom = %d\n", data->arg.zoom);
-	// printf("theta == %f\n", data->player.theta);
-	// printf("x2 == %f\n", data->player.x2);
-	// printf("y2 == %f\n", data->player.y2);
+	// printf("theta == %f\n", data->player.theta);ttt
+	printf("x1 == %f\n", data->player.x1);
+	printf("y1 == %f\n", data->player.y1);
 	return 0;
 }
 

@@ -6,7 +6,7 @@
 /*   By: rgolfett <rgolfett@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/29 11:00:36 by kiparis           #+#    #+#             */
-/*   Updated: 2024/10/12 17:07:51 by rgolfett         ###   ########lyon.fr   */
+/*   Updated: 2024/10/15 12:58:40 by rgolfett         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -201,6 +201,8 @@ void	map(t_cube *data)
 	}
 }
 
+
+
 void	cube(t_cube *data, double ray_num)
 {
 	double	i = 0;
@@ -234,6 +236,7 @@ void	cube(t_cube *data, double ray_num)
 
 void	next_frame(t_cube *data)
 {
+	printf("%d %d %p\n", data->arg.wall.north.width, data->arg.wall.north.height, data->arg.wall.north.ad);
 	double	ray_num = 0;
 	double tmp_theta = data->player.theta - FOV / 2;
 	fill_background(data);
@@ -246,6 +249,7 @@ void	next_frame(t_cube *data)
 		minimap(data, tmp_theta);
 		cube(data, ray_num);
 		map(data);
+		data->ray_color = 0x00ffff;
 		tracersegment(data->player.x1, data->player.y1, data->player.x2, data->player.y2, data);
 		my_mlx_pixel_put(&data->image, data->player.x1, data->player.y1, 0xff00ff);
 		tmp_theta += 0.25;
@@ -253,5 +257,8 @@ void	next_frame(t_cube *data)
 		// data->ray_color -= (1 << 8);
 		// data->ray_color += (1 << 16);
 	}
+	draw_texture(100, 100, data);
 	mlx_put_image_to_window(data->mlx, data->window, data->image.image, 0, 0);
+	
+	//mlx_put_image_to_window(data->mlx, data->window, data->arg.wall.north.image, 0, 0);
 }

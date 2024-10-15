@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils_next_frame.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kiparis <kiparis@student.42.fr>            +#+  +:+       +#+        */
+/*   By: rgolfett <rgolfett@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/29 10:55:21 by kiparis           #+#    #+#             */
-/*   Updated: 2024/10/01 12:41:02 by kiparis          ###   ########.fr       */
+/*   Updated: 2024/10/15 11:57:33 by rgolfett         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,8 @@ void	my_mlx_pixel_put(t_image *image, int x, int y, int color)
 
 	if ((x <= WINDOW_X && x >= 0) && (y <= WINDOW_Y && y >= 0))
 	{
-		dst = image->adress + (y * image->size_line + x * \
-							(image->bits_per_adress / 8));
+		dst = image->address + (y * image->size_line + x * \
+							(image->bits_per_address / 8));
 		*(unsigned int *)dst = color;
 	}
 }

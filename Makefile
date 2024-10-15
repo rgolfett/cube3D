@@ -14,6 +14,7 @@ SRCS = 	main.c \
 		limits_utils.c \
 		map_walls_parsing.c \
 		parsing_utils.c \
+		load_texture.c \
 		test.c \
 		srcs/deal_key.c \
 		srcs/ft_raycasting.c \
