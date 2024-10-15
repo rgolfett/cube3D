@@ -6,7 +6,7 @@
 /*   By: rgolfett <rgolfett@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/03 13:37:35 by rgolfett          #+#    #+#             */
-/*   Updated: 2024/10/15 12:44:13 by rgolfett         ###   ########lyon.fr   */
+/*   Updated: 2024/10/15 14:59:47 by rgolfett         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,15 @@
 # define STEP_SIZE 0.01
 
 # define FOV 90
+
+
+typedef struct s_key
+{
+	int	press_w;
+	int	press_a;
+	int	press_s;
+	int	press_d;
+}	t_key;
 
 typedef struct s_image
 {
@@ -87,6 +96,7 @@ typedef struct s_arg
 	t_color	ceiling;
 	t_map	s_map;
 	t_wall	wall;
+	t_key	m_key;
 	int		lines;
 	int	h;
 	int	zoom;
@@ -160,6 +170,7 @@ void	next_frame(t_cube *data);
 void	ft_pixel_put(t_cube *data, int x, int y, int color);
 void	my_mlx_pixel_put(t_image *image, int x, int y, int color);
 void	draw_texture(int x, int y, t_cube *data);
+void	draw_utils(double x1, double y1, double x2, double y2, t_cube *data);
 
 int	ft_load_sprites(t_cube *cube, t_image *wall);
 

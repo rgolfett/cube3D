@@ -6,7 +6,7 @@
 /*   By: rgolfett <rgolfett@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/29 10:32:37 by kiparis           #+#    #+#             */
-/*   Updated: 2024/10/15 12:11:07 by rgolfett         ###   ########lyon.fr   */
+/*   Updated: 2024/10/15 14:23:23 by rgolfett         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ void	ft_raycasting(t_arg arg)
 	//printf("x = %d, y = %d\n", pos_mouse_x, pos_mouse_y);
 	// mlx_mouse_hook(data.mlx, deal_mouse, &data);
 	mlx_hook(data.window, 17, 0, mlx_loop_end, data.mlx);
-	ft_load_sprites(&data, &data.arg.wall.north.image);
+	ft_load_sprites(&data, &data.arg.wall.north);
 	printf("%d %d %p\n", data.arg.wall.north.width, data.arg.wall.north.height, data.arg.wall.north.ad);
 	mlx_loop_hook(data.mlx, next_frame, &data);
 	mlx_loop(data.mlx);

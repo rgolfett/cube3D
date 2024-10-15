@@ -6,11 +6,34 @@
 /*   By: rgolfett <rgolfett@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/29 10:59:10 by kiparis           #+#    #+#             */
-/*   Updated: 2024/10/14 12:05:09 by rgolfett         ###   ########lyon.fr   */
+/*   Updated: 2024/10/15 15:01:20 by rgolfett         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cube_3D.h"
+
+
+
+int	move_key(int key, t_key *m_key)
+{
+
+	if (key == 'w')
+		m_key->press_w = 1;
+	printf("w = %i\n", m_key->press_w);
+	
+	if (key == 'a')
+		m_key->press_a = 1;
+	printf("a = %i\n",m_key->press_a);
+	
+	if (key == 's')
+		m_key->press_s = 1;
+	printf("s = %i\n", m_key->press_s);
+	
+	if (key == 'd')
+		m_key->press_d = 1;
+	printf("d = %i\n", m_key->press_d);
+	
+}
 
 int	deal_key(int key, t_cube *data)
 {
@@ -59,7 +82,8 @@ int	deal_key(int key, t_cube *data)
 	if (data->arg.s_map.map[(int)data->player.y1 / 10][(int)data->player.x1 / 10] == '1')
 		data->player = cpy;
 	// printf("zoom = %d\n", data->arg.zoom);
-	// printf("theta == %f\n", data->player.theta);ttt
+	// printf("theta == %f\n", data->player.theta);
+	move_key(key, &data->arg.m_key);
 	printf("x1 == %f\n", data->player.x1);
 	printf("y1 == %f\n", data->player.y1);
 	return 0;

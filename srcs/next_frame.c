@@ -6,7 +6,7 @@
 /*   By: rgolfett <rgolfett@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/29 11:00:36 by kiparis           #+#    #+#             */
-/*   Updated: 2024/10/15 12:58:40 by rgolfett         ###   ########lyon.fr   */
+/*   Updated: 2024/10/15 14:38:58 by rgolfett         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -201,6 +201,32 @@ void	map(t_cube *data)
 	}
 }
 
+void	draw_utils(double x1, double y1, double x2, double y2, t_cube *data)
+{
+	int		k;
+	int		steps;
+	double	x;
+	double	y;
+	double	x_incr;
+	double	y_incr;
+	int	i;
+
+	i = 0;
+	x_incr = calc_incr(x1, y1, x2, y2, 1);
+	y_incr = calc_incr(x1, y1, x2, y2, 2);
+	steps = (int)calc_incr(x1, y1, x2, y2, 3);
+	x = x1;
+	y = y1;
+	k = 0;
+	while (k < steps)
+	{
+		ft_pixel_put(data, (int)x, (int)y, data->arg.wall.north.ad[i]);
+		x += x_incr;
+		y += y_incr;
+		k++;
+		i++;
+	}
+}
 
 
 void	cube(t_cube *data, double ray_num)
@@ -229,6 +255,7 @@ void	cube(t_cube *data, double ray_num)
 		coord_y_wall =  data->head + (mid_y / ray_len * zoom_map);
 		coord_y_wall_end = data->head - (mid_y / ray_len * zoom_map);
 		tracersegment(coord_x_wall, coord_y_wall, coord_x_wall_end, coord_y_wall_end, data);
+		//draw_utils(coord_x_wall, coord_y_wall, coord_x_wall_end, coord_y_wall_end, data);
 		i++;
 	}
 }
@@ -236,7 +263,6 @@ void	cube(t_cube *data, double ray_num)
 
 void	next_frame(t_cube *data)
 {
-	printf("%d %d %p\n", data->arg.wall.north.width, data->arg.wall.north.height, data->arg.wall.north.ad);
 	double	ray_num = 0;
 	double tmp_theta = data->player.theta - FOV / 2;
 	fill_background(data);
@@ -257,7 +283,7 @@ void	next_frame(t_cube *data)
 		// data->ray_color -= (1 << 8);
 		// data->ray_color += (1 << 16);
 	}
-	draw_texture(100, 100, data);
+	draw_texture(100, 100, cube);
 	mlx_put_image_to_window(data->mlx, data->window, data->image.image, 0, 0);
 	
 	//mlx_put_image_to_window(data->mlx, data->window, data->arg.wall.north.image, 0, 0);

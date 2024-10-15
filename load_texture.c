@@ -5,8 +5,11 @@ t_image	load_img(void *mlx, t_image *wall, char *texture)
 	int	bits_per_pixel;
 	int	size_line;
 	int	endian;
-
+	
+	if (!wall)
+		printf("aaaa\n");
 	wall->image = mlx_xpm_file_to_image(mlx, texture, &wall->width, &wall->height);
+	printf("%d %d %p\n", wall->width, wall->height, wall->ad);
 	if (wall->image)
 	{
 		wall->ad  = (unsigned int *)
@@ -24,6 +27,7 @@ int	ft_load_sprites(t_cube *cube, t_image *wall)
 	*wall = load_img(cube->mlx, wall, "socks.xpm");
 	return (0);
 }
+
 
 
 void	draw_wall(int x, int y, t_cube *data, t_image *wall)
@@ -45,7 +49,6 @@ void	draw_wall(int x, int y, t_cube *data, t_image *wall)
 		i++;
 		printf("i = %i\n", i);
 	}
-	printf("%d %d %p\n", data->arg.wall.north.width, data->arg.wall.north.height, data->arg.wall.north.ad);
 }
 
 void	draw_texture(int x, int y, t_cube *data)
