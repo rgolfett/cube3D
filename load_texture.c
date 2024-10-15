@@ -28,8 +28,6 @@ int	ft_load_sprites(t_cube *cube, t_image *wall)
 	return (0);
 }
 
-
-
 void	draw_wall(int x, int y, t_cube *data, t_image *wall)
 {
 	int	i;

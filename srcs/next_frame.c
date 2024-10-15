@@ -6,7 +6,7 @@
 /*   By: rgolfett <rgolfett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/29 11:00:36 by kiparis           #+#    #+#             */
-/*   Updated: 2024/10/15 22:12:00 by rgolfett         ###   ########.fr       */
+/*   Updated: 2024/10/15 23:40:40 by rgolfett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -375,6 +375,32 @@ void	draw_line(double x1, double y1, double x2, double y2, t_cube *data)
 	}
 }
 
+void	draw_utils(double x1, double y1, double x2, double y2, t_cube *data)
+{
+	int		k;
+	int		steps;
+	double	x;
+	double	y;
+	double	x_incr;
+	double	y_incr;
+	int	i;
+	i = 0;
+	x_incr = calc_incr(x1, y1, x2, y2, 1);
+	y_incr = calc_incr(x1, y1, x2, y2, 2);
+	steps = (int)calc_incr(x1, y1, x2, y2, 3);
+	x = x1;
+	y = y1;
+	k = 0;
+	while (k < steps)
+	{
+		ft_pixel_put(data, (int)x, (int)y, data->arg.wall.north.ad[i]);
+		x += x_incr;
+		y += y_incr;
+		k++;
+		i++;
+	}
+}
+
 void	raycast(t_cube *data, double ray_num)
 {
 	double	i_band;
@@ -393,6 +419,8 @@ void	raycast(t_cube *data, double ray_num)
 			coord_y_wall_diff = data->head;
 		draw_line(i_band + (ray_num - data->incr) * data->band_w, data->head + coord_y_wall_diff, \
 				i_band + (ray_num - data->incr) * data->band_w, data->head - coord_y_wall_diff, data);
+		//draw_utils(i_band + (ray_num - data->incr) * data->band_w, data->head + coord_y_wall_diff, \
+				i_band + (ray_num - data->incr) * data->band_w, data->head - coord_y_wall_diff, data);
 		// printf("ray_num = %f\n", ray_num);
 		if ((ray_num >= 89) && (i_band == data->band_w))
 			printf("band_w = %f, i_band = %f, nbr = %f, ray_num = %f\n", data->band_w, i_band, i_band + ray_num * data->band_w, ray_num);
@@ -401,6 +429,61 @@ void	raycast(t_cube *data, double ray_num)
 	// printf("i_band = %f\n", i_band);
 }
 #include <time.h>
+
+void	draw_column(t_cube *data, int x, float height, int side, float wall_off)
+{
+	int	 i;
+	int	y_start;
+	int	nb_y_pixel;
+	int	color;
+
+	i = 0;
+	y_start = (WINDOW_Y / 2) - (WINDOW_Y * height / 2);
+	nb_y_pixel = WINDOW_Y * height;
+	color = 255;
+	while ((i + y_start) < (y_start + nb_y_pixel))
+	{
+			my_mlx_pixel_put(&data->image, x, y_start, color * wall_off);
+		//data->arg.wall.north.ad[i]
+		i++;
+		y_start++;
+	}
+}
+
+void 	tmp_raycast(t_cube *data)
+{
+	fill_background(data);
+	
+	enum {
+		EAST,
+		SOUTH,
+		WEST,
+		NORTH,
+	}	side_e;
+
+	struct {
+		float height;
+		int side;
+		float wall_off;
+	}	rays[WINDOW_X];
+
+	int i = 0;
+	for (; i < WINDOW_X / 2; i++)
+	{
+		rays[i].height = 1.0f - ((float)i / (float)WINDOW_X);
+		rays[i].side = EAST;
+		rays[i].wall_off = (float)i / (float)WINDOW_X * 2;
+	}
+	for (; i < WINDOW_X; i++)
+	{
+		rays[i].height = (float)i / (float)WINDOW_X;
+		rays[i].side = SOUTH;
+		rays[i].wall_off = ((float)i / (float)WINDOW_X - 0.5f) * 2;
+	}
+	
+	for (int x = 0; x < sizeof(rays) / sizeof(*rays); x++)
+		draw_column(data, x, rays[x].height, rays[x].side, rays[x].wall_off);
+}
 
 void	next_frame(t_cube *data)
 {
@@ -425,6 +508,9 @@ void	next_frame(t_cube *data)
 		ray_num += data->incr;
 	}
 	// printf("ray num = %f\n", ray_num);
+
+	tmp_raycast(data);
+	
 	mlx_put_image_to_window(data->mlx, data->window, data->image.image, 0, 0);
 	
 	// frameCount++;
