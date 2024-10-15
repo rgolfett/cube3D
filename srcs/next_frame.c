@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   next_frame.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rgolfett <rgolfett@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: rgolfett <rgolfett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/29 11:00:36 by kiparis           #+#    #+#             */
-/*   Updated: 2024/10/15 14:38:58 by rgolfett         ###   ########lyon.fr   */
+/*   Updated: 2024/10/15 22:04:58 by rgolfett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -254,8 +254,8 @@ void	cube(t_cube *data, double ray_num)
 		// printf("head == %f\n", data->head);
 		coord_y_wall =  data->head + (mid_y / ray_len * zoom_map);
 		coord_y_wall_end = data->head - (mid_y / ray_len * zoom_map);
-		tracersegment(coord_x_wall, coord_y_wall, coord_x_wall_end, coord_y_wall_end, data);
-		//draw_utils(coord_x_wall, coord_y_wall, coord_x_wall_end, coord_y_wall_end, data);
+		//tracersegment(coord_x_wall, coord_y_wall, coord_x_wall_end, coord_y_wall_end, data);
+		draw_utils(coord_x_wall, coord_y_wall, coord_x_wall_end, coord_y_wall_end, data);
 		i++;
 	}
 }
@@ -283,7 +283,6 @@ void	next_frame(t_cube *data)
 		// data->ray_color -= (1 << 8);
 		// data->ray_color += (1 << 16);
 	}
-	draw_texture(100, 100, cube);
 	mlx_put_image_to_window(data->mlx, data->window, data->image.image, 0, 0);
 	
 	//mlx_put_image_to_window(data->mlx, data->window, data->arg.wall.north.image, 0, 0);
