@@ -6,7 +6,7 @@
 /*   By: rgolfett <rgolfett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/29 10:32:37 by kiparis           #+#    #+#             */
-/*   Updated: 2024/10/15 22:12:13 by rgolfett         ###   ########.fr       */
+/*   Updated: 2024/10/16 21:18:02 by rgolfett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,7 @@ void	ft_raycasting(t_arg arg)
 	// }
 	data.window = mlx_new_window(data.mlx, WINDOW_X, \
 								WINDOW_Y, "Ma Fenetre");
-	mlx_mouse_hide(data.mlx, data.window);
+//	mlx_mouse_hide(data.mlx, data.window);
 	mlx_hook(data.window, 2, 1, deal_key, &data);
 	// mlx_mouse_get_pos(data.mlx, data.window, &pos_mouse_x, &pos_mouse_y);
 	//printf("x = %d, y = %d\n", pos_mouse_x, pos_mouse_y);
