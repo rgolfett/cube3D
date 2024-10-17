@@ -1,7 +1,0 @@
-si le fichier est valide => si la mlx peut l'ouvrir
-mettre les couleurs en code hexa
-
-rajouter la securite sur les joueurs (sortie de map) // OK
-rajouter pour N E W S // OK
-rajouter la secu pour les whitespace + cara // au moment de check si la mlx peut l'ouvrir?
-f + C en doublon // OKc

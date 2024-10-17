@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cube_3D.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rgolfett <rgolfett@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rgolfett <rgolfett@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/03 13:37:35 by rgolfett          #+#    #+#             */
-/*   Updated: 2024/10/16 21:23:11 by rgolfett         ###   ########.fr       */
+/*   Updated: 2024/10/17 13:19:33 by rgolfett         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -181,5 +181,6 @@ void	draw_texture(int x, int y, t_cube *data);
 void	draw_utils(double x1, double y1, double x2, double y2, t_cube *data);
 
 int	ft_load_sprites(t_cube *cube, t_image *wall);
+void 	tmp_raycast(t_cube *data);
 
 #endif
