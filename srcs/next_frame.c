@@ -6,7 +6,7 @@
 /*   By: rgolfett <rgolfett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/29 11:00:36 by kiparis           #+#    #+#             */
-/*   Updated: 2024/10/16 23:12:37 by rgolfett         ###   ########.fr       */
+/*   Updated: 2024/10/17 12:39:40 by rgolfett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -430,29 +430,52 @@ void	raycast(t_cube *data, double ray_num)
 }
 #include <time.h>
 
+// void	draw_text_wall(t_cube *data, int x, float height, float wall_off)
+// {
+// 	int	y_start;
+// 	int	nb_y_pixel;
+// 	float limit;
+// 	int	text_x = 0;
+// 	int	text_y = 0;
 
-void	draw_text_wall(t_cube *data, int x, float height, int side, float wall_off)
+// 	data->arg.wall.north.index = 0;
+// 	y_start = (WINDOW_Y / 2) - (WINDOW_Y * height / 2);
+// 	nb_y_pixel = WINDOW_Y * height;
+// 	while (data->arg.wall.north.index < nb_y_pixel)
+// 	{
+// 		limit = (float)data->arg.wall.north.index / (float)nb_y_pixel;
+// 		text_x = data->arg.wall.north.width * wall_off;
+// 		text_y = data->arg.wall.north.height * limit;
+// 		my_mlx_pixel_put(&data->image, x, y_start,
+// 			data->arg.wall.north.ad[text_y * data->arg.wall.north.width + text_x]);
+// 		data->arg.wall.north.index++;
+// 		y_start++;
+// 	}
+// 	data->arg.wall.north.index = 0;
+// }
+
+void	draw_text_wall(t_cube *data, int x, float height, float wall_off)
 {
-	int	 i;
 	int	y_start;
 	int	nb_y_pixel;
 	float limit;
 	int	text_x = 0;
 	int	text_y = 0;
 
-	i = 0;
+	data->arg.wall.north.index = 0;
 	y_start = (WINDOW_Y / 2) - (WINDOW_Y * height / 2);
 	nb_y_pixel = WINDOW_Y * height;
-	while (i < nb_y_pixel)
+	while (data->arg.wall.north.index < nb_y_pixel)
 	{
-		limit = (float)i / (float)nb_y_pixel;
+		limit = (float)data->arg.wall.north.index / (float)nb_y_pixel;
 		text_x = data->arg.wall.north.width * wall_off;
 		text_y = data->arg.wall.north.height * limit;
 		my_mlx_pixel_put(&data->image, x, y_start,
 			data->arg.wall.north.ad[text_y * data->arg.wall.north.width + text_x]);
-		i++;
+		data->arg.wall.north.index++;
 		y_start++;
 	}
+	data->arg.wall.north.index = 0;
 }
 
 void	draw_column(t_cube *data, int x, float height, int side, float wall_off)
@@ -513,7 +536,8 @@ void 	tmp_raycast(t_cube *data)
 	}
 	
 	for (int x = 0; x < sizeof(rays) / sizeof(*rays); x++)
-		draw_text_wall(data, x, rays[x].height, rays[x].side, rays[x].wall_off);
+		draw_text_wall(data, x, rays[x].height, rays[x].wall_off);
+		//draw_text_wall(&data->arg.wall.north, x, rays[x].height, rays[x].wall_off);
 }
 
 void	next_frame(t_cube *data)

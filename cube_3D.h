@@ -6,7 +6,7 @@
 /*   By: rgolfett <rgolfett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/03 13:37:35 by rgolfett          #+#    #+#             */
-/*   Updated: 2024/10/16 21:23:11 by rgolfett         ###   ########.fr       */
+/*   Updated: 2024/10/17 12:39:56 by rgolfett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,7 @@ typedef struct s_image
 	int		endian;
 	int		width;
 	int		height;
+	int		index;
 }	t_image;
 
 typedef struct s_wall
@@ -179,6 +180,9 @@ void	ft_pixel_put(t_cube *data, int x, int y, int color);
 void	my_mlx_pixel_put(t_image *image, int x, int y, int color);
 void	draw_texture(int x, int y, t_cube *data);
 void	draw_utils(double x1, double y1, double x2, double y2, t_cube *data);
+
+//void	draw_text_wall(t_image *texture, int x, float height, float wall_off);
+void	draw_text_wall(t_cube *data, int x, float height, float wall_off);
 
 int	ft_load_sprites(t_cube *cube, t_image *wall);
 

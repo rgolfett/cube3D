@@ -28,6 +28,31 @@ int	ft_load_sprites(t_cube *cube, t_image *wall)
 	return (0);
 }
 
+
+// void	ddraw_text_wall(t_image *texture, int x, float height, float wall_off)
+// {
+// 	int	y_start;
+// 	int	nb_y_pixel;
+// 	float limit;
+// 	int	text_x = 0;
+// 	int	text_y = 0;
+
+// 	texture->index = 0;
+// 	y_start = (WINDOW_Y / 2) - (WINDOW_Y * height / 2);
+// 	nb_y_pixel = WINDOW_Y * height;
+// 	while (texture->index < nb_y_pixel)
+// 	{
+// 		limit = (float)texture->index / (float)nb_y_pixel;
+// 		text_x = texture->width * wall_off;
+// 		text_y = texture->height * limit;
+// 		my_mlx_pixel_put(&texture->image, x, y_start,
+// 			texture->ad[text_y * texture->width + text_x]);
+// 		texture->index++;
+// 		y_start++;
+// 	}
+// 	texture->index = 0;
+// }
+
 void	draw_wall(int x, int y, t_cube *data, t_image *wall)
 {
 	int	i;
