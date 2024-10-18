@@ -6,7 +6,7 @@
 /*   By: kiparis <kiparis@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/29 10:32:37 by kiparis           #+#    #+#             */
-/*   Updated: 2024/10/15 14:59:06 by kiparis          ###   ########.fr       */
+/*   Updated: 2024/10/18 12:17:25 by kiparis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,9 +46,8 @@ void	init_data(t_cube *data, t_arg arg)
 	data->arg.floor.color = (data->arg.floor.r << 16) | \
 							(data->arg.floor.g << 8) | \
 							data->arg.floor.b;
-	data->arg.zoom = 10;
+	data->arg.zoom = 1;
 	data->show_fps = -1;
-	data->arg.coef_zoom = 1 / data->arg.zoom;
 	data->head = WINDOW_Y * 0.5;
 	data->band_w = (double)WINDOW_X / (double)FOV;
 	data->incr = (double)FOV / (double)RAY_NB;

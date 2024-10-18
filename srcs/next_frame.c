@@ -6,47 +6,16 @@
 /*   By: kiparis <kiparis@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/29 11:00:36 by kiparis           #+#    #+#             */
-/*   Updated: 2024/10/15 14:38:52 by kiparis          ###   ########.fr       */
+/*   Updated: 2024/10/18 13:36:26 by kiparis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cube_3D.h"
 
-
-void	fill_background(t_cube *data)
-{
-	int	y;
-	int	x;
-
-	y = 0;
-	while (y <= data->head)
-	{
-		x = 0;
-		while (x <= WINDOW_X)
-		{
-			my_mlx_pixel_put(&(data)->image, x, y, data->arg.ceiling.color);
-			x++;
-		}
-		y++;
-	}
-	while (y <= WINDOW_Y)
-	{
-		x = 0;
-		while (x <= WINDOW_X)
-		{
-			my_mlx_pixel_put(&(data)->image, x, y, data->arg.floor.color);
-			x++;
-		}
-		y++;
-	}
-}
-
 void	calc_end_axes(t_cube *data, double *tmp_x, double *tmp_y, double ray_num)
 {
-	// double	end_axes;
 	double	theta;
 
-	// end_axes = 0;
 	data->end_axes = 0;
 	theta = (data->player.theta + ray_num - FOV * 0.5) * INV_180 * MY_PI;
 	while (1)
@@ -65,8 +34,8 @@ void	algo_ray_end(t_cube *data, double ray_num)
 	double	tmp_x;
 	double	tmp_y;
 
-	data->player.x_pos_map = data->player.x1 * data->arg.coef_zoom;
-	data->player.y_pos_map = data->player.y1 * data->arg.coef_zoom;
+	data->player.x_pos_map = data->player.x1 / data->arg.zoom;
+	data->player.y_pos_map = data->player.y1 / data->arg.zoom;
 	data->axes_mul = 100;
 	while (data->axes_mul >= 1)
 	{
@@ -85,7 +54,7 @@ double	ft_abs(double n)
 		return (n);
 }
 
-double	calc_incr(int x1, int y1, int x2, int y2, int option)
+double	calc_incr(double x1, double y1, double x2, double y2, int option)
 {
 	double	dx;
 	double	dy;
@@ -105,52 +74,82 @@ double	calc_incr(int x1, int y1, int x2, int y2, int option)
 		return (steps);
 }
 
-void	draw_line(double x1, double y1, double x2, double y2, t_cube *data)
+void raycast(t_cube *data, double ray_num, double theta)
 {
-	int		k;
-	int		steps;
-	double	x;
-	double	y;
-	double	x_incr;
-	double	y_incr;
-
-	x_incr = calc_incr(x1, y1, x2, y2, 1);
-	y_incr = calc_incr(x1, y1, x2, y2, 2);
-	steps = (int)calc_incr(x1, y1, x2, y2, 3);
-	x = x1;
-	y = y1;
-	k = 0;
-	while (k < steps)
-	{
-		ft_pixel_put(data, x, y, data->ray_color);
-		x += x_incr;
-		y += y_incr;
-		k++;
-	}
-}
-
-void	raycast(t_cube *data, double ray_num)
-{
-	double	i_band;
-	double	coord_y_wall_diff;
-	double	ray_len;
+	double i_band;
+	double coord_y_wall_diff;
+	double ray_len;
+	double wall_pos_x;
+	double wall_pos_y;
+	double normalized_width;
+	double normalized_height;
+	double apparent_wall_height;
+	double wall_start_x, wall_end_x;
+	double wall_start_y, wall_end_y;
+	double wall_width;
 
 	i_band = 0;
 	while (i_band <= data->band_w)
 	{
-		// ray_len = sqrt((ft_abs(data->player.x2 - data->player.x1) * \
-		// ft_abs(data->player.x2 - data->player.x1)) + (ft_abs(data->player.y2 \
-		// - data->player.y1) * ft_abs(data->player.y2 - data->player.y1))) - 1;
-		// printf("end axes = %f, len = %f\n", data->end_axes, ray_len);
-		ray_len = data->end_axes * 10;
-		coord_y_wall_diff = WINDOW_Y * 0.5 / ray_len * 10;
-		if (coord_y_wall_diff > data->head)
-			coord_y_wall_diff = data->head;
-		draw_line(i_band + (ray_num - data->incr) * data->band_w, data->head + coord_y_wall_diff, \
-				i_band + (ray_num - data->incr) * data->band_w, data->head - coord_y_wall_diff, data);
+		ray_len = data->end_axes * 1;
+
+		wall_pos_x = data->player.x2;
+		wall_pos_y = data->player.y2;
+
+		if (1 || fabs(cos(theta)) > fabs(sin(theta)))
+		{
+			wall_start_x = floor(wall_pos_x);
+			wall_end_x = ceil(wall_pos_x);
+			wall_width = wall_end_x - wall_start_x;
+
+			wall_start_y = wall_pos_y;
+			wall_end_y = wall_start_y;
+		} else
+		{
+			wall_start_y = floor(wall_pos_y);
+			wall_end_y = ceil(wall_pos_y);
+			wall_width = wall_end_y - wall_start_y;
+
+
+			wall_start_x = wall_pos_x;
+			wall_end_x = wall_start_x;
+		}
+
+		apparent_wall_height = WINDOW_Y / ray_len;
+	
+		normalized_width = (wall_pos_x - wall_start_x) / (wall_end_x - wall_start_x);
+		normalized_height = (wall_pos_y - wall_start_y) / apparent_wall_height;
+		normalized_width = fmax(0, fmin(1, normalized_width));
+		normalized_height = fmax(0, fmin(1, normalized_height));
+
+		double	i = 0;
+		double	top_wall = data->head - (apparent_wall_height / 2);
+		double	bot_wall = data->head + (apparent_wall_height / 2);
+		while (i < top_wall)
+		{
+			ft_pixel_put(data, i_band + (ray_num - data->incr) * data->band_w, i, data->arg.ceiling.color);
+			i++;
+		}
+		int c = 0;
+		while (i < bot_wall)
+		{
+			normalized_height = c / apparent_wall_height;
+			int color = (int)(normalized_width * 255);
+			int n_color = (int)(normalized_height * 255);
+			int final_color = (color << 16) | (color << 8) | n_color;
+			ft_pixel_put(data, i_band + (ray_num - data->incr) * data->band_w, i, final_color);
+			i++;
+			c++;
+		}
+		while (i < WINDOW_Y)
+		{
+			ft_pixel_put(data, i_band + (ray_num - data->incr) * data->band_w, i, data->arg.floor.color);
+			i++;
+		}
 		i_band++;
 	}
 }
+
 #include <time.h>
 
 void	next_frame(t_cube *data)
@@ -165,11 +164,10 @@ void	next_frame(t_cube *data)
 	double	tmp_theta = data->player.theta - FOV * 0.5;
 
 	ray_num = 0;
-	fill_background(data);
 	while (tmp_theta < (data->player.theta + ((double)FOV * 0.5)))
 	{
 		algo_ray_end(data, ray_num);
-		raycast(data, ray_num);
+		raycast(data, ray_num, tmp_theta);
 		tmp_theta += data->incr;
 		ray_num += data->incr;
 	}

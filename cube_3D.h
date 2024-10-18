@@ -6,7 +6,7 @@
 /*   By: kiparis <kiparis@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/03 13:37:35 by rgolfett          #+#    #+#             */
-/*   Updated: 2024/10/15 14:59:15 by kiparis          ###   ########.fr       */
+/*   Updated: 2024/10/18 13:30:31 by kiparis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@
 # define WINDOW_X 1800
 # define PLAYER_SIZE 9
 # define STEP_SIZE 0.01
-# define RAY_NB 900
+# define RAY_NB 360
 
 # define FOV 90
 

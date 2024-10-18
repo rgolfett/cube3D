@@ -6,7 +6,7 @@
 /*   By: kiparis <kiparis@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/29 10:59:10 by kiparis           #+#    #+#             */
-/*   Updated: 2024/10/15 13:21:01 by kiparis          ###   ########.fr       */
+/*   Updated: 2024/10/18 12:24:37 by kiparis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,23 +20,23 @@ int	deal_key(int key, t_cube *data)
 		mlx_loop_end(data->mlx);
 	else if (key == 's')
 	{
-		data->player.x1 += 5 * -cos(data->player.theta /180 * MY_PI);
-		data->player.y1 += 5 * -sin(data->player.theta /180 * MY_PI);
+		data->player.x1 += 1 * -cos(data->player.theta /180 * MY_PI);
+		data->player.y1 += 1 * -sin(data->player.theta /180 * MY_PI);
 	}
 	else if (key == 'w')
 	{
-		data->player.x1 += 5 * cos(data->player.theta /180 * MY_PI);
-		data->player.y1 += 5 * sin(data->player.theta /180 * MY_PI);
+		data->player.x1 += 1 * cos(data->player.theta /180 * MY_PI);
+		data->player.y1 += 1 * sin(data->player.theta /180 * MY_PI);
 	}
 	else if (key == 'a')
 	{
-		data->player.x1 += 5 * cos((data->player.theta - 90) /180 * MY_PI);
-		data->player.y1 += 5 * sin((data->player.theta - 90) /180 * MY_PI);
+		data->player.x1 += 1 * cos((data->player.theta - 90) /180 * MY_PI);
+		data->player.y1 += 1 * sin((data->player.theta - 90) /180 * MY_PI);
 	}
 	else if (key == 'd')
 	{
-		data->player.x1 += 5 * cos((data->player.theta + 90) /180 * MY_PI);
-		data->player.y1 += 5 * sin((data->player.theta + 90) /180 * MY_PI);
+		data->player.x1 += 1 * cos((data->player.theta + 90) /180 * MY_PI);
+		data->player.y1 += 1 * sin((data->player.theta + 90) /180 * MY_PI);
 	}
 	else if (key == 65361)
 		data->player.theta -= 3;
