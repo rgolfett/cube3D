@@ -72,7 +72,6 @@ void	draw_text_wall(t_cube *data, int x, float height, int side, float wall_off)
 		text_x = data->arg.wall.north.width * wall_off;
 		text_y = data->arg.wall.north.height * limit;
 		// ajouter les points cardinaux
-	
 		my_mlx_pixel_put(&data->image, x, y_start,
 			data->arg.wall.north.ad[text_y * data->arg.wall.north.width + text_x]);
 		i++;
