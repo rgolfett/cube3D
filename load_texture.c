@@ -24,7 +24,9 @@ t_image	load_img(void *mlx, t_image *wall, char *texture)
 int	ft_load_sprites(t_cube *cube, t_image *wall)
 {
 	//*wall = load_img(cube->mlx, wall, "touch-grass.xpm");
-	*wall = load_img(cube->mlx, wall, "socks.xpm");
+	//*wall = load_img(cube->mlx, wall, "socks.xpm");
+	*wall = load_img(cube->mlx, wall, "jesus.xpm");
+	
 	return (0);
 }
 
@@ -66,12 +68,15 @@ void	draw_text_wall(t_cube *data, int x, float height, int side, float wall_off)
 	i = 0;
 	y_start = (WINDOW_Y / 2) - (WINDOW_Y * height / 2);
 	nb_y_pixel = WINDOW_Y * height;
+	printf("height = %f\n", height);
+	printf("nb pix = %f\n", nb_y_pixel);
 	while (i < nb_y_pixel)
 	{
 		limit = (float)i / (float)nb_y_pixel;
 		text_x = data->arg.wall.north.width * wall_off;
 		text_y = data->arg.wall.north.height * limit;
 		// ajouter les points cardinaux
+		printf("oui\n");
 		my_mlx_pixel_put(&data->image, x, y_start,
 			data->arg.wall.north.ad[text_y * data->arg.wall.north.width + text_x]);
 		i++;
@@ -107,7 +112,7 @@ void	draw_column(t_cube *data, int x, float height, int side, float wall_off)
 
 void 	tmp_raycast(t_cube *data)
 {
-	fill_background(data);
+	//fill_background(data);
 	
 	enum {
 		EAST,

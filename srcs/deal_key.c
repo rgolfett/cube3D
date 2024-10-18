@@ -6,7 +6,7 @@
 /*   By: rgolfett <rgolfett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/29 10:59:10 by kiparis           #+#    #+#             */
-/*   Updated: 2024/10/15 22:15:04 by rgolfett         ###   ########.fr       */
+/*   Updated: 2024/10/18 12:24:37 by kiparis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,23 +46,23 @@ int	deal_key(int key, t_cube *data)
 		mlx_loop_end(data->mlx);
 	else if (key == 's')
 	{
-		data->player.x1 += 5 * -cos(data->player.theta /180 * M_PI);
-		data->player.y1 += 5 * -sin(data->player.theta /180 * M_PI);
+		data->player.x1 += 0.1 * -cos(data->player.theta /180 * MY_PI);
+		data->player.y1 += 0.1 * -sin(data->player.theta /180 * MY_PI);
 	}
 	else if (key == 'w')
 	{
-		data->player.x1 += 5 * cos(data->player.theta /180 * M_PI);
-		data->player.y1 += 5 * sin(data->player.theta /180 * M_PI);
+		data->player.x1 += 0.1 * cos(data->player.theta /180 * MY_PI);
+		data->player.y1 += 0.1 * sin(data->player.theta /180 * MY_PI);
 	}
 	else if (key == 'a')
 	{
-		data->player.x1 += 5 * cos((data->player.theta - 90) /180 * M_PI);
-		data->player.y1 += 5 * sin((data->player.theta - 90) /180 * M_PI);
+		data->player.x1 += 0.1 * cos((data->player.theta - 90) /180 * MY_PI);
+		data->player.y1 += 0.1 * sin((data->player.theta - 90) /180 * MY_PI);
 	}
 	else if (key == 'd')
 	{
-		data->player.x1 += 5 * cos((data->player.theta + 90) /180 * M_PI);
-		data->player.y1 += 5 * sin((data->player.theta + 90) /180 * M_PI);
+		data->player.x1 += 0.1 * cos((data->player.theta + 90) /180 * MY_PI);
+		data->player.y1 += 0.1 * sin((data->player.theta + 90) /180 * MY_PI);
 	}
 	else if (key == 65361)
 		data->player.theta -= 3;
@@ -79,11 +79,13 @@ int	deal_key(int key, t_cube *data)
 		data->head -= 5;
 	else if (key == 65362)
 		data->head += 5;
-	if (data->arg.s_map.map[(int)data->player.y1 / 10][(int)data->player.x1 / 10] == '1')
+	if (data->arg.s_map.map[(int)data->player.y1][(int)data->player.x1] == '1')
 		data->player = cpy;
+	else if (key == 'f')
+		data->show_fps *= -1;
 	// printf("zoom = %d\n", data->arg.zoom);
 	// printf("theta == %f\n", data->player.theta);
-	move_key(key, &data->arg.m_key);
+	//move_key(key, &data->arg.m_key);
 	printf("x1 == %f\n", data->player.x1);
 	printf("y1 == %f\n", data->player.y1);
 	return 0;
@@ -93,4 +95,8 @@ int	deal_mouse(int button, int x, int y, t_cube *data)
 {
 	printf("mouse\n");
 	return (0);
+	(void)button;
+	(void)data;
+	(void)y;
+	(void)x;
 }

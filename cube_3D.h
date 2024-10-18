@@ -6,7 +6,7 @@
 /*   By: rgolfett <rgolfett@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/03 13:37:35 by rgolfett          #+#    #+#             */
-/*   Updated: 2024/10/17 13:19:33 by rgolfett         ###   ########lyon.fr   */
+/*   Updated: 2024/10/18 15:57:48 by rgolfett         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -133,6 +133,8 @@ typedef struct s_cube
 	double		head;
 	double		band_w;
 	double		incr;
+	int			show_fps;
+	double		end_axes;
 }	t_cube;
 
 int		main(int argc, char **argv);

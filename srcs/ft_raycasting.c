@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_raycasting.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rgolfett <rgolfett@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rgolfett <rgolfett@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/29 10:32:37 by kiparis           #+#    #+#             */
-/*   Updated: 2024/10/16 21:18:02 by rgolfett         ###   ########.fr       */
+/*   Updated: 2024/10/18 13:38:47 by rgolfett         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,8 +46,8 @@ void	init_data(t_cube *data, t_arg arg)
 	data->arg.floor.color = (data->arg.floor.r << 16) | \
 							(data->arg.floor.g << 8) | \
 							data->arg.floor.b;
-	data->arg.zoom = 10;
-	data->arg.coef_zoom = 1 / data->arg.zoom;
+	data->arg.zoom = 1;
+	data->show_fps = -1;
 	data->head = WINDOW_Y * 0.5;
 	data->band_w = (double)WINDOW_X / (double)FOV;
 	data->incr = (double)FOV / (double)RAY_NB;
