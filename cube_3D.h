@@ -6,7 +6,7 @@
 /*   By: rgolfett <rgolfett@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/03 13:37:35 by rgolfett          #+#    #+#             */
-/*   Updated: 2024/10/18 15:57:48 by rgolfett         ###   ########lyon.fr   */
+/*   Updated: 2024/10/20 21:00:19 by rgolfett         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -184,5 +184,12 @@ void	draw_utils(double x1, double y1, double x2, double y2, t_cube *data);
 
 int	ft_load_sprites(t_cube *cube, t_image *wall);
 void 	tmp_raycast(t_cube *data);
+
+void fill_background(t_cube *data);
+void	ft_cube(t_arg arg);
+void	raycasting(t_cube *data);
+void	draw_column(t_cube *data, int x, float height, int side, float wall_off);
+
+void	ft_display(t_cube *data);
 
 #endif

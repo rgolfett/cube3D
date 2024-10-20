@@ -6,7 +6,7 @@
 /*   By: rgolfett <rgolfett@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/29 11:00:36 by kiparis           #+#    #+#             */
-/*   Updated: 2024/10/18 15:29:37 by rgolfett         ###   ########lyon.fr   */
+/*   Updated: 2024/10/20 15:12:06 by rgolfett         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -128,7 +128,7 @@ void raycast(t_cube *data, double ray_num, double theta)
 		double	bot_wall = data->head + (apparent_wall_height / 2);
 		while (i < top_wall)
 		{
-			ft_pixel_put(data, i_band + (ray_num - data->incr) * data->band_w, i, data->arg.ceiling.color);
+		//	ft_pixel_put(data, i_band + (ray_num - data->incr) * data->band_w, i, data->arg.ceiling.color);
 			i++;
 		}
 		int c = 0;
@@ -147,15 +147,15 @@ void raycast(t_cube *data, double ray_num, double theta)
 		}
 		while (i < WINDOW_Y)
 		{
-			ft_pixel_put(data, i_band + (ray_num - data->incr) * data->band_w, i, data->arg.floor.color);
+		//	ft_pixel_put(data, i_band + (ray_num - data->incr) * data->band_w, i, data->arg.floor.color);
 			i++;
 		}
 		i_band++;
 	}
 }
 
-#include <time.h>
 
+#include <time.h>
 
 void	next_frame(t_cube *data)
 {
@@ -169,6 +169,7 @@ void	next_frame(t_cube *data)
 	double	tmp_theta = data->player.theta - FOV * 0.5;
 
 	ray_num = 0;
+	fill_background(data);
 	while (tmp_theta < (data->player.theta + ((double)FOV * 0.5)))
 	{
 		algo_ray_end(data, ray_num);

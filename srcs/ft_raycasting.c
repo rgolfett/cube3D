@@ -6,7 +6,7 @@
 /*   By: rgolfett <rgolfett@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/29 10:32:37 by kiparis           #+#    #+#             */
-/*   Updated: 2024/10/18 13:38:47 by rgolfett         ###   ########lyon.fr   */
+/*   Updated: 2024/10/20 21:39:35 by rgolfett         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,8 +55,11 @@ void	init_data(t_cube *data, t_arg arg)
 	data->player.x1 = data->player.spawn_x * data->arg.zoom + data->arg.zoom / 2;
 	data->player.y1 = data->player.spawn_y * data->arg.zoom + data->arg.zoom / 2;
 	data->image.image = mlx_new_image(data->mlx, WINDOW_X, WINDOW_Y);
+	data->image.width = WINDOW_X;
+	data->image.height = WINDOW_Y;
 	data->image.address = mlx_get_data_addr(data->image.image, \
 		&data->image.bits_per_address, &data->image.size_line, &data->image.endian);
+	data->image.ad = (void*)data->image.address;
 }
 
 void	ft_raycasting(t_arg arg)
@@ -83,7 +86,7 @@ void	ft_raycasting(t_arg arg)
 	mlx_hook(data.window, 17, 0, mlx_loop_end, data.mlx);
 	ft_load_sprites(&data, &data.arg.wall.north);
 	printf("%d %d %p\n", data.arg.wall.north.width, data.arg.wall.north.height, data.arg.wall.north.ad);
-	mlx_loop_hook(data.mlx, next_frame, &data);
+	mlx_loop_hook(data.mlx, ft_display, &data);
 	mlx_loop(data.mlx);
 	mlx_destroy_image(data.mlx, data.image.image);
 	mlx_mouse_show(data.mlx, data.window);

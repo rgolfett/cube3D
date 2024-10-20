@@ -6,7 +6,7 @@
 /*   By: rgolfett <rgolfett@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/03 12:40:12 by rgolfett          #+#    #+#             */
-/*   Updated: 2024/10/15 14:59:17 by rgolfett         ###   ########lyon.fr   */
+/*   Updated: 2024/10/20 21:08:00 by rgolfett         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,9 +84,9 @@ int	main(int argc, char **argv)
 	// }
 	if (ft_check_valid_map(argv[1], &arg.s_map) == 1)
 		return (1);
-	ft_print_all(&arg);
+	// ft_print_all(&arg);
 	//ft_test();
 	ft_raycasting(arg);
+	//ft_cube(arg);
 	free_utils(&arg);
 }
-	// ft_test();

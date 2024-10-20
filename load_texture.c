@@ -7,7 +7,7 @@ t_image	load_img(void *mlx, t_image *wall, char *texture)
 	int	endian;
 	
 	if (!wall)
-		printf("aaaa\n");
+		printf("wall == NULL\n");
 	wall->image = mlx_xpm_file_to_image(mlx, texture, &wall->width, &wall->height);
 	printf("%d %d %p\n", wall->width, wall->height, wall->ad);
 	if (wall->image)
@@ -16,7 +16,7 @@ t_image	load_img(void *mlx, t_image *wall, char *texture)
 				mlx_get_data_addr(wall->image, &bits_per_pixel, &size_line, &endian);
 	}
 	if (!wall->image)
-		printf("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA\n");
+		printf("wall->image == NULL\n");
 	return (*wall);
 }
 
@@ -68,15 +68,11 @@ void	draw_text_wall(t_cube *data, int x, float height, int side, float wall_off)
 	i = 0;
 	y_start = (WINDOW_Y / 2) - (WINDOW_Y * height / 2);
 	nb_y_pixel = WINDOW_Y * height;
-	printf("height = %f\n", height);
-	printf("nb pix = %f\n", nb_y_pixel);
-	while (i < nb_y_pixel)
 	{
 		limit = (float)i / (float)nb_y_pixel;
 		text_x = data->arg.wall.north.width * wall_off;
 		text_y = data->arg.wall.north.height * limit;
 		// ajouter les points cardinaux
-		printf("oui\n");
 		my_mlx_pixel_put(&data->image, x, y_start,
 			data->arg.wall.north.ad[text_y * data->arg.wall.north.width + text_x]);
 		i++;
@@ -93,16 +89,21 @@ void	draw_column(t_cube *data, int x, float height, int side, float wall_off)
 	int	red;
 	float limit;
 
+	if (height > 1.0f)
+		height = 1.0f;
 	i = 0;
 	y_start = (WINDOW_Y / 2) - (WINDOW_Y * height / 2);
-	nb_y_pixel = WINDOW_Y * height;
+	nb_y_pixel = (float)WINDOW_Y * height;
 	blue = 255;
 	red = 255 << 16;
 	
-	while ((i + y_start) < (y_start + nb_y_pixel))
+	while (i < nb_y_pixel)
 	{
 		limit = (float)i / (float)nb_y_pixel;
-	//	printf("limit = %f\n", limit);
+	//	printf("limit = %f\n", limit)
+		((unsigned int*)(data->image.address))[y_start * data->image.width + x] = 0;
+		// if (y_start >= 0 && y_start < data->image.height)
+			// my_mlx_pixel_put(&data->image, x, y_start, 0x0);
 			//my_mlx_pixel_put(&data->image, x, y_start, ((int)(red * limit) & 0xff0000) + blue * wall_off);
 		//data->arg.wall.north.ad[i]
 		i++;
