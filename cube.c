@@ -70,7 +70,8 @@ void	raycasting(t_cube *data)
 }
 
 #include <time.h>
-void	ft_display(t_cube *data)
+
+int	ft_display(t_cube *data)
 {
 	static int		frameCount = 0;
 	static clock_t	startTime = 0;
@@ -79,6 +80,7 @@ void	ft_display(t_cube *data)
 		startTime = clock();
 
 	deal_key(data);
+	move_mouse(data);
 	fill_background(data);
 	raycasting(data);
 	mlx_put_image_to_window(data->mlx, data->window, data->image.image, 0, 0);

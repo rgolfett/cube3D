@@ -6,7 +6,7 @@
 /*   By: kiparis <kiparis@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/03 13:37:35 by rgolfett          #+#    #+#             */
-/*   Updated: 2024/10/21 11:34:07 by kiparis          ###   ########.fr       */
+/*   Updated: 2024/10/21 14:33:35 by kiparis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,19 +29,20 @@
 # define KEY_RIGHT 65363
 # define KEY_LEFT 65361
 # define KEY_ESC 65307
+# define KEY_SHIFT 65505
 
 # define MY_PI 3.14159265358979323846
 # define INV_180 (1.0 / 180.0)
 
-# define WINDOW_Y 540
-# define WINDOW_X 960
+# define WINDOW_Y 1040
+# define WINDOW_X 1920
 # define PLAYER_SIZE 9
 # define STEP_SIZE 0.01
 # define RAY_NB 360
 
 # define FOV 90
-# define SPEED 0.01
-# define ROTATION_SPEED 0.3
+# define SPEED 0.03
+# define ROTATION_SPEED 0.1
 
 
 typedef struct s_key
@@ -116,10 +117,11 @@ typedef struct s_player
 	double	x2;
 	double	y2;
 	double	theta;
-	int	spawn_x;
-	int	spawn_y;
+	int		spawn_x;
+	int		spawn_y;
 	double	x_pos_map;
 	double	y_pos_map;
+	int		sprint;
 }	t_player;
 
 
@@ -139,6 +141,10 @@ typedef struct s_cube
 	double		incr;
 	int			show_fps;
 	double		end_axes;
+	int			mid_x;
+	int			mid_y;
+	int 		old_mouse_x;
+	int 		old_mouse_y;
 }	t_cube;
 
 int		main(int argc, char **argv);
@@ -194,8 +200,9 @@ void	ft_cube(t_arg arg);
 void	raycasting(t_cube *data);
 void	draw_column(t_cube *data, int x, float height, int side, float wall_off);
 
-void	ft_display(t_cube *data);
+int		ft_display(t_cube *data);
 int		move_key(int key, t_cube *data);
 int		move_key_zero(int key, t_cube *data);
+int		move_mouse(t_cube *data);
 
 #endif
