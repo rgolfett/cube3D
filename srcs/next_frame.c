@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   next_frame.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rgolfett <rgolfett@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: kiparis <kiparis@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/29 11:00:36 by kiparis           #+#    #+#             */
-/*   Updated: 2024/10/20 15:12:06 by rgolfett         ###   ########lyon.fr   */
+/*   Updated: 2024/10/21 10:28:18 by kiparis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,6 +82,7 @@ int	find_pixel_color(t_cube *data, double height, double width, double theta)
 	// 	printf("test\n");
 	// printf("color = %f\n", color);
 	// printf("HEIGHT = %f, width = %f\n", height, width);
+	(void)theta;
 	return (data->arg.wall.north.ad[(int)color]);
 	
 }
@@ -89,7 +90,7 @@ int	find_pixel_color(t_cube *data, double height, double width, double theta)
 void raycast(t_cube *data, double ray_num, double theta)
 {
 	double i_band;
-	double coord_y_wall_diff;
+	// double coord_y_wall_diff;
 	double ray_len;
 	double wall_pos_x;
 	double wall_pos_y;

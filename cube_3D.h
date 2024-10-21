@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cube_3D.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rgolfett <rgolfett@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: kiparis <kiparis@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/03 13:37:35 by rgolfett          #+#    #+#             */
-/*   Updated: 2024/10/20 21:00:19 by rgolfett         ###   ########lyon.fr   */
+/*   Updated: 2024/10/21 11:34:07 by kiparis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,13 +33,15 @@
 # define MY_PI 3.14159265358979323846
 # define INV_180 (1.0 / 180.0)
 
-# define WINDOW_Y 1080
-# define WINDOW_X 1800
+# define WINDOW_Y 540
+# define WINDOW_X 960
 # define PLAYER_SIZE 9
 # define STEP_SIZE 0.01
 # define RAY_NB 360
 
 # define FOV 90
+# define SPEED 0.01
+# define ROTATION_SPEED 0.3
 
 
 typedef struct s_key
@@ -48,6 +50,8 @@ typedef struct s_key
 	int	press_a;
 	int	press_s;
 	int	press_d;
+	int	look_right;
+	int	look_left;
 }	t_key;
 
 typedef struct s_image
@@ -172,7 +176,7 @@ int		ft_nmb_player(char c, int cmp);
 int		ft_check_map_walls(char **map);
 int		ft_check_valid_map(char *map_name, t_map *s_map);
 //int		ft_test(void);
-int		deal_key(int key, t_cube *data);
+int		deal_key(t_cube *data);
 
 void	ft_raycasting(t_arg arg);
 int		deal_mouse(int button, int x, int y, t_cube *data);
@@ -191,5 +195,7 @@ void	raycasting(t_cube *data);
 void	draw_column(t_cube *data, int x, float height, int side, float wall_off);
 
 void	ft_display(t_cube *data);
+int		move_key(int key, t_cube *data);
+int		move_key_zero(int key, t_cube *data);
 
 #endif

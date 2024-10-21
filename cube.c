@@ -30,8 +30,10 @@ float	ray(float angle, t_player *player, t_map *map)
 	float	x;
 	float	y;
 
-	x = player->spawn_x;
-	y = player->spawn_y;
+	// x = player->spawn_x;
+	// y = player->spawn_y;
+	x = player->x1;
+	y = player->y1;
 	dir_x = cosf(angle * MY_PI / 180);
 	dir_y = sinf(angle * MY_PI / 180);
 	x_step = dir_x / 100;
@@ -41,8 +43,10 @@ float	ray(float angle, t_player *player, t_map *map)
 		x += x_step;
 		y += y_step;
 	}
-	x -= player->spawn_x;
-	y -= player->spawn_y;
+	// x -= player->spawn_x;
+	// y -= player->spawn_y;
+	x -= player->x1;
+	y -= player->y1;
 	return (sqrt((x * x) + (y * y)));
 }
 
@@ -74,6 +78,7 @@ void	ft_display(t_cube *data)
 	if (startTime == 0)
 		startTime = clock();
 
+	deal_key(data);
 	fill_background(data);
 	raycasting(data);
 	mlx_put_image_to_window(data->mlx, data->window, data->image.image, 0, 0);

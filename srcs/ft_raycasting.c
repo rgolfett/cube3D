@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_raycasting.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rgolfett <rgolfett@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: kiparis <kiparis@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/29 10:32:37 by kiparis           #+#    #+#             */
-/*   Updated: 2024/10/20 21:39:35 by rgolfett         ###   ########lyon.fr   */
+/*   Updated: 2024/10/21 12:30:42 by kiparis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,21 +52,30 @@ void	init_data(t_cube *data, t_arg arg)
 	data->band_w = (double)WINDOW_X / (double)FOV;
 	data->incr = (double)FOV / (double)RAY_NB;
 	data->player.theta = find_spawn_point(data);
-	data->player.x1 = data->player.spawn_x * data->arg.zoom + data->arg.zoom / 2;
-	data->player.y1 = data->player.spawn_y * data->arg.zoom + data->arg.zoom / 2;
+	// data->player.x1 = data->player.spawn_x * data->arg.zoom + data->arg.zoom / 2;
+	// data->player.y1 = data->player.spawn_y * data->arg.zoom + data->arg.zoom / 2;
+	data->player.x1 = data->player.spawn_x;
+	data->player.y1 = data->player.spawn_y;
 	data->image.image = mlx_new_image(data->mlx, WINDOW_X, WINDOW_Y);
 	data->image.width = WINDOW_X;
 	data->image.height = WINDOW_Y;
 	data->image.address = mlx_get_data_addr(data->image.image, \
 		&data->image.bits_per_address, &data->image.size_line, &data->image.endian);
 	data->image.ad = (void*)data->image.address;
+
+	data->arg.m_key.press_w = 0;
+	data->arg.m_key.press_a = 0;
+	data->arg.m_key.press_s = 0;
+	data->arg.m_key.press_d = 0;
+	data->arg.m_key.look_left = 0;
+	data->arg.m_key.look_right = 0;
 }
 
 void	ft_raycasting(t_arg arg)
 {
 	t_cube	data;
-	int	pos_mouse_x;
-	int pos_mouse_y;
+	// int	pos_mouse_x;
+	// int pos_mouse_y;
 
 	data.mlx = mlx_init();
 	init_data(&data, arg);
@@ -79,9 +88,11 @@ void	ft_raycasting(t_arg arg)
 	data.window = mlx_new_window(data.mlx, WINDOW_X, \
 								WINDOW_Y, "Ma Fenetre");
 //	mlx_mouse_hide(data.mlx, data.window);
-	mlx_hook(data.window, 2, 1, deal_key, &data);
-	// mlx_mouse_get_pos(data.mlx, data.window, &pos_mouse_x, &pos_mouse_y);
+	// deal_key();
+	mlx_hook(data.window, 2, (1L<<0), move_key, &data);
+	mlx_hook(data.window, 3, (1L<<1), move_key_zero, &data);
 	//printf("x = %d, y = %d\n", pos_mouse_x, pos_mouse_y);
+	// mlx_mouse_get_pos(data.mlx, data.window, &pos_mouse_x, &pos_mouse_y);
 	// mlx_mouse_hook(data.mlx, deal_mouse, &data);
 	mlx_hook(data.window, 17, 0, mlx_loop_end, data.mlx);
 	ft_load_sprites(&data, &data.arg.wall.north);
