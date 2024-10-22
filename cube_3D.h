@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cube_3D.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kiparis <kiparis@student.42.fr>            +#+  +:+       +#+        */
+/*   By: rgolfett <rgolfett@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/03 13:37:35 by rgolfett          #+#    #+#             */
-/*   Updated: 2024/10/22 12:28:08 by kiparis          ###   ########.fr       */
+/*   Updated: 2024/10/22 14:36:34 by rgolfett         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -194,7 +194,7 @@ void	my_mlx_pixel_put(t_image *image, int x, int y, int color);
 void	draw_texture(int x, int y, t_cube *data);
 void	draw_utils(double x1, double y1, double x2, double y2, t_cube *data);
 
-int	ft_load_sprites(t_cube *cube, t_image *wall);
+int	ft_load_sprites(t_cube *cube, t_wall *wall);
 void 	tmp_raycast(t_cube *data);
 
 void fill_background(t_cube *data);

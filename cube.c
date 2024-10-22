@@ -1,6 +1,11 @@
 
 #include "cube_3D.h"
 
+void	get_wall_direction(t_cube *data)
+{
+
+}
+
 void fill_background(t_cube *data)
 {
 	int	half_window;
@@ -63,7 +68,7 @@ void	raycasting(t_cube *data)
 	while (i < WINDOW_X)
 	{
 		distance = ray(angle, &data->player, &data->arg.s_map);
-		draw_text_wall(data, i, (1.0f / distance), 0, data->player.wall_off);
+		draw_text_wall(data, i, (1.0f / distance), 0, fabs(data->player.wall_off));
 		//draw_column(data, i, (1.0f / distance), 0, 0);
 		angle += (float)FOV / (float)WINDOW_X;
 		i++;
@@ -107,7 +112,7 @@ void	ft_cube(t_arg arg)
 								WINDOW_Y, "Cube_3D");
 	mlx_hook(data.window, 2, 1, deal_key, &data);
 	mlx_hook(data.window, 17, 0, mlx_loop_end, data.mlx);
-	ft_load_sprites(&data, &data.arg.wall.north);// a modifier-> load all textures
+	ft_load_sprites(&data, &data.arg.wall);// a modifier-> load all textures
 	mlx_loop_hook(data.mlx, ft_display, &data);
 	mlx_loop(data.mlx);
 	mlx_destroy_image(data.mlx, data.image.image);
