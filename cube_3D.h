@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cube_3D.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kiparis <kiparis@student.42.fr>            +#+  +:+       +#+        */
+/*   By: rgolfett <rgolfett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/03 13:37:35 by rgolfett          #+#    #+#             */
-/*   Updated: 2024/10/21 14:33:35 by kiparis          ###   ########.fr       */
+/*   Updated: 2024/10/22 00:20:17 by rgolfett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -199,6 +199,9 @@ void fill_background(t_cube *data);
 void	ft_cube(t_arg arg);
 void	raycasting(t_cube *data);
 void	draw_column(t_cube *data, int x, float height, int side, float wall_off);
+void	draw_text_wall(t_cube *data, int x, float height, int side, float wall_off);
+
+void	init_data(t_cube *data, t_arg arg);
 
 int		ft_display(t_cube *data);
 int		move_key(int key, t_cube *data);

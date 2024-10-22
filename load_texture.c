@@ -50,6 +50,29 @@ void	draw_wall(int x, int y, t_cube *data, t_image *wall)
 		printf("i = %i\n", i);
 	}
 }
+// void	draw_text_wall(t_cube *data, int x, float height, int side, float wall_off)
+// {
+// 	int	 i;
+// 	int	y_start;
+// 	int	nb_y_pixel;
+// 	float limit;
+// 	int	text_x = 0;
+// 	int	text_y = 0;
+
+// 	i = 0;
+// 	y_start = (WINDOW_Y / 2) - (WINDOW_Y * height / 2);
+// 	nb_y_pixel = WINDOW_Y * height;
+// 	{
+// 		limit = (float)i / (float)nb_y_pixel;
+// 		text_x = data->arg.wall.north.width * wall_off;
+// 		text_y = data->arg.wall.north.height * limit;
+// 		// ajouter les points cardinaux
+// 		my_mlx_pixel_put(&data->image, x, y_start,
+// 			data->arg.wall.north.ad[text_y * data->arg.wall.north.width + text_x]);
+// 		i++;
+// 		y_start++;
+// 	}
+// }
 
 void	draw_texture(int x, int y, t_cube *data)
 {
@@ -66,15 +89,21 @@ void	draw_text_wall(t_cube *data, int x, float height, int side, float wall_off)
 	int	text_y = 0;
 
 	i = 0;
+	if (height > 1.0f)
+		height = 1.0f;
 	y_start = (WINDOW_Y / 2) - (WINDOW_Y * height / 2);
-	nb_y_pixel = WINDOW_Y * height;
+	nb_y_pixel = (float)WINDOW_Y * height;
+	while (i < nb_y_pixel)
 	{
 		limit = (float)i / (float)nb_y_pixel;
 		text_x = data->arg.wall.north.width * wall_off;
 		text_y = data->arg.wall.north.height * limit;
 		// ajouter les points cardinaux
-		my_mlx_pixel_put(&data->image, x, y_start,
-			data->arg.wall.north.ad[text_y * data->arg.wall.north.width + text_x]);
+		((unsigned int*)(data->image.address))[y_start * data->image.width + x] 
+					= data->arg.wall.north.ad[text_y * data->arg.wall.north.width + text_x];
+		// my_mlx_pixel_put(&data->image, x, y_start,
+		// 	data->arg.wall.north.ad[text_y * data->arg.wall.north.width + text_x]);
+		// ((unsigned int*)(data->image.address))[y_start * data->image.width + x] = 0;
 		i++;
 		y_start++;
 	}
@@ -85,8 +114,6 @@ void	draw_column(t_cube *data, int x, float height, int side, float wall_off)
 	int	 i;
 	int	y_start;
 	int	nb_y_pixel;
-	int	blue;
-	int	red;
 	float limit;
 
 	if (height > 1.0f)
@@ -94,8 +121,6 @@ void	draw_column(t_cube *data, int x, float height, int side, float wall_off)
 	i = 0;
 	y_start = (WINDOW_Y / 2) - (WINDOW_Y * height / 2);
 	nb_y_pixel = (float)WINDOW_Y * height;
-	blue = 255;
-	red = 255 << 16;
 	
 	while (i < nb_y_pixel)
 	{

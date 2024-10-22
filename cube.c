@@ -30,8 +30,6 @@ float	ray(float angle, t_player *player, t_map *map)
 	float	x;
 	float	y;
 
-	// x = player->spawn_x;
-	// y = player->spawn_y;
 	x = player->x1;
 	y = player->y1;
 	dir_x = cosf(angle * MY_PI / 180);
@@ -43,10 +41,9 @@ float	ray(float angle, t_player *player, t_map *map)
 		x += x_step;
 		y += y_step;
 	}
-	// x -= player->spawn_x;
-	// y -= player->spawn_y;
 	x -= player->x1;
 	y -= player->y1;
+	float wall_off = (x - (int)x);
 	return (sqrt((x * x) + (y * y)));
 }
 
@@ -63,7 +60,8 @@ void	raycasting(t_cube *data)
 	while (i < WINDOW_X)
 	{
 		distance = ray(angle, &data->player, &data->arg.s_map);
-		draw_column(data, i, (1.0f / distance), 0, 0);
+		draw_text_wall(data, i, (1.0f / distance), 0, 0);
+		//draw_column(data, i, (1.0f / distance), 0, 0);
 		angle += (float)FOV / (float)WINDOW_X;
 		i++;
 	}
@@ -82,6 +80,7 @@ int	ft_display(t_cube *data)
 	deal_key(data);
 	move_mouse(data);
 	fill_background(data);
+	// tmp_raycast(data);
 	raycasting(data);
 	mlx_put_image_to_window(data->mlx, data->window, data->image.image, 0, 0);
 

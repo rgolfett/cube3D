@@ -29,7 +29,7 @@ OBJS =	$(SRCS:%.c=%.o)
 
 CC = cc
 
-CFLAGS = -Wall -Wextra -g3 -Iminilibx-linux #-fsanitize=address#-Werror
+CFLAGS = -Wall -Wextra -g3 -Iminilibx-linux -fsanitize=address#-Werror
 
 all : $(NAME)
 
