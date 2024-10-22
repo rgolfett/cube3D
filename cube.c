@@ -34,7 +34,7 @@ int	find_wall_orientation(double x, double y, double dir_x, double dir_y, t_play
 	if (diff_wall_x > diff_wall_y)
 	{
 		// horizontal
-		if (dir_y < 0)
+		if (dir_y <= 0)
 		{
 			player->wall_off = (fabs(x) - abs((int)x)) * (fabs(y) - abs((int)y)); // nord
 			return (1);
@@ -48,7 +48,7 @@ int	find_wall_orientation(double x, double y, double dir_x, double dir_y, t_play
 	else 
 	{
 		// vertical
-		if (dir_x > 0)
+		if (dir_x >= 0)
 		{
 			player->wall_off = 1 - (fabs(x) - fabs(ceil(x))) * (fabs(y) - fabs(ceil(y))); // est
 			return (3);
@@ -82,7 +82,7 @@ double	ray(double angle, t_player *player, t_map *map)
 		x += x_step;
 		y += y_step;
 	}
-	find_wall_orientation(x, y, dir_x, dir_y, player);
+	player->orientation = find_wall_orientation(x, y, dir_x, dir_y, player);
 	x -= player->x1;
 	y -= player->y1;
 	return (sqrt((x * x) + (y * y)));
@@ -101,7 +101,7 @@ void	raycasting(t_cube *data)
 	while (i < WINDOW_X)
 	{
 		distance = ray(angle, &data->player, &data->arg.s_map);
-		draw_text_wall(data, i, (1.0f / distance), 0, fabs(data->player.wall_off));
+		draw_text_wall(data, i, (1.0f / distance), data->player.orientation);
 		//draw_column(data, i, (1.0f / distance), 0, 0);
 		angle += (double)FOV / (double)WINDOW_X;
 		i++;

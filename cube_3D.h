@@ -6,7 +6,7 @@
 /*   By: rgolfett <rgolfett@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/03 13:37:35 by rgolfett          #+#    #+#             */
-/*   Updated: 2024/10/22 14:39:36 by rgolfett         ###   ########lyon.fr   */
+/*   Updated: 2024/10/22 14:59:28 by rgolfett         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -124,6 +124,7 @@ typedef struct s_player
 	int		sprint;
 	double	wall_off;
 	double	height;
+	int		orientation;
 }	t_player;
 
 
@@ -201,7 +202,7 @@ void fill_background(t_cube *data);
 void	ft_cube(t_arg arg);
 void	raycasting(t_cube *data);
 void	draw_column(t_cube *data, int x, double height, int side, double wall_off);
-void	draw_text_wall(t_cube *data, int x, double height, int side, double wall_off);
+void	draw_text_wall(t_cube *data, int x, double height, int side);
 
 void	init_data(t_cube *data, t_arg arg);
 
