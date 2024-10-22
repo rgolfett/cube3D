@@ -23,10 +23,10 @@ t_image	load_img(void *mlx, t_image *wall, char *texture)
 
 int	ft_load_sprites(t_cube *cube, t_wall *wall)
 {
-	wall->east = load_img(cube->mlx, &wall->east, "socks.xpm");
-	wall->west = load_img(cube->mlx, &wall->west, "jesus.xpm");
-	wall->north = load_img(cube->mlx, &wall->north, "touch-grass.xpm");
-	wall->south = load_img(cube->mlx, &wall->south, "socks.xpm");
+	wall->east = load_img(cube->mlx, &wall->east, "4k2.xpm");
+	wall->west = load_img(cube->mlx, &wall->west, "4k2.xpm");
+	wall->north = load_img(cube->mlx, &wall->north, "4k2.xpm");
+	wall->south = load_img(cube->mlx, &wall->south, "4k2.xpm");
 	
 	return (0);
 }

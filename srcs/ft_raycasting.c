@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_raycasting.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kiparis <kiparis@student.42.fr>            +#+  +:+       +#+        */
+/*   By: rgolfett <rgolfett@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/29 10:32:37 by kiparis           #+#    #+#             */
-/*   Updated: 2024/10/22 15:28:48 by kiparis          ###   ########.fr       */
+/*   Updated: 2024/10/22 15:41:25 by rgolfett         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,11 @@ double	find_spawn_point(t_cube *data)
 	return (-1);
 }
 
+void	replace_spawn(t_cube *data)
+{
+	data->arg.s_map.map[data->player.spawn_y][data->player.spawn_x] = '0';
+}
+
 void	init_data(t_cube *data, t_arg arg)
 {
 	data->arg = arg;
@@ -52,10 +57,11 @@ void	init_data(t_cube *data, t_arg arg)
 	data->band_w = (double)WINDOW_X / (double)FOV;
 	data->incr = (double)FOV / (double)RAY_NB;
 	data->player.theta = find_spawn_point(data);
+	replace_spawn(data);
 	// data->player.x1 = data->player.spawn_x * data->arg.zoom + data->arg.zoom / 2;
 	// data->player.y1 = data->player.spawn_y * data->arg.zoom + data->arg.zoom / 2;
-	data->player.x1 = data->player.spawn_x;
-	data->player.y1 = data->player.spawn_y;
+	data->player.x1 = data->player.spawn_x + 0.5;
+	data->player.y1 = data->player.spawn_y + 0.5;
 	data->image.image = mlx_new_image(data->mlx, WINDOW_X, WINDOW_Y);
 	data->image.width = WINDOW_X;
 	data->image.height = WINDOW_Y;
@@ -74,6 +80,7 @@ void	init_data(t_cube *data, t_arg arg)
 	data->old_mouse_x = 0;
 	data->old_mouse_y = 0;
 	data->player.sprint = 1;
+
 }
 
 void	ft_raycasting(t_arg arg)

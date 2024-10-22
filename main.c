@@ -6,7 +6,7 @@
 /*   By: rgolfett <rgolfett@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/03 12:40:12 by rgolfett          #+#    #+#             */
-/*   Updated: 2024/10/20 21:08:00 by rgolfett         ###   ########lyon.fr   */
+/*   Updated: 2024/10/22 15:34:04 by rgolfett         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,15 @@ void	free_utils(t_arg *arg)
 		free_str(arg->s_map.map);
 	if (arg->s_map.map_name)
 		free(arg->s_map.map_name);
+	if (arg->wall.north.image)
+		free(arg->wall.north.image);
+	if (arg->wall.east.image)
+		free(arg->wall.east.image);
+	if (arg->wall.west.image)
+		free(arg->wall.west.image);
+	if (arg->wall.south.image)
+		free(arg->wall.south.image);
+	
 }
 void	ft_set_value(t_arg *arg)
 {
