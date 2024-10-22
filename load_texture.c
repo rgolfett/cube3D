@@ -24,8 +24,8 @@ t_image	load_img(void *mlx, t_image *wall, char *texture)
 int	ft_load_sprites(t_cube *cube, t_image *wall)
 {
 	//*wall = load_img(cube->mlx, wall, "touch-grass.xpm");
-	//*wall = load_img(cube->mlx, wall, "socks.xpm");
-	*wall = load_img(cube->mlx, wall, "jesus.xpm");
+	*wall = load_img(cube->mlx, wall, "socks.xpm");
+	//*wall = load_img(cube->mlx, wall, "jesus.xpm");
 	
 	return (0);
 }

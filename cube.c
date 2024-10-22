@@ -43,7 +43,9 @@ float	ray(float angle, t_player *player, t_map *map)
 	}
 	x -= player->x1;
 	y -= player->y1;
-	float wall_off = (x - (int)x);
+	player->wall_off = dir_x * (x - (int)x); 
+	//player->height = dir_y * (y - (int)y);
+	//printf("wall = %f\n", player->wall_off);
 	return (sqrt((x * x) + (y * y)));
 }
 
@@ -60,7 +62,7 @@ void	raycasting(t_cube *data)
 	while (i < WINDOW_X)
 	{
 		distance = ray(angle, &data->player, &data->arg.s_map);
-		draw_text_wall(data, i, (1.0f / distance), 0, 0);
+		draw_text_wall(data, i, (1.0f / distance), 0, data->player.wall_off);
 		//draw_column(data, i, (1.0f / distance), 0, 0);
 		angle += (float)FOV / (float)WINDOW_X;
 		i++;
