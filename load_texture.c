@@ -81,7 +81,7 @@ void	draw_texture(int x, int y, t_cube *data)
 
 void	draw_text_wall(t_cube *data, int x, float height, int side, float wall_off)
 {
-	int	 i;
+	float	 i;
 	int	y_start;
 	int	nb_y_pixel;
 	float limit;
@@ -89,11 +89,15 @@ void	draw_text_wall(t_cube *data, int x, float height, int side, float wall_off)
 	int	text_y = 0;
 
 	i = 0;
-	if (height > 1.0f)
-		height = 1.0f;
-	y_start = (WINDOW_Y / 2) - (WINDOW_Y * height / 2);
 	nb_y_pixel = (float)WINDOW_Y * height;
-	while (i < nb_y_pixel)
+	if (height > 1.0f)
+	{
+		i = (height - 1.0f) * 100;
+		height = 1.0f;
+		nb_y_pixel = (float)WINDOW_Y * height + i * 2;
+	}
+	y_start = (WINDOW_Y / 2) - (WINDOW_Y * height / 2);
+	while (i < nb_y_pixel && y_start <= WINDOW_Y)
 	{
 		limit = (float)i / (float)nb_y_pixel;
 		text_x = data->arg.wall.north.width * wall_off;

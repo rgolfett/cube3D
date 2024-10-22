@@ -36,16 +36,17 @@ float	ray(float angle, t_player *player, t_map *map)
 	dir_y = sinf(angle * MY_PI / 180);
 	x_step = dir_x / 100;
  	y_step = dir_y / 100;
-	while (map->map[(int)y][(int)x] != '1')
+	while (map->map[(int)y][(int)x] && map->map[(int)y][(int)x] != '1')
 	{
 		x += x_step;
 		y += y_step;
 	}
+	player->wall_off = (fabs(x) - abs((int)x)) * (fabs(y) - abs((int)y));
 	x -= player->x1;
 	y -= player->y1;
-	player->wall_off = dir_x * (x - (int)x); 
-	//player->height = dir_y * (y - (int)y);
-	//printf("wall = %f\n", player->wall_off);
+	// player->wall_off = fabs(((fabs(x) - abs((int)x)) + (fabs(y) - abs((int)y))) / 2);
+	// printf("x = %f, int x = %d, y = %f, int y = %d\n", x, (int)x, y, (int)y);
+	// printf("wall = %f\n", player->wall_off);
 	return (sqrt((x * x) + (y * y)));
 }
 

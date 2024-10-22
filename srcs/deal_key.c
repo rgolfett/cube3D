@@ -35,7 +35,7 @@ int	move_mouse(t_cube *data)
 
 int	move_key(int key, t_cube *data)
 {
-	printf("key == %d\n", key);
+	// printf("key == %d\n", key);
 	if (key == 65307)
 		mlx_loop_end(data->mlx);
 	if (key == 'w')

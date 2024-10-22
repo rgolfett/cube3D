@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cube_3D.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rgolfett <rgolfett@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: kiparis <kiparis@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/03 13:37:35 by rgolfett          #+#    #+#             */
-/*   Updated: 2024/10/22 11:35:10 by rgolfett         ###   ########lyon.fr   */
+/*   Updated: 2024/10/22 12:28:08 by kiparis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@
 # define MY_PI 3.14159265358979323846
 # define INV_180 (1.0 / 180.0)
 
-# define WINDOW_Y 1040
+# define WINDOW_Y 860
 # define WINDOW_X 1920
 # define PLAYER_SIZE 9
 # define STEP_SIZE 0.01
