@@ -31,6 +31,8 @@ int	find_wall_orientation(double x, double y, double dir_x, double dir_y, t_play
 	double	diff_wall_x = fabs(x - round(x));
 	double	diff_wall_y = fabs(y - round(y));
 
+	if (diff_wall_x < 0.01 && diff_wall_y < 0.01)
+		return (0);
 	if (diff_wall_x > diff_wall_y)
 	{
 		// horizontal
@@ -45,7 +47,7 @@ int	find_wall_orientation(double x, double y, double dir_x, double dir_y, t_play
 			return (2);
 		}
 	}
-	else 
+	else
 	{
 		// vertical
 		if (dir_x >= 0)
@@ -77,7 +79,7 @@ double	ray(double angle, t_player *player, t_map *map)
 	dir_y = sinf(angle * MY_PI / 180);
 	x_step = dir_x / 300;
  	y_step = dir_y / 300;
-	while (map->map[(int)y][(int)x] && map->map[(int)y][(int)x] != '1')
+	while (map->map[(int)y][(int)x] != '\n' && map->map[(int)y][(int)x] != '1' && map->map[(int)y][(int)x])
 	{
 		x += x_step;
 		y += y_step;

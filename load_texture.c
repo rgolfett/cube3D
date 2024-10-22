@@ -157,12 +157,16 @@ void	draw_text_wall(t_cube *data, int x, double height, int side)
 		((unsigned int*)(data->image.address))[y_start * data->image.width + x] 
 					= data->arg.wall.east.ad[text_y * data->arg.wall.east.width + text_x];
 	}
-	else
+	else  if (side == 4)
 	{
 		text_x = data->arg.wall.west.width * data->player.wall_off;
 		text_y = data->arg.wall.west.height * limit;
 		((unsigned int*)(data->image.address))[y_start * data->image.width + x] 
 					= data->arg.wall.west.ad[text_y * data->arg.wall.west.width + text_x];
+	}
+	else 
+	{
+		((unsigned int*)(data->image.address))[y_start * data->image.width + x] = 0x000000;
 	}
 		// my_mlx_pixel_put(&data->image, x, y_start,
 		// 	data->arg.wall.north.ad[text_y * data->arg.wall.north.width + text_x]);

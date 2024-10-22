@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_raycasting.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rgolfett <rgolfett@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: kiparis <kiparis@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/29 10:32:37 by kiparis           #+#    #+#             */
-/*   Updated: 2024/10/22 14:42:55 by rgolfett         ###   ########lyon.fr   */
+/*   Updated: 2024/10/22 15:28:48 by kiparis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,13 +21,13 @@ double	find_spawn_point(t_cube *data)
 		while (data->arg.s_map.map[data->player.spawn_y][data->player.spawn_x])
 		{
 			if (data->arg.s_map.map[data->player.spawn_y][data->player.spawn_x] == 'N')
-				return (270);
-			if (data->arg.s_map.map[data->player.spawn_y][data->player.spawn_x] == 'S')
-				return (90);
-			if (data->arg.s_map.map[data->player.spawn_y][data->player.spawn_x] == 'E')
-				return (0);
-			if (data->arg.s_map.map[data->player.spawn_y][data->player.spawn_x] == 'W')
 				return (180);
+			if (data->arg.s_map.map[data->player.spawn_y][data->player.spawn_x] == 'S')
+				return (0);
+			if (data->arg.s_map.map[data->player.spawn_y][data->player.spawn_x] == 'E')
+				return (270);
+			if (data->arg.s_map.map[data->player.spawn_y][data->player.spawn_x] == 'W')
+				return (90);
 			data->player.spawn_x++;
 		}
 		data->player.spawn_y++;
