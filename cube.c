@@ -21,95 +21,84 @@ void fill_background(t_cube *data)
 	}
 }
 
-void	find_wall_orientation(float x, float y, float dir_x, float dir_y, t_player *player)
+int	find_wall_orientation(double x, double y, double dir_x, double dir_y, t_player *player)
 {
-	float	diff_wall_x = fabs(x - round(x));
-	float	diff_wall_y = fabs(y - round(y));
+	double	diff_wall_x = fabs(x - round(x));
+	double	diff_wall_y = fabs(y - round(y));
 
 	if (diff_wall_x > diff_wall_y)
 	{
 		// horizontal
 		if (dir_y < 0)
+		{
 			player->wall_off = (fabs(x) - abs((int)x)) * (fabs(y) - abs((int)y)); // nord
+			return (1);
+		}
 		else 
+		{
 			player->wall_off = (fabs(x) - fabs(ceil(x))) * (fabs(y) - fabs(ceil(y))); // sud
-
+			return (2);
+		}
 	}
 	else 
 	{
 		// vertical
 		if (dir_x > 0)
+		{
 			player->wall_off = 1 - (fabs(x) - fabs(ceil(x))) * (fabs(y) - fabs(ceil(y))); // est
+			return (3);
+		}
 		else 
+		{
 			player->wall_off = 1 - (fabs(x) - abs((int)x)) * (fabs(y) - abs((int)y)); // ouest
-
+			return (4);
+		}
 	}
+	return (0);
 }
 
-float	ray(float angle, t_player *player, t_map *map)
+double	ray(double angle, t_player *player, t_map *map)
 {
-	float	dir_x;
-	float	dir_y;
-	float	x_step;
-	float	y_step;
-	float	x;
-	float	y;
+	double	dir_x;
+	double	dir_y;
+	double	x_step;
+	double	y_step;
+	double	x;
+	double	y;
 
 	x = player->x1;
 	y = player->y1;
 	dir_x = cosf(angle * MY_PI / 180);
 	dir_y = sinf(angle * MY_PI / 180);
-	x_step = dir_x / 10;
- 	y_step = dir_y / 10;
-	while (map->map[(int)y][(int)x] && map->map[(int)y][(int)x] != '1')
-	{
-		x += x_step;
-		y += y_step;
-	}
-	x -= x_step;
-	y -= y_step;
-	x_step = dir_x / 100;
- 	y_step = dir_y / 100;
-	while (map->map[(int)y][(int)x] && map->map[(int)y][(int)x] != '1')
-	{
-		x += x_step;
-		y += y_step;
-	}
-	x -= x_step;
-	y -= y_step;
-	x_step = dir_x / 1000;
- 	y_step = dir_y / 1000;
+	x_step = dir_x / 300;
+ 	y_step = dir_y / 300;
 	while (map->map[(int)y][(int)x] && map->map[(int)y][(int)x] != '1')
 	{
 		x += x_step;
 		y += y_step;
 	}
 	find_wall_orientation(x, y, dir_x, dir_y, player);
-	// printf("x = %f, int x = %d, y = %f, int y = %d\n", x, (int)x, y, (int)y);
-	// printf("dir_x = %f, dir_y = %f\n", dir_x, dir_y);
 	x -= player->x1;
 	y -= player->y1;
-	// player->wall_off = fabs(((fabs(x) - abs((int)x)) + (fabs(y) - abs((int)y))) / 2);
-	// printf("wall = %f\n", player->wall_off);
 	return (sqrt((x * x) + (y * y)));
 }
 
 void	raycasting(t_cube *data)
 {
 	int		i;
-	float	start;
-	float	angle;
-	float	distance;
+	double	start;
+	double	angle;
+	double	distance;
 
 	i = 0;
-	start = data->player.theta - (float)FOV / 2.0f;
+	start = data->player.theta - (double)FOV / 2.0f;
 	angle = start;
 	while (i < WINDOW_X)
 	{
 		distance = ray(angle, &data->player, &data->arg.s_map);
 		draw_text_wall(data, i, (1.0f / distance), 0, data->player.wall_off);
 		//draw_column(data, i, (1.0f / distance), 0, 0);
-		angle += (float)FOV / (float)WINDOW_X;
+		angle += (double)FOV / (double)WINDOW_X;
 		i++;
 	}
 }

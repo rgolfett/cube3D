@@ -6,7 +6,7 @@
 /*   By: kiparis <kiparis@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/29 11:00:36 by kiparis           #+#    #+#             */
-/*   Updated: 2024/10/21 10:28:18 by kiparis          ###   ########.fr       */
+/*   Updated: 2024/10/22 14:26:22 by kiparis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,7 @@ double	calc_incr(double x1, double y1, double x2, double y2, int option)
 
 int	find_pixel_color(t_cube *data, double height, double width, double theta)
 {
-	float color;
+	double color;
 	color = floor((double)data->arg.wall.north.width * width) + floor((double)data->arg.wall.north.height * height);
 	// if ((height < 0.2 || height > 0.8) && (width < 0.2 || width > 0.8))
 	// 	printf("test\n");

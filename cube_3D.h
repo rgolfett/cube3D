@@ -6,7 +6,7 @@
 /*   By: kiparis <kiparis@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/03 13:37:35 by rgolfett          #+#    #+#             */
-/*   Updated: 2024/10/22 12:28:08 by kiparis          ###   ########.fr       */
+/*   Updated: 2024/10/22 14:26:22 by kiparis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -122,8 +122,8 @@ typedef struct s_player
 	double	x_pos_map;
 	double	y_pos_map;
 	int		sprint;
-	float	wall_off;
-	float	height;
+	double	wall_off;
+	double	height;
 }	t_player;
 
 
@@ -200,8 +200,8 @@ void 	tmp_raycast(t_cube *data);
 void fill_background(t_cube *data);
 void	ft_cube(t_arg arg);
 void	raycasting(t_cube *data);
-void	draw_column(t_cube *data, int x, float height, int side, float wall_off);
-void	draw_text_wall(t_cube *data, int x, float height, int side, float wall_off);
+void	draw_column(t_cube *data, int x, double height, int side, double wall_off);
+void	draw_text_wall(t_cube *data, int x, double height, int side, double wall_off);
 
 void	init_data(t_cube *data, t_arg arg);
 

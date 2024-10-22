@@ -50,12 +50,12 @@ void	draw_wall(int x, int y, t_cube *data, t_image *wall)
 		printf("i = %i\n", i);
 	}
 }
-// void	draw_text_wall(t_cube *data, int x, float height, int side, float wall_off)
+// void	draw_text_wall(t_cube *data, int x, double height, int side, double wall_off)
 // {
 // 	int	 i;
 // 	int	y_start;
 // 	int	nb_y_pixel;
-// 	float limit;
+// 	double limit;
 // 	int	text_x = 0;
 // 	int	text_y = 0;
 
@@ -63,7 +63,7 @@ void	draw_wall(int x, int y, t_cube *data, t_image *wall)
 // 	y_start = (WINDOW_Y / 2) - (WINDOW_Y * height / 2);
 // 	nb_y_pixel = WINDOW_Y * height;
 // 	{
-// 		limit = (float)i / (float)nb_y_pixel;
+// 		limit = (double)i / (double)nb_y_pixel;
 // 		text_x = data->arg.wall.north.width * wall_off;
 // 		text_y = data->arg.wall.north.height * limit;
 // 		// ajouter les points cardinaux
@@ -79,27 +79,27 @@ void	draw_texture(int x, int y, t_cube *data)
 	draw_wall(x, y, data, &data->arg.wall.north);
 }
 
-void	draw_text_wall(t_cube *data, int x, float height, int side, float wall_off)
+void	draw_text_wall(t_cube *data, int x, double height, int side, double wall_off)
 {
-	float	 i;
+	double	 i;
 	int	y_start;
 	int	nb_y_pixel;
-	float limit;
+	double limit;
 	int	text_x = 0;
 	int	text_y = 0;
 
 	i = 0;
-	nb_y_pixel = (float)WINDOW_Y * height;
+	nb_y_pixel = (double)WINDOW_Y * height;
 	if (height > 1.0f)
 	{
 		i = (height - 1.0f) * 100 * 4;
 		height = 1.0f;
-		nb_y_pixel = (float)WINDOW_Y * height + i * 2;
+		nb_y_pixel = (double)WINDOW_Y * height + i * 2;
 	}
 	y_start = (WINDOW_Y / 2) - (WINDOW_Y * height / 2);
 	while (i < nb_y_pixel && y_start <= WINDOW_Y)
 	{
-		limit = (float)i / (float)nb_y_pixel;
+		limit = (double)i / (double)nb_y_pixel;
 		text_x = data->arg.wall.north.width * wall_off;
 		text_y = data->arg.wall.north.height * limit;
 		// ajouter les points cardinaux
@@ -113,22 +113,22 @@ void	draw_text_wall(t_cube *data, int x, float height, int side, float wall_off)
 	}
 }
 
-void	draw_column(t_cube *data, int x, float height, int side, float wall_off)
+void	draw_column(t_cube *data, int x, double height, int side, double wall_off)
 {
 	int	 i;
 	int	y_start;
 	int	nb_y_pixel;
-	float limit;
+	double limit;
 
 	if (height > 1.0f)
 		height = 1.0f;
 	i = 0;
 	y_start = (WINDOW_Y / 2) - (WINDOW_Y * height / 2);
-	nb_y_pixel = (float)WINDOW_Y * height;
+	nb_y_pixel = (double)WINDOW_Y * height;
 	
 	while (i < nb_y_pixel)
 	{
-		limit = (float)i / (float)nb_y_pixel;
+		limit = (double)i / (double)nb_y_pixel;
 	//	printf("limit = %f\n", limit)
 		((unsigned int*)(data->image.address))[y_start * data->image.width + x] = 0;
 		// if (y_start >= 0 && y_start < data->image.height)
@@ -152,23 +152,23 @@ void 	tmp_raycast(t_cube *data)
 	}	side_e;
 
 	struct {
-		float height;
+		double height;
 		int side;
-		float wall_off;
+		double wall_off;
 	}	rays[WINDOW_X];
 
 	int i = 0;
 	for (; i < WINDOW_X / 2; i++)
 	{
-		rays[i].height = 1.0f - ((float)i / (float)WINDOW_X);
+		rays[i].height = 1.0f - ((double)i / (double)WINDOW_X);
 		rays[i].side = EAST;
-		rays[i].wall_off = (float)i / (float)WINDOW_X * 2;
+		rays[i].wall_off = (double)i / (double)WINDOW_X * 2;
 	}
 	for (; i < WINDOW_X; i++)
 	{
-		rays[i].height = (float)i / (float)WINDOW_X;
+		rays[i].height = (double)i / (double)WINDOW_X;
 		rays[i].side = SOUTH;
-		rays[i].wall_off = ((float)i / (float)WINDOW_X - 0.5f) * 2;
+		rays[i].wall_off = ((double)i / (double)WINDOW_X - 0.5f) * 2;
 	}
 	
 	for (int x = 0; x < sizeof(rays) / sizeof(*rays); x++)
