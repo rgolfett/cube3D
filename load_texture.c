@@ -92,7 +92,7 @@ void	draw_text_wall(t_cube *data, int x, float height, int side, float wall_off)
 	nb_y_pixel = (float)WINDOW_Y * height;
 	if (height > 1.0f)
 	{
-		i = (height - 1.0f) * 100;
+		i = (height - 1.0f) * 100 * 4;
 		height = 1.0f;
 		nb_y_pixel = (float)WINDOW_Y * height + i * 2;
 	}
