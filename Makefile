@@ -17,6 +17,7 @@ SRCS = 	main.c \
 		ft_cube.c \
 		deal_key.c \
 		raycasting.c \
+		utils_deal_key.c\
 
 INCLUDES = get_next_line.h \
 		   cube_3D.h \

@@ -6,7 +6,7 @@
 /*   By: rgolfett <rgolfett@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/03 13:37:35 by rgolfett          #+#    #+#             */
-/*   Updated: 2024/10/23 13:26:42 by rgolfett         ###   ########lyon.fr   */
+/*   Updated: 2024/10/23 13:55:32 by rgolfett         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -125,6 +125,8 @@ typedef struct s_player
 	double	wall_off;
 	double	height;
 	int		orientation;
+	double	dir_x;
+	double	dir_y;
 }	t_player;
 
 
@@ -210,5 +212,10 @@ int		ft_display(t_cube *data);
 int		move_key(int key, t_cube *data);
 int		move_key_zero(int key, t_cube *data);
 int		move_mouse(t_cube *data);
+
+void	move_front(t_cube *data);
+void	move_back(t_cube *data);
+void	move_left(t_cube *data);
+void	move_right(t_cube *data);
 
 #endif
