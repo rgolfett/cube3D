@@ -6,7 +6,7 @@
 /*   By: rgolfett <rgolfett@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/29 10:32:37 by kiparis           #+#    #+#             */
-/*   Updated: 2024/10/22 15:41:25 by rgolfett         ###   ########lyon.fr   */
+/*   Updated: 2024/10/23 12:48:42 by rgolfett         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,6 +83,20 @@ void	init_data(t_cube *data, t_arg arg)
 
 }
 
+void	ft_free_img(t_cube *data)
+{
+	if (data->arg.wall.east.image)
+		mlx_destroy_image(data->mlx, data->arg.wall.east.image);
+	if (data->arg.wall.south.image)
+		mlx_destroy_image(data->mlx, data->arg.wall.south.image);
+	if (data->arg.wall.north.image)
+		mlx_destroy_image(data->mlx, data->arg.wall.north.image);
+	if (data->arg.wall.west.image)	
+		mlx_destroy_image(data->mlx, data->arg.wall.west.image);
+	if (data->image.image)
+		mlx_destroy_image(data->mlx, data->image.image);
+}
+
 void	ft_raycasting(t_arg arg)
 {
 	t_cube	data;
@@ -90,24 +104,23 @@ void	ft_raycasting(t_arg arg)
 
 	data.mlx = mlx_init();
 	init_data(&data, arg);
+	if (ft_load_sprites(&data, &data.arg.wall) == 1)
+	{
+		ft_free_img(&data);
+		free(data.mlx);
+		return ;
+	}
 	data.window = mlx_new_window(data.mlx, WINDOW_X, \
-								WINDOW_Y, "Ma Fenetre");
+								WINDOW_Y, "Cube_3D");
 	mlx_mouse_hide(data.mlx, data.window);
 	mlx_mouse_move(data.mlx, data.window, data.mid_x, data.mid_y);
 	mlx_hook(data.window, 2, (1L<<0), &move_key, &data);
 	mlx_hook(data.window, 3, (1L<<1), &move_key_zero, &data);
-	// mlx_hook(data.window, 6, (1L<<6), &move_mouse, &data);
-	//printf("x = %d, y = %d\n", pos_mouse_x, pos_mouse_y);
-	// mlx_mouse_get_pos(data.mlx, data.window, &pos_mouse_x, &pos_mouse_y);
-	//mlx_mouse_hook(data.window, &deal_mouse, &data);
 	mlx_hook(data.window, 17, 0, mlx_loop_end, data.mlx);
-	ft_load_sprites(&data, &data.arg.wall);
-	//printf("%d %d %p\n", data.arg.wall.north.width, data.arg.wall.north.height, data.arg.wall.north.ad);
 	mlx_loop_hook(data.mlx, &ft_display, &data);
 	mlx_loop(data.mlx);
-	mlx_destroy_image(data.mlx, data.image.image);
+	ft_free_img(&data);
 	mlx_mouse_show(data.mlx, data.window);
-	// mlx_clear_window();
 	mlx_destroy_window(data.mlx, data.window);
 	mlx_destroy_display(data.mlx);
 	free(data.mlx);

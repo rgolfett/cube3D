@@ -104,7 +104,6 @@ void	raycasting(t_cube *data)
 	{
 		distance = ray(angle, &data->player, &data->arg.s_map);
 		draw_text_wall(data, i, (1.0f / distance), data->player.orientation);
-		//draw_column(data, i, (1.0f / distance), 0, 0);
 		angle += (double)FOV / (double)WINDOW_X;
 		i++;
 	}
@@ -123,7 +122,6 @@ int	ft_display(t_cube *data)
 	deal_key(data);
 	move_mouse(data);
 	fill_background(data);
-	// tmp_raycast(data);
 	raycasting(data);
 	mlx_put_image_to_window(data->mlx, data->window, data->image.image, 0, 0);
 
@@ -135,24 +133,4 @@ int	ft_display(t_cube *data)
 		frameCount = 0;
 		startTime = clock();
 	}
-}
-
-void	ft_cube(t_arg arg)
-{
-	t_cube	data;
-
-	data.mlx = mlx_init();
-	init_data(&data, arg);
-	data.window = mlx_new_window(data.mlx, WINDOW_X, \
-								WINDOW_Y, "Cube_3D");
-	mlx_hook(data.window, 2, 1, deal_key, &data);
-	mlx_hook(data.window, 17, 0, mlx_loop_end, data.mlx);
-	ft_load_sprites(&data, &data.arg.wall);// a modifier-> load all textures
-	mlx_loop_hook(data.mlx, ft_display, &data);
-	mlx_loop(data.mlx);
-	mlx_destroy_image(data.mlx, data.image.image);
-	// mlx_clear_window();
-	mlx_destroy_window(data.mlx, data.window);
-	mlx_destroy_display(data.mlx);
-	free(data.mlx);
 }

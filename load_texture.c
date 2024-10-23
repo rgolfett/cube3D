@@ -5,7 +5,6 @@ t_image	load_img(void *mlx, t_image *wall, char *texture)
 	int	bits_per_pixel;
 	int	size_line;
 	int	endian;
-	
 	if (!wall)
 		printf("wall == NULL\n");
 	wall->image = mlx_xpm_file_to_image(mlx, texture, &wall->width, &wall->height);
@@ -23,11 +22,18 @@ t_image	load_img(void *mlx, t_image *wall, char *texture)
 
 int	ft_load_sprites(t_cube *cube, t_wall *wall)
 {
-	wall->east = load_img(cube->mlx, &wall->east, "4k2.xpm");
-	wall->west = load_img(cube->mlx, &wall->west, "4k2.xpm");
-	wall->north = load_img(cube->mlx, &wall->north, "4k2.xpm");
-	wall->south = load_img(cube->mlx, &wall->south, "4k2.xpm");
-	
+	wall->north = load_img(cube->mlx, &wall->north, cube->arg.no_file);
+	if(!wall->north.image)
+		return (1);
+	wall->south = load_img(cube->mlx, &wall->south, cube->arg.so_file);
+	if(!wall->south.image)
+		return (1);
+	wall->east = load_img(cube->mlx, &wall->east, cube->arg.ea_file);
+	if(!wall->east.image)
+		return (1);
+	wall->west = load_img(cube->mlx, &wall->west, cube->arg.we_file);
+	if(!wall->west.image)
+		return (1);
 	return (0);
 }
 

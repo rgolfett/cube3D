@@ -6,7 +6,7 @@
 /*   By: rgolfett <rgolfett@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/03 12:34:22 by rgolfett          #+#    #+#             */
-/*   Updated: 2024/10/03 12:34:28 by rgolfett         ###   ########lyon.fr   */
+/*   Updated: 2024/10/23 11:15:56 by rgolfett         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,6 @@ int	ft_check_map_walls(char **map)
 
 	i = 0;
 	j = 0;
-	printf("map[0] = %s\n", map[0]);
 	while (map[i])
 	{
 		while (map[i][j])

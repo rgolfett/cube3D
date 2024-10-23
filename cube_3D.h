@@ -6,7 +6,7 @@
 /*   By: rgolfett <rgolfett@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/03 13:37:35 by rgolfett          #+#    #+#             */
-/*   Updated: 2024/10/22 16:03:24 by rgolfett         ###   ########lyon.fr   */
+/*   Updated: 2024/10/23 11:26:19 by rgolfett         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -160,6 +160,7 @@ int		ft_isdigit(int c);
 int		ft_atoi(const char *str);
 char	*ft_itoa(int n);
 void	free_str(char **str);
+void	free_utils(t_arg *arg);
 
 int		file_is_valid(char *file_name);
 int		text_utils(char *str);
@@ -196,7 +197,7 @@ void	draw_texture(int x, int y, t_cube *data);
 void	draw_utils(double x1, double y1, double x2, double y2, t_cube *data);
 
 int	ft_load_sprites(t_cube *cube, t_wall *wall);
-void 	tmp_raycast(t_cube *data);
+//void 	tmp_raycast(t_cube *data);
 
 void fill_background(t_cube *data);
 void	ft_cube(t_arg arg);

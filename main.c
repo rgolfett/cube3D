@@ -6,7 +6,7 @@
 /*   By: rgolfett <rgolfett@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/03 12:40:12 by rgolfett          #+#    #+#             */
-/*   Updated: 2024/10/22 15:34:04 by rgolfett         ###   ########lyon.fr   */
+/*   Updated: 2024/10/23 12:44:13 by rgolfett         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void	ft_print_all(t_arg *arg)
 		i++;
 	}
 	printf("\n\n");
-	printf("n = %s\n", arg->no_file);
+	printf("|n = %s|\n", arg->no_file);
 	printf("e = %s\n", arg->ea_file);
 	printf("w = %s\n", arg->we_file);
 	printf("s = %s\n", arg->so_file);
@@ -53,15 +53,56 @@ void	free_utils(t_arg *arg)
 		free_str(arg->s_map.map);
 	if (arg->s_map.map_name)
 		free(arg->s_map.map_name);
-	if (arg->wall.north.image)
+	//if (arg->wall.north.image)
 		free(arg->wall.north.image);
-	if (arg->wall.east.image)
+//	if (arg->wall.east.image)
 		free(arg->wall.east.image);
-	if (arg->wall.west.image)
+//	if (arg->wall.west.image)
 		free(arg->wall.west.image);
-	if (arg->wall.south.image)
+//	if (arg->wall.south.image)
 		free(arg->wall.south.image);
+	free(arg->wall.east.address);
 	
+	
+}
+
+
+char *ft_move_str(char *str)
+{
+	char *tmp;
+	int	i;
+	
+	i = 0;
+	tmp = malloc(sizeof (char) * ft_strlen(str));
+	
+	if (tmp == NULL)
+		return (NULL);
+	while (str[i + 2] && str[i + 2] != '\n' && is_whitespace(str[i + 2]) == 0)
+	{
+		tmp[i] = str[i + 2];
+		i++;
+	}
+	tmp[i] = '\0';
+	free(str);
+	return (tmp);
+}
+
+int	ft_get_files_names(t_arg *arg)
+{
+	
+	arg->no_file = ft_move_str(arg->no_file);
+	if (!arg->no_file)
+		return (1);
+	arg->so_file = ft_move_str(arg->so_file);
+	if (!arg->so_file)
+		return (1);
+	arg->ea_file = ft_move_str(arg->ea_file);
+	if (!arg->ea_file)
+		return (1);
+	arg->we_file = ft_move_str(arg->we_file);
+	if (!arg->we_file)
+		return (1);
+	return (0);
 }
 void	ft_set_value(t_arg *arg)
 {
@@ -79,23 +120,21 @@ int	main(int argc, char **argv)
 
 	arg = (t_arg){0};
 	ft_set_value(&arg);
-	// arg.ceiling = (t_color){-2};
-	// arg.floor = (t_color){-2};
 	if (argc != 2)
 		return (1);
 	if (check_file(argv[1], &arg) == 1)
+	{
+		free_utils(&arg);
 		return (1);
-	// int i = 0;
-	// while (arg.content[i])
-	// {
-	// 	printf("content[%i] = %s\n", i, arg.content[i]);
-	// 	i++;
-	// }
+	}
 	if (ft_check_valid_map(argv[1], &arg.s_map) == 1)
+	{
+		free_utils(&arg);
 		return (1);
+	}
+	if (ft_get_files_names(&arg) == 0)
+		ft_raycasting(arg);
 	// ft_print_all(&arg);
-	//ft_test();
-	ft_raycasting(arg);
-	//ft_cube(arg);
 	free_utils(&arg);
+	return (0);
 }
