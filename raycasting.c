@@ -6,7 +6,7 @@
 /*   By: kiparis <kiparis@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/23 13:39:42 by kiparis           #+#    #+#             */
-/*   Updated: 2024/10/23 15:57:24 by kiparis          ###   ########.fr       */
+/*   Updated: 2024/10/23 16:00:09 by kiparis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,7 +116,6 @@ void	pause_screen(t_cube *data)
 		data->image.ad[i] = 0x666666;
 		i++;
 	}
-	
 }
 
 int	ft_display(t_cube *data)
