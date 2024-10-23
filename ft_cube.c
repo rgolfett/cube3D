@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_cube.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kiparis <kiparis@student.42.fr>            +#+  +:+       +#+        */
+/*   By: rgolfett <rgolfett@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/29 10:32:37 by kiparis           #+#    #+#             */
-/*   Updated: 2024/10/23 14:00:48 by kiparis          ###   ########.fr       */
+/*   Updated: 2024/10/23 14:38:57 by rgolfett         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,9 +39,17 @@ double	find_spawn_point(t_cube *data)
 	return (-1);
 }
 
-void	replace_spawn(t_cube *data)
+void	init_movements(t_cube *data)
 {
-	data->arg.s_map.map[data->player.spawn_y][data->player.spawn_x] = '0';
+	data->arg.m_key.press_w = 0;
+	data->arg.m_key.press_a = 0;
+	data->arg.m_key.press_s = 0;
+	data->arg.m_key.press_d = 0;
+	data->arg.m_key.look_left = 0;
+	data->arg.m_key.look_right = 0;
+	data->old_mouse_x = 0;
+	data->old_mouse_y = 0;
+	data->player.sprint = 1;
 }
 
 void	init_data(t_cube *data, t_arg arg)
@@ -53,13 +61,8 @@ void	init_data(t_cube *data, t_arg arg)
 	data->arg.floor.color = (data->arg.floor.r << 16) | \
 							(data->arg.floor.g << 8) | \
 							data->arg.floor.b;
-	data->arg.zoom = 1;
-	data->show_fps = -1;
-	data->head = WINDOW_Y * 0.5;
-	data->band_w = (double)WINDOW_X / (double)FOV;
-	data->incr = (double)FOV / (double)RAY_NB;
 	data->player.theta = find_spawn_point(data);
-	replace_spawn(data);
+	data->arg.s_map.map[data->player.spawn_y][data->player.spawn_x] = '0';
 	data->player.x1 = data->player.spawn_x + 0.5;
 	data->player.y1 = data->player.spawn_y + 0.5;
 	data->image.image = mlx_new_image(data->mlx, WINDOW_X, WINDOW_Y);
@@ -70,15 +73,7 @@ void	init_data(t_cube *data, t_arg arg)
 	data->image.address = mlx_get_data_addr(data->image.image, &data->\
 		image.bits_per_address, &data->image.size_line, &data->image.endian);
 	data->image.ad = (void *)data->image.address;
-	data->arg.m_key.press_w = 0;
-	data->arg.m_key.press_a = 0;
-	data->arg.m_key.press_s = 0;
-	data->arg.m_key.press_d = 0;
-	data->arg.m_key.look_left = 0;
-	data->arg.m_key.look_right = 0;
-	data->old_mouse_x = 0;
-	data->old_mouse_y = 0;
-	data->player.sprint = 1;
+	init_movements(data);
 }
 
 void	ft_free_img(t_cube *data)
@@ -108,7 +103,7 @@ void	ft_raycasting(t_arg arg)
 		return ;
 	}
 	data.window = mlx_new_window(data.mlx, WINDOW_X, \
-								WINDOW_Y, "Cube_3D");
+								WINDOW_Y, "cub3D");
 	mlx_mouse_hide(data.mlx, data.window);
 	mlx_mouse_move(data.mlx, data.window, data.mid_x, data.mid_y);
 	mlx_hook(data.window, 2, (1L << 0), &move_key, &data);

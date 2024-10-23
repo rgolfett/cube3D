@@ -1,14 +1,14 @@
 
-SO            ./4k.xpm   
-F   000,000,000               
-N                                                                          ./4k.xpm
-C              000  ,   000 , 000
+SO            ./textures/4k2.xpm   
+F   000,000, 255          
+N                                                                          ./textures/4k.xpm
+C              000  ,   255 , 000
 
-W    ./4k.xpm
+W    ./textures/flare.xpm
 
 
 
-E ./4k.xpm
+E ./textures/jesus.xpm
 11111111111111111111111111
 10000000001100000000000011
 10110000011100000000000111

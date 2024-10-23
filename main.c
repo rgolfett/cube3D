@@ -3,39 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kiparis <kiparis@student.42.fr>            +#+  +:+       +#+        */
+/*   By: rgolfett <rgolfett@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/03 12:40:12 by rgolfett          #+#    #+#             */
-/*   Updated: 2024/10/23 13:54:19 by kiparis          ###   ########.fr       */
+/*   Updated: 2024/10/23 14:39:35 by rgolfett         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cube_3D.h"
-
-void	ft_print_all(t_arg *arg)
-{
-	int	i;
-
-	i = 0;
-	while (arg->content[i])
-	{
-		printf("content[%i] = %s\n", i, arg->content[i]);
-		i++;
-	}
-	printf("\n\n");
-	printf("|n = %s|\n", arg->no_file);
-	printf("e = %s\n", arg->ea_file);
-	printf("w = %s\n", arg->we_file);
-	printf("s = %s\n", arg->so_file);
-	printf("index = %i\n", arg->s_map.index);
-	printf("arg->floor-> R = %i\n", arg->floor.r);
-	printf("arg->floor-> G = %i\n", arg->floor.g);
-	printf("arg->floor-> B = %i\n", arg->floor.b);
-	printf("arg->ceiling-> R = %i\n", arg->ceiling.r);
-	printf("arg->ceiling-> G = %i\n", arg->ceiling.g);
-	printf("arg->ceiling-> B = %i\n", arg->ceiling.b);
-	printf("\n\n");
-}
 
 void	free_utils(t_arg *arg)
 {
@@ -121,7 +96,6 @@ int	main(int argc, char **argv)
 	}
 	if (ft_get_files_names(&arg) == 0)
 		ft_raycasting(arg);
-	// ft_print_all(&arg);
 	free_utils(&arg);
 	return (0);
 }

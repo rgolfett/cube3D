@@ -6,7 +6,7 @@
 /*   By: rgolfett <rgolfett@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/23 13:39:42 by kiparis           #+#    #+#             */
-/*   Updated: 2024/10/23 14:01:11 by rgolfett         ###   ########lyon.fr   */
+/*   Updated: 2024/10/23 15:07:48 by rgolfett         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ int	find_wall_orientation(double x, double y, t_player *player)
 
 	diff_wall_x = fabs(x - round(x));
 	diff_wall_y = fabs(y - round(y));
-	if (diff_wall_x < 0.01 && diff_wall_y < 0.01)
+	if (diff_wall_x < 0.005 && diff_wall_y < 0.005)
 		return (0);
 	if (diff_wall_x > diff_wall_y)
 	{
@@ -98,7 +98,7 @@ void	raycasting(t_cube *data)
 	angle = start;
 	while (i < WINDOW_X)
 	{
-		data->x = i;
+		data->x_line = i;
 		distance = ray(angle, &data->player, &data->arg.s_map);
 		draw_text_wall(data, (1.0f / distance), data->player.orientation);
 		angle += (double)FOV / (double)WINDOW_X;

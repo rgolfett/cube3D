@@ -6,7 +6,7 @@
 /*   By: rgolfett <rgolfett@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/03 13:37:35 by rgolfett          #+#    #+#             */
-/*   Updated: 2024/10/23 14:01:15 by rgolfett         ###   ########lyon.fr   */
+/*   Updated: 2024/10/23 14:33:20 by rgolfett         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,9 +37,9 @@
 # define WINDOW_Y 860
 # define PLAYER_SIZE 9
 # define STEP_SIZE 0.01
-# define RAY_NB 360
 
 # define FOV 90
+
 # define SPEED 0.03
 # define ROTATION_SPEED 0.1
 
@@ -104,21 +104,15 @@ typedef struct s_arg
 	t_key	m_key;
 	int		lines;
 	int		h;
-	double	zoom;
-	double	coef_zoom;
 }	t_arg;
 
 typedef struct s_player
 {
 	double	x1;
 	double	y1;
-	double	x2;
-	double	y2;
 	double	theta;
 	int		spawn_x;
 	int		spawn_y;
-	double	x_pos_map;
-	double	y_pos_map;
 	int		sprint;
 	double	wall_off;
 	double	height;
@@ -134,20 +128,13 @@ typedef struct s_cube
 	t_image		image;
 	t_player	player;
 	t_arg		arg;
-	int			ray_color;
 	int			ceiling_color;
 	int			floor_color;
-	double		axes_mul;
-	double		head;
-	double		band_w;
-	double		incr;
-	int			show_fps;
-	double		end_axes;
 	int			mid_x;
 	int			mid_y;
 	int			old_mouse_x;
 	int			old_mouse_y;
-	int			x;
+	int			x_line;
 }	t_cube;
 
 int		main(int argc, char **argv);

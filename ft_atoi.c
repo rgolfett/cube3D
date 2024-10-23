@@ -6,7 +6,7 @@
 /*   By: rgolfett <rgolfett@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/23 13:15:06 by rgolfett          #+#    #+#             */
-/*   Updated: 2024/10/23 13:15:13 by rgolfett         ###   ########lyon.fr   */
+/*   Updated: 2024/10/23 15:11:43 by rgolfett         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,6 @@ long	ft_strtol(const char *p)
 		nbr = (nbr * 10) + (p[i] - '0');
 		i++;
 	}
-	printf("nbr = %i\n", i);
 	return (nbr * signe);
 }
 

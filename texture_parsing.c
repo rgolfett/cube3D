@@ -6,7 +6,7 @@
 /*   By: rgolfett <rgolfett@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/03 12:28:05 by rgolfett          #+#    #+#             */
-/*   Updated: 2024/10/03 13:36:05 by rgolfett         ###   ########lyon.fr   */
+/*   Updated: 2024/10/23 15:12:14 by rgolfett         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,9 @@ int	check_cardinal(char *str, int tab[6], t_arg *arg)
 	if (str[i])
 	{
 		if (is_cardinal(&str[i], tab, arg) == 1)
-			return (1);
+		{
+		return (1);	
+		}
 	}
 	return (0);
 }
@@ -106,7 +108,7 @@ int	check_file(char *file, t_arg *arg)
 	int	file_fd;
 	int	tab[6];
 
-	i = 1;
+	i = 0;
 	file_fd = open(file, O_RDONLY);
 	if (file_fd == -1)
 		return (printf("wrong fd\n"), 1);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   deal_key.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kiparis <kiparis@student.42.fr>            +#+  +:+       +#+        */
+/*   By: rgolfett <rgolfett@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/23 13:12:53 by kiparis           #+#    #+#             */
-/*   Updated: 2024/10/23 13:29:37 by kiparis          ###   ########.fr       */
+/*   Updated: 2024/10/23 14:33:29 by rgolfett         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,9 +89,9 @@ int	deal_key(t_cube *data)
 	if (data->arg.m_key.press_d == 1)
 		move_right(data);
 	if (data->arg.m_key.look_left == 1)
-		data->player.theta -= ROTATION_SPEED;
+		data->player.theta -= ROTATION_SPEED * 10;
 	if (data->arg.m_key.look_right == 1)
-		data->player.theta += ROTATION_SPEED;
+		data->player.theta += ROTATION_SPEED * 10;
 	return (0);
 }
 

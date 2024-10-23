@@ -6,7 +6,7 @@
 /*   By: rgolfett <rgolfett@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/23 13:50:58 by rgolfett          #+#    #+#             */
-/*   Updated: 2024/10/23 14:01:48 by rgolfett         ###   ########lyon.fr   */
+/*   Updated: 2024/10/23 14:25:13 by rgolfett         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,12 +59,13 @@ void	draw_wall_utils(t_cube *data, t_image *wall, double limit, int y_start)
 	text_x = wall->width * data->player.wall_off;
 	text_y = wall->height * limit;
 	((unsigned int*)(data->image.address)) \
-		[y_start * data->image.width + data->x] \
+		[y_start * data->image.width + data->x_line] \
 			= wall->ad[text_y * wall->width + text_x];
 }
 
 void	ft_secure_height(double *i, double *height, int *nb_y_pixel)
 {
+	*nb_y_pixel = (double)WINDOW_Y * *height;
 	if (*height > 1.0f)
 	{
 		*i = (*height - 1.0f) * 100 * 4;
@@ -81,7 +82,6 @@ void	draw_text_wall(t_cube *data, double height, int side)
 	double	limit;
 
 	i = 0;
-	nb_y_pixel = (double)WINDOW_Y * height;
 	ft_secure_height(&i, &height, &nb_y_pixel);
 	y_start = (WINDOW_Y / 2) - (WINDOW_Y * height / 2);
 	while (i < nb_y_pixel && y_start <= WINDOW_Y)
@@ -95,6 +95,9 @@ void	draw_text_wall(t_cube *data, double height, int side)
 			draw_wall_utils(data, &data->arg.wall.east, limit, y_start);
 		else if (side == 4)
 			draw_wall_utils(data, &data->arg.wall.west, limit, y_start);
+		else
+			((unsigned int*)(data->image.address)) \
+		[y_start * data->image.width + data->x_line] = 0;
 		i++;
 		y_start++;
 	}
