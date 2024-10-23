@@ -6,7 +6,7 @@
 /*   By: rgolfett <rgolfett@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/03 12:28:05 by rgolfett          #+#    #+#             */
-/*   Updated: 2024/10/23 15:12:14 by rgolfett         ###   ########lyon.fr   */
+/*   Updated: 2024/10/23 15:34:55 by rgolfett         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,13 +52,13 @@ int	is_cardinal(char *str, int tab[6], t_arg *arg)
 	if (str[i] == 'N' || str[i] == 'E' || str[i] == 'W' || str[i] == 'S')
 	{
 		if (file_parsing(&str[i], tab, arg) == 1)
-			return (printf("wrong file_parsing\n"), 1);
+			return (1);
 		return (0);
 	}
 	else if (str[i] == 'F' || str[i] == 'C')
 	{
 		if (ft_limits_check(&str[i], tab, arg) == 1)
-			return (printf("wrong limits_check\n"), 1);
+			return (1);
 		return (0);
 	}
 	else
@@ -76,9 +76,7 @@ int	check_cardinal(char *str, int tab[6], t_arg *arg)
 	if (str[i])
 	{
 		if (is_cardinal(&str[i], tab, arg) == 1)
-		{
-		return (1);	
-		}
+			return (1);
 	}
 	return (0);
 }
@@ -118,7 +116,7 @@ int	check_file(char *file, t_arg *arg)
 	while (arg->content[i])
 	{
 		if (check_cardinal(arg->content[i], tab, arg) == 1)
-			return (printf("wrong cardinal\n"), 1);
+			return (1);
 		if (check_arg(tab, arg) == 0)
 		{
 			arg->s_map.index = (i + 1);

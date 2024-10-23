@@ -6,7 +6,7 @@
 /*   By: rgolfett <rgolfett@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/03 12:34:22 by rgolfett          #+#    #+#             */
-/*   Updated: 2024/10/23 11:15:56 by rgolfett         ###   ########lyon.fr   */
+/*   Updated: 2024/10/23 15:17:53 by rgolfett         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,13 +18,13 @@ int	ft_walls_utils(char **map, int i, int j)
 				|| map[i][j] == 'W' || map[i][j] == 'S')
 	{
 		if (!map[i - 1][j] || map[i - 1][j] == '\n' || map[i - 1][j] == ' ')
-			return (printf("invalid upper walls\n"), 1);
+			return (1);
 		if (!map[i + 1][j] || map[i + 1][j] == '\n' || map[i + 1][j] == ' ')
-			return (printf("invalid bottom walls\n"), 1);
+			return (1);
 		if (!map[i][j + 1] || map[i][j + 1] == '\n' || map[i][j + 1] == ' ')
-			return (printf("invalid right walls\n"), 1);
+			return (1);
 		if (!map[i][j - 1] || map[i][j - 1] == '\n' || map[i][j - 1] == ' ')
-			return (printf("invalid left walls\n"), 1);
+			return (1);
 	}
 	return (0);
 }
@@ -45,7 +45,7 @@ int	ft_check_map_walls(char **map)
 				if (map[i][j] == '0' && (j == 0 || i == 0))
 					return (printf("wrong walls, out of bounds\n"), 1);
 				if (ft_walls_utils(map, i, j) == 1)
-					return (printf("-invalid walls-\n"), 1);
+					return (1);
 			}
 			j++;
 		}
