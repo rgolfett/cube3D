@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_raycasting.c                                    :+:      :+:    :+:   */
+/*   ft_cube.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rgolfett <rgolfett@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: kiparis <kiparis@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/29 10:32:37 by kiparis           #+#    #+#             */
-/*   Updated: 2024/10/23 12:48:42 by rgolfett         ###   ########lyon.fr   */
+/*   Updated: 2024/10/23 14:00:48 by kiparis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,13 +20,17 @@ double	find_spawn_point(t_cube *data)
 		data->player.spawn_x = 0;
 		while (data->arg.s_map.map[data->player.spawn_y][data->player.spawn_x])
 		{
-			if (data->arg.s_map.map[data->player.spawn_y][data->player.spawn_x] == 'N')
+			if (data->arg.s_map.map[data->player.spawn_y]
+				[data->player.spawn_x] == 'N')
 				return (180);
-			if (data->arg.s_map.map[data->player.spawn_y][data->player.spawn_x] == 'S')
+			if (data->arg.s_map.map[data->player.spawn_y]
+				[data->player.spawn_x] == 'S')
 				return (0);
-			if (data->arg.s_map.map[data->player.spawn_y][data->player.spawn_x] == 'E')
+			if (data->arg.s_map.map[data->player.spawn_y]
+				[data->player.spawn_x] == 'E')
 				return (270);
-			if (data->arg.s_map.map[data->player.spawn_y][data->player.spawn_x] == 'W')
+			if (data->arg.s_map.map[data->player.spawn_y]
+				[data->player.spawn_x] == 'W')
 				return (90);
 			data->player.spawn_x++;
 		}
@@ -43,8 +47,6 @@ void	replace_spawn(t_cube *data)
 void	init_data(t_cube *data, t_arg arg)
 {
 	data->arg = arg;
-	// data->player.theta = arg.map.direction;
-	data->ray_color = 0xf19c10;
 	data->arg.ceiling.color = (data->arg.ceiling.r << 16) | \
 							(data->arg.ceiling.g << 8) | \
 							data->arg.ceiling.b;
@@ -58,8 +60,6 @@ void	init_data(t_cube *data, t_arg arg)
 	data->incr = (double)FOV / (double)RAY_NB;
 	data->player.theta = find_spawn_point(data);
 	replace_spawn(data);
-	// data->player.x1 = data->player.spawn_x * data->arg.zoom + data->arg.zoom / 2;
-	// data->player.y1 = data->player.spawn_y * data->arg.zoom + data->arg.zoom / 2;
 	data->player.x1 = data->player.spawn_x + 0.5;
 	data->player.y1 = data->player.spawn_y + 0.5;
 	data->image.image = mlx_new_image(data->mlx, WINDOW_X, WINDOW_Y);
@@ -67,10 +67,9 @@ void	init_data(t_cube *data, t_arg arg)
 	data->image.height = WINDOW_Y;
 	data->mid_x = WINDOW_X / 2;
 	data->mid_y = WINDOW_Y / 2;
-	data->image.address = mlx_get_data_addr(data->image.image, \
-		&data->image.bits_per_address, &data->image.size_line, &data->image.endian);
-	data->image.ad = (void*)data->image.address;
-
+	data->image.address = mlx_get_data_addr(data->image.image, &data->\
+		image.bits_per_address, &data->image.size_line, &data->image.endian);
+	data->image.ad = (void *)data->image.address;
 	data->arg.m_key.press_w = 0;
 	data->arg.m_key.press_a = 0;
 	data->arg.m_key.press_s = 0;
@@ -80,7 +79,6 @@ void	init_data(t_cube *data, t_arg arg)
 	data->old_mouse_x = 0;
 	data->old_mouse_y = 0;
 	data->player.sprint = 1;
-
 }
 
 void	ft_free_img(t_cube *data)
@@ -91,7 +89,7 @@ void	ft_free_img(t_cube *data)
 		mlx_destroy_image(data->mlx, data->arg.wall.south.image);
 	if (data->arg.wall.north.image)
 		mlx_destroy_image(data->mlx, data->arg.wall.north.image);
-	if (data->arg.wall.west.image)	
+	if (data->arg.wall.west.image)
 		mlx_destroy_image(data->mlx, data->arg.wall.west.image);
 	if (data->image.image)
 		mlx_destroy_image(data->mlx, data->image.image);
@@ -100,7 +98,6 @@ void	ft_free_img(t_cube *data)
 void	ft_raycasting(t_arg arg)
 {
 	t_cube	data;
-	
 
 	data.mlx = mlx_init();
 	init_data(&data, arg);
@@ -114,8 +111,8 @@ void	ft_raycasting(t_arg arg)
 								WINDOW_Y, "Cube_3D");
 	mlx_mouse_hide(data.mlx, data.window);
 	mlx_mouse_move(data.mlx, data.window, data.mid_x, data.mid_y);
-	mlx_hook(data.window, 2, (1L<<0), &move_key, &data);
-	mlx_hook(data.window, 3, (1L<<1), &move_key_zero, &data);
+	mlx_hook(data.window, 2, (1L << 0), &move_key, &data);
+	mlx_hook(data.window, 3, (1L << 1), &move_key_zero, &data);
 	mlx_hook(data.window, 17, 0, mlx_loop_end, data.mlx);
 	mlx_loop_hook(data.mlx, &ft_display, &data);
 	mlx_loop(data.mlx);
