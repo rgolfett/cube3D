@@ -6,7 +6,7 @@
 /*   By: kiparis <kiparis@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/03 13:37:35 by rgolfett          #+#    #+#             */
-/*   Updated: 2024/10/23 13:21:27 by kiparis          ###   ########.fr       */
+/*   Updated: 2024/10/23 13:41:13 by kiparis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -125,6 +125,8 @@ typedef struct s_player
 	double	wall_off;
 	double	height;
 	int		orientation;
+	double	dir_x;
+	double	dir_y;
 }	t_player;
 
 
