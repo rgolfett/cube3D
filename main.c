@@ -6,7 +6,7 @@
 /*   By: kiparis <kiparis@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/03 12:40:12 by rgolfett          #+#    #+#             */
-/*   Updated: 2024/10/23 13:09:41 by kiparis          ###   ########.fr       */
+/*   Updated: 2024/10/23 13:54:19 by kiparis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,15 +55,13 @@ void	free_utils(t_arg *arg)
 		free(arg->s_map.map_name);
 }
 
-
-char *ft_move_str(char *str)
+char	*ft_move_str(char *str)
 {
-	char *tmp;
-	int	i;
-	
+	char	*tmp;
+	int		i;
+
 	i = 0;
 	tmp = malloc(sizeof (char) * ft_strlen(str));
-	
 	if (tmp == NULL)
 		return (NULL);
 	while (str[i + 2] && str[i + 2] != '\n' && is_whitespace(str[i + 2]) == 0)
@@ -78,7 +76,6 @@ char *ft_move_str(char *str)
 
 int	ft_get_files_names(t_arg *arg)
 {
-	
 	arg->no_file = ft_move_str(arg->no_file);
 	if (!arg->no_file)
 		return (1);
@@ -93,6 +90,7 @@ int	ft_get_files_names(t_arg *arg)
 		return (1);
 	return (0);
 }
+
 void	ft_set_value(t_arg *arg)
 {
 	arg->ceiling.r = -2;
