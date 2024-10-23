@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycasting.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kiparis <kiparis@student.42.fr>            +#+  +:+       +#+        */
+/*   By: rgolfett <rgolfett@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/23 13:39:42 by kiparis           #+#    #+#             */
-/*   Updated: 2024/10/23 15:57:24 by kiparis          ###   ########.fr       */
+/*   Updated: 2024/10/23 16:31:08 by rgolfett         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,14 +109,28 @@ void	raycasting(t_cube *data)
 void	pause_screen(t_cube *data)
 {
 	int	i;
+	int	nb_pixel;
 
 	i = 0;
-	while (i < (WINDOW_X * WINDOW_Y))
+	nb_pixel = WINDOW_X * WINDOW_Y;
+	if (data->arg.wall.pause.image == NULL)
 	{
-		data->image.ad[i] = 0x666666;
-		i++;
+		while (i < nb_pixel)
+		{
+			data->image.ad[i] = 0x666666;
+			i++;
+		}
 	}
-	
+	else
+	{
+		while (i < nb_pixel)
+		{
+			float x = data->arg.wall.pause.width / WINDOW_X;
+			float y = data->arg.wall.pause.height / WINDOW_Y;
+			data->image.ad[i] = data->arg.wall.pause.ad[(int)((i / WINDOW_X) * x) * WINDOW_X  + (int)((i % WINDOW_X) * y)];
+			i++;
+		}	
+	}
 }
 
 int	ft_display(t_cube *data)

@@ -6,7 +6,7 @@
 /*   By: rgolfett <rgolfett@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/23 13:50:58 by rgolfett          #+#    #+#             */
-/*   Updated: 2024/10/23 15:31:41 by rgolfett         ###   ########lyon.fr   */
+/*   Updated: 2024/10/23 16:32:13 by rgolfett         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,7 @@ int	ft_load_sprites(t_cube *cube, t_wall *wall)
 	wall->west = load_img(cube->mlx, &wall->west, cube->arg.we_file);
 	if (!wall->west.image)
 		return (1);
+	wall->pause = load_img(cube->mlx, &wall->pause, "textures/socks.xpm");
 	return (0);
 }
 

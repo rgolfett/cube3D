@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cube_3D.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kiparis <kiparis@student.42.fr>            +#+  +:+       +#+        */
+/*   By: rgolfett <rgolfett@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/03 13:37:35 by rgolfett          #+#    #+#             */
-/*   Updated: 2024/10/23 15:35:13 by kiparis          ###   ########.fr       */
+/*   Updated: 2024/10/23 16:10:35 by rgolfett         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,6 +71,7 @@ typedef struct s_wall
 	t_image	east;
 	t_image	west;
 	t_image	south;
+	t_image	pause;
 }	t_wall;
 
 typedef struct s_map
@@ -182,6 +183,7 @@ int		ft_load_sprites(t_cube *cube, t_wall *wall);
 void	fill_background(t_cube *data);
 void	raycasting(t_cube *data);
 void	draw_text_wall(t_cube *data, double height, int side);
+void	draw_wall_utils(t_cube *data, t_image *wall, double limit, int y_start);
 
 void	init_data(t_cube *data, t_arg arg);
 
