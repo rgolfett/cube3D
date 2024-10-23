@@ -6,7 +6,7 @@
 /*   By: rgolfett <rgolfett@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/03 13:31:05 by rgolfett          #+#    #+#             */
-/*   Updated: 2024/10/12 17:17:51 by rgolfett         ###   ########lyon.fr   */
+/*   Updated: 2024/10/23 15:33:18 by rgolfett         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,7 +110,7 @@ int	ft_limits_check(char *str, int tab[6], t_arg *arg)
 		tab[4]++;
 		i++;
 		if (!str[i])
-			return (printf("empty str\n"), 1);
+			return (printf("empty string\n"), 1);
 		if (ft_fill_floor(&str[i], arg) == 1)
 			return (printf("wrong floor\n"), 1);
 	}
@@ -119,11 +119,11 @@ int	ft_limits_check(char *str, int tab[6], t_arg *arg)
 		tab[5]++;
 		i++;
 		if (!str[i])
-			return (printf("empty str\n"), 1);
+			return (printf("empty string\n"), 1);
 		if (ft_fill_ceiling(&str[i], arg) == 1)
 			return (printf("wrong ceiling\n"), 1);
 	}
 	if (ft_check_color_validity(arg) == 1)
-		return (printf("wrong color_validity\n"), 1);
+		return (printf("wrong color validity\n"), 1);
 	return (0);
 }

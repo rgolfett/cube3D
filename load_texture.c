@@ -6,7 +6,7 @@
 /*   By: rgolfett <rgolfett@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/23 13:50:58 by rgolfett          #+#    #+#             */
-/*   Updated: 2024/10/23 15:13:49 by rgolfett         ###   ########lyon.fr   */
+/*   Updated: 2024/10/23 15:31:41 by rgolfett         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ t_image	load_img(void *mlx, t_image *wall, char *texture)
 				&bits_per_pixel, &size_line, &endian);
 	}
 	if (!wall->image)
-		printf("wall->image == NULL\n");
+		printf("invalid texture file\n");
 	return (*wall);
 }
 
