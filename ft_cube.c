@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_cube.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rgolfett <rgolfett@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: kiparis <kiparis@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/29 10:32:37 by kiparis           #+#    #+#             */
-/*   Updated: 2024/10/23 14:38:57 by rgolfett         ###   ########lyon.fr   */
+/*   Updated: 2024/10/23 15:37:06 by kiparis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,7 @@ void	init_movements(t_cube *data)
 	data->old_mouse_x = 0;
 	data->old_mouse_y = 0;
 	data->player.sprint = 1;
+	data->pause_mode = 0;
 }
 
 void	init_data(t_cube *data, t_arg arg)

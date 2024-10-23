@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cube_3D.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rgolfett <rgolfett@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: kiparis <kiparis@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/03 13:37:35 by rgolfett          #+#    #+#             */
-/*   Updated: 2024/10/23 14:33:20 by rgolfett         ###   ########lyon.fr   */
+/*   Updated: 2024/10/23 15:35:13 by kiparis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -135,6 +135,7 @@ typedef struct s_cube
 	int			old_mouse_x;
 	int			old_mouse_y;
 	int			x_line;
+	int			pause_mode;
 }	t_cube;
 
 int		main(int argc, char **argv);
@@ -193,5 +194,6 @@ void	move_front(t_cube *data);
 void	move_back(t_cube *data);
 void	move_left(t_cube *data);
 void	move_right(t_cube *data);
+void	pause_mode(t_cube *data);
 
 #endif

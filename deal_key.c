@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   deal_key.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rgolfett <rgolfett@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: kiparis <kiparis@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/23 13:12:53 by kiparis           #+#    #+#             */
-/*   Updated: 2024/10/23 14:33:29 by rgolfett         ###   ########lyon.fr   */
+/*   Updated: 2024/10/23 15:35:26 by kiparis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,8 @@ int	move_key(int key, t_cube *data)
 		data->arg.m_key.press_s = 1;
 	if (key == 'd')
 		data->arg.m_key.press_d = 1;
+	if (key == 'f')
+		pause_mode(data);
 	if (key == KEY_LEFT)
 		data->arg.m_key.look_left = 1;
 	if (key == KEY_RIGHT)

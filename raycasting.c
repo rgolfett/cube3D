@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycasting.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rgolfett <rgolfett@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: kiparis <kiparis@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/23 13:39:42 by kiparis           #+#    #+#             */
-/*   Updated: 2024/10/23 15:07:48 by rgolfett         ###   ########lyon.fr   */
+/*   Updated: 2024/10/23 15:57:24 by kiparis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,12 +106,32 @@ void	raycasting(t_cube *data)
 	}
 }
 
+void	pause_screen(t_cube *data)
+{
+	int	i;
+
+	i = 0;
+	while (i < (WINDOW_X * WINDOW_Y))
+	{
+		data->image.ad[i] = 0x666666;
+		i++;
+	}
+	
+}
+
 int	ft_display(t_cube *data)
 {
 	deal_key(data);
-	move_mouse(data);
-	fill_background(data);
-	raycasting(data);
+	if (!data->pause_mode)
+	{
+		move_mouse(data);
+		fill_background(data);
+		raycasting(data);
+	}
+	else
+	{
+		pause_screen(data);
+	}
 	mlx_put_image_to_window(data->mlx, data->window, data->image.image, 0, 0);
 	return (0);
 }
