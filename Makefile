@@ -15,9 +15,9 @@ SRCS = 	main.c \
 		parsing_utils.c \
 		load_texture.c \
 		ft_cube.c \
-		test.c \
 		deal_key.c \
 		raycasting.c \
+		utils_deal_key.c\
 
 INCLUDES = get_next_line.h \
 		   cube_3D.h \

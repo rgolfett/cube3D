@@ -6,7 +6,7 @@
 /*   By: kiparis <kiparis@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/03 13:37:35 by rgolfett          #+#    #+#             */
-/*   Updated: 2024/10/23 13:03:13 by kiparis          ###   ########.fr       */
+/*   Updated: 2024/10/23 13:21:27 by kiparis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -209,5 +209,10 @@ int		ft_display(t_cube *data);
 int		move_key(int key, t_cube *data);
 int		move_key_zero(int key, t_cube *data);
 int		move_mouse(t_cube *data);
+
+void	move_front(t_cube *data);
+void	move_back(t_cube *data);
+void	move_left(t_cube *data);
+void	move_right(t_cube *data);
 
 #endif
