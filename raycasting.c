@@ -97,6 +97,7 @@ void	raycasting(t_cube *data)
 	angle = start;
 	while (i < WINDOW_X)
 	{
+		data->x = i;
 		distance = ray(angle, &data->player, &data->arg.s_map);
 		draw_text_wall(data, i, (1.0f / distance), data->player.orientation);
 		angle += (double)FOV / (double)WINDOW_X;

@@ -15,7 +15,6 @@ SRCS = 	main.c \
 		parsing_utils.c \
 		load_texture.c \
 		ft_cube.c \
-		test.c \
 		deal_key.c \
 		raycasting.c \
 

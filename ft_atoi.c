@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_atoi.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: rgolfett <rgolfett@student.42lyon.fr>      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/10/23 13:15:06 by rgolfett          #+#    #+#             */
+/*   Updated: 2024/10/23 13:15:13 by rgolfett         ###   ########lyon.fr   */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "cube_3D.h"
 #include "get_next_line.h"
 #include "minilibx-linux/mlx.h"
@@ -30,6 +42,7 @@ long	ft_strtol(const char *p)
 	printf("nbr = %i\n", i);
 	return (nbr * signe);
 }
+
 static int	ft_overflow(int sign)
 {
 	if (sign == -1)
@@ -78,5 +91,4 @@ int	ft_atoi(const char *str)
 	}
 	nbr1 = ft_calc(str2, i, sign);
 	return (nbr1 * sign);
-
 }
