@@ -6,7 +6,7 @@
 /*   By: rgolfett <rgolfett@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/03 12:38:41 by rgolfett          #+#    #+#             */
-/*   Updated: 2024/10/12 18:17:53 by rgolfett         ###   ########lyon.fr   */
+/*   Updated: 2024/10/23 13:56:35 by rgolfett         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,7 @@ int	ft_create_map(char *map_name, int map_fd, t_map *s_map)
 	{
 		tmp = get_next_line(map_fd);
 		if (tmp == NULL)
-			break;
+			break ;
 		s_map->y++;
 		free(tmp);
 	}

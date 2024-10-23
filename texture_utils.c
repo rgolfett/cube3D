@@ -6,7 +6,7 @@
 /*   By: rgolfett <rgolfett@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/03 12:07:30 by rgolfett          #+#    #+#             */
-/*   Updated: 2024/10/12 17:41:13 by rgolfett         ###   ########lyon.fr   */
+/*   Updated: 2024/10/23 13:56:45 by rgolfett         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ int	ft_create_arg(char *file_name, int file_fd, t_arg *arg)
 	{
 		tmp = get_next_line(file_fd);
 		if (tmp == NULL)
-			break;
+			break ;
 		free(tmp);
 		arg->lines++;
 	}

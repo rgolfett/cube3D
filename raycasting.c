@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycasting.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kiparis <kiparis@student.42.fr>            +#+  +:+       +#+        */
+/*   By: rgolfett <rgolfett@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/23 13:39:42 by kiparis           #+#    #+#             */
-/*   Updated: 2024/10/23 13:51:53 by kiparis          ###   ########.fr       */
+/*   Updated: 2024/10/23 14:01:11 by rgolfett         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,7 +100,7 @@ void	raycasting(t_cube *data)
 	{
 		data->x = i;
 		distance = ray(angle, &data->player, &data->arg.s_map);
-		draw_text_wall(data, i, (1.0f / distance), data->player.orientation);
+		draw_text_wall(data, (1.0f / distance), data->player.orientation);
 		angle += (double)FOV / (double)WINDOW_X;
 		i++;
 	}

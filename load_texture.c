@@ -6,7 +6,7 @@
 /*   By: rgolfett <rgolfett@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/23 13:50:58 by rgolfett          #+#    #+#             */
-/*   Updated: 2024/10/23 13:52:12 by rgolfett         ###   ########lyon.fr   */
+/*   Updated: 2024/10/23 14:01:48 by rgolfett         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ t_image	load_img(void *mlx, t_image *wall, char *texture)
 	printf("%d %d %p\n", wall->width, wall->height, wall->ad);
 	if (wall->image)
 	{
-		wall->ad = (unsigned int *) \
+		wall->ad = (int *) \
 			mlx_get_data_addr(wall->image, \
 				&bits_per_pixel, &size_line, &endian);
 	}
@@ -73,7 +73,7 @@ void	ft_secure_height(double *i, double *height, int *nb_y_pixel)
 	}
 }
 
-void	draw_text_wall(t_cube *data, int x, double height, int side)
+void	draw_text_wall(t_cube *data, double height, int side)
 {
 	double	i;
 	int		y_start;

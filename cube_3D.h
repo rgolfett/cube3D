@@ -6,7 +6,7 @@
 /*   By: rgolfett <rgolfett@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/03 13:37:35 by rgolfett          #+#    #+#             */
-/*   Updated: 2024/10/23 13:55:32 by rgolfett         ###   ########lyon.fr   */
+/*   Updated: 2024/10/23 14:01:15 by rgolfett         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,6 @@
 # define KEY_SHIFT 65505
 
 # define MY_PI 3.14159265358979323846
-# define INV_180 (1.0 / 180.0)
 
 # define WINDOW_X 1920
 # define WINDOW_Y 860
@@ -43,7 +42,6 @@
 # define FOV 90
 # define SPEED 0.03
 # define ROTATION_SPEED 0.1
-
 
 typedef struct s_key
 {
@@ -105,7 +103,7 @@ typedef struct s_arg
 	t_wall	wall;
 	t_key	m_key;
 	int		lines;
-	int	h;
+	int		h;
 	double	zoom;
 	double	coef_zoom;
 }	t_arg;
@@ -129,7 +127,6 @@ typedef struct s_player
 	double	dir_y;
 }	t_player;
 
-
 typedef struct s_cube
 {
 	void		*mlx;
@@ -148,8 +145,8 @@ typedef struct s_cube
 	double		end_axes;
 	int			mid_x;
 	int			mid_y;
-	int 		old_mouse_x;
-	int 		old_mouse_y;
+	int			old_mouse_x;
+	int			old_mouse_y;
 	int			x;
 }	t_cube;
 
@@ -187,24 +184,16 @@ int		ft_is_valid(char c);
 int		ft_nmb_player(char c, int cmp);
 int		ft_check_map_walls(char **map);
 int		ft_check_valid_map(char *map_name, t_map *s_map);
-//int		ft_test(void);
 int		deal_key(t_cube *data);
 
 void	ft_raycasting(t_arg arg);
 int		deal_mouse(int button, int x, int y, t_cube *data);
 void	ft_pixel_put(t_cube *data, int x, int y, int color);
 void	my_mlx_pixel_put(t_image *image, int x, int y, int color);
-void	draw_texture(int x, int y, t_cube *data);
-void	draw_utils(double x1, double y1, double x2, double y2, t_cube *data);
-
-int	ft_load_sprites(t_cube *cube, t_wall *wall);
-//void 	tmp_raycast(t_cube *data);
-
-void fill_background(t_cube *data);
-void	ft_cube(t_arg arg);
+int		ft_load_sprites(t_cube *cube, t_wall *wall);
+void	fill_background(t_cube *data);
 void	raycasting(t_cube *data);
-void	draw_column(t_cube *data, int x, double height, int side, double wall_off);
-void	draw_text_wall(t_cube *data, int x, double height, int side);
+void	draw_text_wall(t_cube *data, double height, int side);
 
 void	init_data(t_cube *data, t_arg arg);
 
