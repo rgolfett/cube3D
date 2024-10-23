@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cube_3D.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rgolfett <rgolfett@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: kiparis <kiparis@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/03 13:37:35 by rgolfett          #+#    #+#             */
-/*   Updated: 2024/10/23 11:26:19 by rgolfett         ###   ########lyon.fr   */
+/*   Updated: 2024/10/23 13:03:13 by kiparis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@
 # define INV_180 (1.0 / 180.0)
 
 # define WINDOW_X 1920
-# define WINDOW_Y 1000
+# define WINDOW_Y 860
 # define PLAYER_SIZE 9
 # define STEP_SIZE 0.01
 # define RAY_NB 360
@@ -158,7 +158,6 @@ void	ft_memset(int *tab, int c, size_t size);
 int		is_whitespace(int c);
 int		ft_isdigit(int c);
 int		ft_atoi(const char *str);
-char	*ft_itoa(int n);
 void	free_str(char **str);
 void	free_utils(t_arg *arg);
 
@@ -190,7 +189,6 @@ int		deal_key(t_cube *data);
 
 void	ft_raycasting(t_arg arg);
 int		deal_mouse(int button, int x, int y, t_cube *data);
-void	next_frame(t_cube *data);
 void	ft_pixel_put(t_cube *data, int x, int y, int color);
 void	my_mlx_pixel_put(t_image *image, int x, int y, int color);
 void	draw_texture(int x, int y, t_cube *data);

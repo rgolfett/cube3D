@@ -6,7 +6,6 @@ SRCS = 	main.c \
 		map_parsing.c \
 		utils.c \
 		ft_atoi.c \
-		ft_itoa.c \
 		texture_parsing.c \
 		texture_files_check.c \
 		texture_utils.c \
@@ -15,12 +14,10 @@ SRCS = 	main.c \
 		map_walls_parsing.c \
 		parsing_utils.c \
 		load_texture.c \
-		cube.c \
+		ft_cube.c \
 		test.c \
-		srcs/deal_key.c \
-		srcs/ft_raycasting.c \
-		srcs/next_frame.c \
-		srcs/utils_next_frame.c \
+		deal_key.c \
+		raycasting.c \
 
 INCLUDES = get_next_line.h \
 		   cube_3D.h \

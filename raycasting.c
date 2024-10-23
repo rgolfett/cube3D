@@ -1,11 +1,6 @@
 
 #include "cube_3D.h"
 
-void	get_wall_direction(t_cube *data)
-{
-
-}
-
 void fill_background(t_cube *data)
 {
 	int	half_window;
