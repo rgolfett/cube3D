@@ -6,7 +6,7 @@
 /*   By: rgolfett <rgolfett@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/17 13:39:17 by rgolfett          #+#    #+#             */
-/*   Updated: 2024/09/23 16:50:23 by rgolfett         ###   ########lyon.fr   */
+/*   Updated: 2024/10/23 15:13:43 by rgolfett         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,20 +106,3 @@ char	*get_next_line(int fd)
 	free (str);
 	return (tmp);
 }
-
-// #include <string.h>
-// #include <stdio.h>
-// int main(void)
-// {
-// 	char *str = (void *)1;
-// 	int fd = open("text", O_RDONLY);
-// 	int i = 0;
-// 	while (str != NULL)
-// 	{
-// 		str = get_next_line(fd);
-// 		printf("\nstr == **%s**\n", str);
-// 		if (str)
-// 			free (str);
-// 		i++;
-// 	}
-// }
