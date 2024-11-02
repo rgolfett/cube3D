@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_parsing.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rgolfett <rgolfett@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: rgolfett <rgolfett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/03 12:38:41 by rgolfett          #+#    #+#             */
-/*   Updated: 2024/10/23 15:17:22 by rgolfett         ###   ########lyon.fr   */
+/*   Updated: 2024/11/02 12:16:01 by rgolfett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,10 +93,11 @@ int	ft_check_map_name(char *map_name)
 	int	i;
 
 	i = 0;
-	while (map_name[i] && map_name[i] != '.')
+	while (map_name[i])
 		i++;
-	if (!map_name[i])
+	if (i < 4)
 		return (1);
+	i -= 4;
 	return (ft_strcmp(&map_name[i], ".cub"));
 }
 
@@ -106,7 +107,7 @@ int	ft_check_valid_map(char *map_name, t_map *s_map)
 
 	map_fd = open(map_name, O_RDONLY);
 	if (map_fd == -1 || ft_check_map_name(map_name) != 0)
-		return (printf("invalid map_name\n"), 1);
+		return (printf("invalid map_name : -%s-\n", map_name), 1);
 	if (ft_create_map(map_name, map_fd, s_map) == 1)
 		return (1);
 	if (ft_check_map_composure(s_map->map) == 1)

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rgolfett <rgolfett@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: rgolfett <rgolfett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/03 12:40:12 by rgolfett          #+#    #+#             */
-/*   Updated: 2024/10/23 14:39:35 by rgolfett         ###   ########lyon.fr   */
+/*   Updated: 2024/11/02 12:07:18 by rgolfett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,12 +39,20 @@ char	*ft_move_str(char *str)
 	tmp = malloc(sizeof (char) * ft_strlen(str));
 	if (tmp == NULL)
 		return (NULL);
-	while (str[i + 2] && str[i + 2] != '\n' && is_whitespace(str[i + 2]) == 0)
-	{
-		tmp[i] = str[i + 2];
-		i++;
-	}
-	tmp[i] = '\0';
+	// while (str[i] && str[i + 1] && str[i == '.' && str[i + 1]] == '/')
+	// {
+		while (str[i + 2] && str[i + 2] != '\n' && is_whitespace(str[i + 2]) == 0)
+		{
+			tmp[i] = str[i + 2];
+			i++;
+		}
+		tmp[i] = '\0';
+	// }
+	// if (!tmp[0])
+	// {
+	// 	free(tmp);
+	// 	return(str);
+	// }
 	free(str);
 	return (tmp);
 }
