@@ -6,7 +6,7 @@
 /*   By: rgolfett <rgolfett@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/23 13:39:42 by kiparis           #+#    #+#             */
-/*   Updated: 2024/10/23 16:31:08 by rgolfett         ###   ########lyon.fr   */
+/*   Updated: 2024/11/03 14:53:39 by rgolfett         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,6 +110,8 @@ void	pause_screen(t_cube *data)
 {
 	int	i;
 	int	nb_pixel;
+	float x = 0;
+	float y = 0;
 
 	i = 0;
 	nb_pixel = WINDOW_X * WINDOW_Y;
@@ -125,10 +127,50 @@ void	pause_screen(t_cube *data)
 	{
 		while (i < nb_pixel)
 		{
-			float x = data->arg.wall.pause.width / WINDOW_X;
-			float y = data->arg.wall.pause.height / WINDOW_Y;
-			data->image.ad[i] = data->arg.wall.pause.ad[(int)((i / WINDOW_X) * x) * WINDOW_X  + (int)((i % WINDOW_X) * y)];
+			float x1 = (float)data->arg.wall.pause.width / WINDOW_X;
+			float y1 = (float)data->arg.wall.pause.height / WINDOW_Y;
+			float ratio = (((float)data->arg.wall.pause.width * (float)data->arg.wall.pause.height) / (float)nb_pixel);
+		
+		
+			// float w = (float)data->arg.wall.pause.width * x;
+			// float h = (float)data->arg.wall.pause.height * y;
+			// float w = (float)data->arg.wall.pause.width * ratio;
+			// float h = (float)data->arg.wall.pause.height * ratio;
+			// float w = (float)x * ratio;
+			// float h = (float)y * ratio;
+			// printf("w = %f, h = %f\n", w, h);
+			//printf("ratio = %f\n", ratio);
+			//printf("ratio i = %i\n", (int)(i * ratio));
+			//printf("x = %li, y = %li\n", (int)((i / WINDOW_X) * x, (int)((i % WINDOW_Y) * y)));
+			//data->image.ad[i] = data->arg.wall.pause.ad[(int)((i / WINDOW_X) * x) * WINDOW_X  + (int)((i / WINDOW_Y) * y)];
+			// if (i < data->arg.wall.pause.width * data->arg.wall.pause.height)
+			// {
+			// 	data->image.ad[i] = data->arg.wall.pause.ad[i];
+			// }
+			// else
+			// 	data->image.ad[i] = 0x111166;
+			//printf("i = %i, index = %i\n", i, (int)(i * x + y));
+			
+			
+			data->image.ad[i] = data->arg.wall.pause.ad[(int)i * (int)x1 + (int)y1];
+			
+			//data->image.ad[i] = data->arg.wall.pause.ad[(int)(y) + (int)x];
+			//data->image.ad[i] = data->arg.wall.pause.ad[(int)(i * ratio)];
+			//data->image.ad[i] = data->arg.wall.pause.ad[(int)(i * h + x)];
+			//data->image.ad[i] = data->arg.wall.pause.ad[(int)(i * h + i * w)];
+					//printf("nb = %i\n", nb_pixel);	
+//	printf("w = %i, h = %i\n", data->arg.wall.pause.width, data->arg.wall.pause.height);
+			// printf("x = %f, y = %f\n", x, y);
+			// printf("ratio = %i\n", (int)(y * y1) + (int)x);
 			i++;
+			y++;
+		//i = 598572, index = 425984
+		//i = 598572, index = 425984
+			if (y == WINDOW_Y)
+				{
+					y = 0;
+					x++;
+				}
 		}	
 	}
 }
@@ -143,9 +185,7 @@ int	ft_display(t_cube *data)
 		raycasting(data);
 	}
 	else
-	{
 		pause_screen(data);
-	}
 	mlx_put_image_to_window(data->mlx, data->window, data->image.image, 0, 0);
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: rgolfett <rgolfett@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/23 13:50:58 by rgolfett          #+#    #+#             */
-/*   Updated: 2024/10/23 16:32:13 by rgolfett         ###   ########lyon.fr   */
+/*   Updated: 2024/11/03 14:51:48 by rgolfett         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,6 @@ t_image	load_img(void *mlx, t_image *wall, char *texture)
 	int	size_line;
 	int	endian;
 
-	if (!wall)
-		printf("wall == NULL\n");
 	wall->image = mlx_xpm_file_to_image(mlx, texture, &wall->width, \
 		&wall->height);
 	if (wall->image)
@@ -28,8 +26,6 @@ t_image	load_img(void *mlx, t_image *wall, char *texture)
 			mlx_get_data_addr(wall->image, \
 				&bits_per_pixel, &size_line, &endian);
 	}
-	if (!wall->image)
-		printf("invalid texture file\n");
 	return (*wall);
 }
 
@@ -47,7 +43,7 @@ int	ft_load_sprites(t_cube *cube, t_wall *wall)
 	wall->west = load_img(cube->mlx, &wall->west, cube->arg.we_file);
 	if (!wall->west.image)
 		return (1);
-	wall->pause = load_img(cube->mlx, &wall->pause, "textures/socks.xpm");
+	wall->pause = load_img(cube->mlx, &wall->pause, "textures/4k.xpm");
 	return (0);
 }
 

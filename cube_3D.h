@@ -6,7 +6,7 @@
 /*   By: rgolfett <rgolfett@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/03 13:37:35 by rgolfett          #+#    #+#             */
-/*   Updated: 2024/10/23 16:10:35 by rgolfett         ###   ########lyon.fr   */
+/*   Updated: 2024/11/03 14:30:46 by rgolfett         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,8 +33,8 @@
 
 # define MY_PI 3.14159265358979323846
 
-# define WINDOW_X 1920
-# define WINDOW_Y 860
+# define WINDOW_X 2000
+# define WINDOW_Y 480
 # define PLAYER_SIZE 9
 # define STEP_SIZE 0.01
 
