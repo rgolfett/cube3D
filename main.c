@@ -6,7 +6,7 @@
 /*   By: rgolfett <rgolfett@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/03 12:40:12 by rgolfett          #+#    #+#             */
-/*   Updated: 2024/11/04 12:55:37 by rgolfett         ###   ########lyon.fr   */
+/*   Updated: 2024/11/04 13:42:24 by rgolfett         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,17 +34,22 @@ char	*ft_move_str(char *str)
 {
 	char	*tmp;
 	int		i;
+	int 	j;
 
 	i = 0;
+	j = 0;
 	tmp = malloc(sizeof (char) * ft_strlen(str));
 	if (tmp == NULL)
 		return (NULL);
-	while (str[i + 2] && str[i + 2] != '\n' && is_whitespace(str[i + 2]) == 0)
+	if (str[0] && str[0] == '.' && str[1] && str[1] == '/')
+		i = 2;
+	while (str[i] && str[i] != '\n')
 	{
-		tmp[i] = str[i + 2];
+		tmp[j] = str[i];
 		i++;
+		j++;
 	}
-	tmp[i] = '\0';
+	tmp[j] = '\0';
 	free(str);
 	return (tmp);
 }

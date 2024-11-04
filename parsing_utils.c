@@ -6,7 +6,7 @@
 /*   By: rgolfett <rgolfett@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/03 12:30:31 by rgolfett          #+#    #+#             */
-/*   Updated: 2024/10/03 12:30:32 by rgolfett         ###   ########lyon.fr   */
+/*   Updated: 2024/11/04 13:34:06 by rgolfett         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,17 +25,17 @@ int	file_is_valid(char *file_name)
 
 int	text_utils(char *str)
 {
-	int	i;
+	// int	i;
 
-	i = 0;
-	while (str[i])
-	{
-		if (!str[i] || str[i] != '.')
-			return (1);
-		i++;
-		if (!str[i] || str[i] != '/')
-			return (1);
-		return (0);
-	}
+	// i = 0;
+	// while (str[i])
+	// {
+	// 	if (!str[i] || str[i] != '.')
+	// 		return (1);
+	// 	i++;
+	// 	if (!str[i] || str[i] != '/')
+	// 		return (1);
+	// 	return (0);
+	// }
 	return (0);
 }

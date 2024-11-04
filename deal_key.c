@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   deal_key.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kiparis <kiparis@student.42.fr>            +#+  +:+       +#+        */
+/*   By: rgolfett <rgolfett@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/23 13:12:53 by kiparis           #+#    #+#             */
-/*   Updated: 2024/11/04 13:15:43 by kiparis          ###   ########.fr       */
+/*   Updated: 2024/11/04 13:28:19 by rgolfett         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,17 +42,17 @@ int	move_mouse(t_cube *data)
 
 int	move_key(int key, t_cube *data)
 {
-	if (key == 65307)
+	if (key == KEY_ESC)
 		mlx_loop_end(data->mlx);
-	if (key == 'w')
+	if (key == KEY_W)
 		data->arg.m_key.press_w = 1;
-	if (key == 'a')
+	if (key == KEY_A)
 		data->arg.m_key.press_a = 1;
-	if (key == 's')
+	if (key == KEY_S)
 		data->arg.m_key.press_s = 1;
-	if (key == 'd')
+	if (key == KEY_D)
 		data->arg.m_key.press_d = 1;
-	if (key == 'f')
+	if (key == KEY_F)
 		pause_mode(data);
 	if (key == KEY_LEFT)
 		data->arg.m_key.look_left = 1;
@@ -65,13 +65,13 @@ int	move_key(int key, t_cube *data)
 
 int	move_key_zero(int key, t_cube *data)
 {
-	if (key == 'w')
+	if (key == KEY_W)
 		data->arg.m_key.press_w = 0;
-	if (key == 'a')
+	if (key == KEY_A)
 		data->arg.m_key.press_a = 0;
-	if (key == 's')
+	if (key == KEY_S)
 		data->arg.m_key.press_s = 0;
-	if (key == 'd')
+	if (key == KEY_S)
 		data->arg.m_key.press_d = 0;
 	if (key == KEY_LEFT)
 		data->arg.m_key.look_left = 0;

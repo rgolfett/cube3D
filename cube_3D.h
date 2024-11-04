@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cube_3D.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kiparis <kiparis@student.42.fr>            +#+  +:+       +#+        */
+/*   By: rgolfett <rgolfett@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/03 13:37:35 by rgolfett          #+#    #+#             */
-/*   Updated: 2024/11/04 13:16:23 by kiparis          ###   ########.fr       */
+/*   Updated: 2024/11/04 13:28:31 by rgolfett         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,12 +24,13 @@
 # define KEY_A 97
 # define KEY_S 115
 # define KEY_D 100
+# define KEY_F 102
 # define KEY_RIGHT 65363
 # define KEY_LEFT 65361
 # define KEY_ESC 65307
 # define KEY_SHIFT 65505
 
-# define MY_PI 3.14159265358979323846
+# define MY_PI 3.141592
 
 # define WINDOW_X 1920
 # define WINDOW_Y 1080

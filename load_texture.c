@@ -6,7 +6,7 @@
 /*   By: rgolfett <rgolfett@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/23 13:50:58 by rgolfett          #+#    #+#             */
-/*   Updated: 2024/11/04 12:59:46 by rgolfett         ###   ########lyon.fr   */
+/*   Updated: 2024/11/04 13:38:34 by rgolfett         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ int	ft_load_sprites(t_cube *cube, t_wall *wall)
 {
 	wall->north = load_img(cube->mlx, &wall->north, cube->arg.no_file);
 	if (!wall->north.image)
-		return (1);
+		return (printf("img =-%s-\n",cube->arg.no_file), 1);
 	wall->south = load_img(cube->mlx, &wall->south, cube->arg.so_file);
 	if (!wall->south.image)
 		return (1);

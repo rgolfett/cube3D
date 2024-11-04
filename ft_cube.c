@@ -6,7 +6,7 @@
 /*   By: rgolfett <rgolfett@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/29 10:32:37 by kiparis           #+#    #+#             */
-/*   Updated: 2024/11/04 13:08:23 by rgolfett         ###   ########lyon.fr   */
+/*   Updated: 2024/11/04 13:21:54 by rgolfett         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,6 +89,8 @@ void	ft_free_img(t_cube *data)
 		mlx_destroy_image(data->mlx, data->arg.wall.west.image);
 	if (data->image.image)
 		mlx_destroy_image(data->mlx, data->image.image);
+	if (data->arg.wall.pause.image)
+		mlx_destroy_image(data->mlx, data->arg.wall.pause.image);
 }
 
 void	ft_raycasting(t_arg arg)
