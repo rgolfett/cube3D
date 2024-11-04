@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   deal_key.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rgolfett <rgolfett@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: kiparis <kiparis@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/23 13:12:53 by kiparis           #+#    #+#             */
-/*   Updated: 2024/11/04 13:08:08 by rgolfett         ###   ########lyon.fr   */
+/*   Updated: 2024/11/04 13:15:43 by kiparis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,17 +85,23 @@ int	move_key_zero(int key, t_cube *data)
 int	deal_key(t_cube *data)
 {
 	if (data->arg.m_key.press_s == 1)
-		move_back(data);
+		if (!data->pause_mode)
+			move_back(data);
 	if (data->arg.m_key.press_w == 1)
-		move_front(data);
+		if (!data->pause_mode)
+			move_front(data);
 	if (data->arg.m_key.press_a == 1)
-		move_left(data);
+		if (!data->pause_mode)
+			move_left(data);
 	if (data->arg.m_key.press_d == 1)
-		move_right(data);
+		if (!data->pause_mode)
+			move_right(data);
 	if (data->arg.m_key.look_left == 1)
-		data->player.theta -= ROTATION_SPEED * 10;
+		if (!data->pause_mode)
+			data->player.theta -= ROTATION_SPEED * 10;
 	if (data->arg.m_key.look_right == 1)
-		data->player.theta += ROTATION_SPEED * 10;
+		if (!data->pause_mode)
+			data->player.theta += ROTATION_SPEED * 10;
 	return (0);
 }
 

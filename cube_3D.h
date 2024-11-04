@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cube_3D.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rgolfett <rgolfett@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: kiparis <kiparis@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/03 13:37:35 by rgolfett          #+#    #+#             */
-/*   Updated: 2024/11/04 13:05:15 by rgolfett         ###   ########lyon.fr   */
+/*   Updated: 2024/11/04 13:16:23 by kiparis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,8 +31,8 @@
 
 # define MY_PI 3.14159265358979323846
 
-# define WINDOW_X 1200
-# define WINDOW_Y 500
+# define WINDOW_X 1920
+# define WINDOW_Y 1080
 # define PAUSE_COLOR 0x666666
 
 # define FOV 90
