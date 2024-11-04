@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils_deal_key.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kiparis <kiparis@student.42.fr>            +#+  +:+       +#+        */
+/*   By: rgolfett <rgolfett@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/23 13:17:05 by kiparis           #+#    #+#             */
-/*   Updated: 2024/10/23 15:53:16 by kiparis          ###   ########.fr       */
+/*   Updated: 2024/11/04 13:07:41 by rgolfett         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,16 +70,18 @@ void	pause_mode(t_cube *data)
 {
 	if (data->pause_mode)
 	{
-		data->old_mouse_x = data->mid_x;
-		data->old_mouse_y = data->mid_y;
+		data->mouse.old_mouse_x = data->mouse.mid_x;
+		data->mouse.old_mouse_y = data->mouse.mid_y;
 		data->pause_mode = 0;
 		mlx_mouse_hide(data->mlx, data->window);
-		mlx_mouse_move(data->mlx, data->window, data->mid_x, data->mid_y);
+		mlx_mouse_move(data->mlx, data->window, \
+			data->mouse.mid_x, data->mouse.mid_y);
 	}
 	else
 	{
 		data->pause_mode = 1;
-		mlx_mouse_move(data->mlx, data->window, data->mid_x, data->mid_y);
+		mlx_mouse_move(data->mlx, data->window, \
+			data->mouse.mid_x, data->mouse.mid_y);
 		mlx_mouse_show(data->mlx, data->window);
 	}
 }

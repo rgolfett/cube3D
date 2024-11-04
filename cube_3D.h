@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cube_3D.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rgolfett <rgolfett@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rgolfett <rgolfett@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/03 13:37:35 by rgolfett          #+#    #+#             */
-/*   Updated: 2024/11/03 19:06:10 by rgolfett         ###   ########.fr       */
+/*   Updated: 2024/11/04 13:05:15 by rgolfett         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,6 @@
 
 # include <stdio.h>
 # include <unistd.h>
-# include <sys/stat.h>
-# include <fcntl.h>
 # include <limits.h>
 # include <math.h>
 # include "get_next_line.h"
@@ -33,10 +31,9 @@
 
 # define MY_PI 3.14159265358979323846
 
-# define WINDOW_X 854
-# define WINDOW_Y 480
-# define PLAYER_SIZE 9
-# define STEP_SIZE 0.01
+# define WINDOW_X 1200
+# define WINDOW_Y 500
+# define PAUSE_COLOR 0x666666
 
 # define FOV 90
 
@@ -104,7 +101,6 @@ typedef struct s_arg
 	t_wall	wall;
 	t_key	m_key;
 	int		lines;
-	int		h;
 }	t_arg;
 
 typedef struct s_player
@@ -122,6 +118,14 @@ typedef struct s_player
 	double	dir_y;
 }	t_player;
 
+typedef struct s_mouse
+{
+	int			mid_x;
+	int			mid_y;
+	int			old_mouse_x;
+	int			old_mouse_y;
+}	t_mouse;
+
 typedef struct s_cube
 {
 	void		*mlx;
@@ -129,12 +133,9 @@ typedef struct s_cube
 	t_image		image;
 	t_player	player;
 	t_arg		arg;
+	t_mouse		mouse;
 	int			ceiling_color;
 	int			floor_color;
-	int			mid_x;
-	int			mid_y;
-	int			old_mouse_x;
-	int			old_mouse_y;
 	int			x_line;
 	int			pause_mode;
 }	t_cube;
@@ -177,8 +178,6 @@ int		deal_key(t_cube *data);
 
 void	ft_raycasting(t_arg arg);
 int		deal_mouse(int button, int x, int y, t_cube *data);
-void	ft_pixel_put(t_cube *data, int x, int y, int color);
-void	my_mlx_pixel_put(t_image *image, int x, int y, int color);
 int		ft_load_sprites(t_cube *cube, t_wall *wall);
 void	fill_background(t_cube *data);
 void	raycasting(t_cube *data);
@@ -186,16 +185,17 @@ void	draw_text_wall(t_cube *data, double height, int side);
 void	draw_wall_utils(t_cube *data, t_image *wall, double limit, int y_start);
 
 void	init_data(t_cube *data, t_arg arg);
-
 int		ft_display(t_cube *data);
+
 int		move_key(int key, t_cube *data);
 int		move_key_zero(int key, t_cube *data);
 int		move_mouse(t_cube *data);
-
 void	move_front(t_cube *data);
 void	move_back(t_cube *data);
 void	move_left(t_cube *data);
 void	move_right(t_cube *data);
+
 void	pause_mode(t_cube *data);
+void	pause_screen(t_cube *data);
 
 #endif

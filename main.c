@@ -6,7 +6,7 @@
 /*   By: rgolfett <rgolfett@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/03 12:40:12 by rgolfett          #+#    #+#             */
-/*   Updated: 2024/11/03 11:59:31 by rgolfett         ###   ########lyon.fr   */
+/*   Updated: 2024/11/04 12:55:37 by rgolfett         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,9 +81,11 @@ int	main(int argc, char **argv)
 	t_arg	arg;
 
 	arg = (t_arg){0};
-	ft_set_value(&arg);
+	if (WINDOW_X <= 0 || WINDOW_Y <= 0)
+		return (1);
 	if (argc != 2)
 		return (1);
+	ft_set_value(&arg);
 	if (check_file(argv[1], &arg) == 1)
 	{
 		free_utils(&arg);

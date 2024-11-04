@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycasting.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rgolfett <rgolfett@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rgolfett <rgolfett@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/23 13:39:42 by kiparis           #+#    #+#             */
-/*   Updated: 2024/11/03 19:19:29 by rgolfett         ###   ########.fr       */
+/*   Updated: 2024/11/04 12:52:40 by rgolfett         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,85 +103,6 @@ void	raycasting(t_cube *data)
 		draw_text_wall(data, (1.0f / distance), data->player.orientation);
 		angle += (double)FOV / (double)WINDOW_X;
 		i++;
-	}
-}
-
-void	pause_screen(t_cube *data)
-{
-	int	i;
-	int	nb_pixel;
-	float x = 0;
-	float y = 0;
-
-	i = 0;
-	nb_pixel = WINDOW_X * WINDOW_Y;
-	if (data->arg.wall.pause.image == NULL)
-	{
-		while (i < nb_pixel)
-		{
-			data->image.ad[i] = 0x666666;
-			i++;
-		}
-	}
-	else
-	{
-		while (i < nb_pixel)
-		{
-			float x1 = (float)data->arg.wall.pause.width / WINDOW_X;
-			float y1 = (float)data->arg.wall.pause.height / WINDOW_Y;
-			float img_pxl = ((float)data->arg.wall.pause.width * (float)data->arg.wall.pause.height);
-			float ratio = (img_pxl / (float)nb_pixel);
-		
-			// float w = (float)data->arg.wall.pause.width * x;
-			// float h = (float)data->arg.wall.pause.height * y;
-			// float w = (float)data->arg.wall.pause.width * ratio;
-			// float h = (float)data->arg.wall.pause.height * ratio;
-			// float w = (float)x * ratio;
-			// float h = (float)y * ratio;
-			// printf("w = %f, h = %f\n", w, h);
-			//printf("ratio = %f\n", ratio);
-			//printf("ratio i = %i\n", (int)(i * ratio));
-			//printf("x = %li, y = %li\n", (int)((i / WINDOW_X) * x, (int)((i % WINDOW_Y) * y)));
-			//data->image.ad[i] = data->arg.wall.pause.ad[(int)((i / WINDOW_X) * x) * WINDOW_X  + (int)((i / WINDOW_Y) * y)];
-			// if (i < data->arg.wall.pause.width * data->arg.wall.pause.height)
-			// {
-			// 	data->image.ad[i] = data->arg.wall.pause.ad[i];
-			// }
-			// else
-			// 	data->image.ad[i] = 0x111166;
-			//printf("i = %i, index = %i\n", i, (int)(i * x + y));
-			
-		//data->image.ad[i] = data->arg.wall.pause.ad[(int)i * (int)y1 + (int)x1];
-			
-		//	data->image.ad[i] = data->arg.wall.pause.ad[(int)i * (int)x1 + (int)y1];
-			
-		data->image.ad[i] = data->arg.wall.pause.ad[(int)((float)i * ratio)];//
-			//printf("nb = %f\n", ((float)i / nb_pixel));
-		//	printf("nb = %f\n", ((float)i * ratio));
-		//data->image.ad[i] = data->arg.wall.pause.ad[(int)((float)i * y1) + (int)(x1)];
-			//data->image.ad[i] = data->arg.wall.pause.ad[(int)((y * y1) * (x * x1))];
-			//printf("nb = %f\n", (y * y1) * (x * x1));
-			//data->image.ad[i] = data->arg.wall.pause.ad[(int)(y) + (int)x];
-			//data->image.ad[i] = data->arg.wall.pause.ad[(int)(i * ratio)];
-			//data->image.ad[i] = data->arg.wall.pause.ad[(int)(i * h + x)];
-			//data->image.ad[i] = data->arg.wall.pause.ad[(int)(i * h + i * w)];
-					//printf("nb = %i\n", nb_pixel);	
-	//printf("w = %i, h = %i\n", data->arg.wall.pause.width, data->arg.wall.pause.height);
-			// printf("x = %f, y = %f\n", x, y);
-			// printf("ratio = %i\n", (int)(y * y1) + (int)x);
-		// ((unsigned int*)(data->image.ad))[(int)y * data->image.width + data->x_line] = \ 
-		// 		data->arg.wall.pause.ad[(int)y1 * data->arg.wall.pause.width + 1];
-			i++;
-			y++;
-		//i = 598572, index = 425984
-		//i = 598572, index = 425984
-			if (y == WINDOW_Y)
-				{
-					y = 0;
-					x++;
-				}
-			//printf("x = %f, y = %f\n", x, y);
-		}	
 	}
 }
 

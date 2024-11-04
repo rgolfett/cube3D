@@ -17,7 +17,8 @@ SRCS = 	main.c \
 		ft_cube.c \
 		deal_key.c \
 		raycasting.c \
-		utils_deal_key.c\
+		utils_deal_key.c \
+		pause.c \
 
 INCLUDES = get_next_line.h \
 		   cube_3D.h \
@@ -26,7 +27,7 @@ OBJS =	$(SRCS:%.c=%.o)
 
 CC = cc
 
-CFLAGS = -Wall -Wextra -Iminilibx-linux #-fsanitize=address#-Werror
+CFLAGS = -Wall -Wextra -Iminilibx-linux -g3 #-fsanitize=address#-Werror
 
 all : $(NAME)
 

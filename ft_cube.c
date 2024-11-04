@@ -6,7 +6,7 @@
 /*   By: rgolfett <rgolfett@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/29 10:32:37 by kiparis           #+#    #+#             */
-/*   Updated: 2024/11/03 12:04:27 by rgolfett         ###   ########lyon.fr   */
+/*   Updated: 2024/11/04 13:08:23 by rgolfett         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,8 +47,8 @@ void	init_movements(t_cube *data)
 	data->arg.m_key.press_d = 0;
 	data->arg.m_key.look_left = 0;
 	data->arg.m_key.look_right = 0;
-	data->old_mouse_x = 0;
-	data->old_mouse_y = 0;
+	data->mouse.old_mouse_x = 0;
+	data->mouse.old_mouse_y = 0;
 	data->player.sprint = 1;
 	data->pause_mode = 0;
 }
@@ -69,9 +69,9 @@ void	init_data(t_cube *data, t_arg arg)
 	data->image.image = mlx_new_image(data->mlx, WINDOW_X, WINDOW_Y);
 	data->image.width = WINDOW_X;
 	data->image.height = WINDOW_Y;
-	data->mid_x = WINDOW_X / 2;
-	data->mid_y = WINDOW_Y / 2;
-	data->image.address = mlx_get_data_addr(data->image.image, &data->\
+	data->mouse.mid_x = WINDOW_X / 2;
+	data->mouse.mid_y = WINDOW_Y / 2;
+	data->image.address = mlx_get_data_addr(data->image.image, &data-> \
 		image.bits_per_address, &data->image.size_line, &data->image.endian);
 	data->image.ad = (void *)data->image.address;
 	init_movements(data);
@@ -106,7 +106,8 @@ void	ft_raycasting(t_arg arg)
 	data.window = mlx_new_window(data.mlx, WINDOW_X, \
 								WINDOW_Y, "cub3D");
 	mlx_mouse_hide(data.mlx, data.window);
-	mlx_mouse_move(data.mlx, data.window, data.mid_x, data.mid_y);
+	mlx_mouse_move(data.mlx, data.window, \
+			data.mouse.mid_x, data.mouse.mid_y);
 	mlx_hook(data.window, 2, (1L << 0), &move_key, &data);
 	mlx_hook(data.window, 3, (1L << 1), &move_key_zero, &data);
 	mlx_hook(data.window, 17, 0, mlx_loop_end, data.mlx);

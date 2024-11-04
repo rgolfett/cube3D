@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   deal_key.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kiparis <kiparis@student.42.fr>            +#+  +:+       +#+        */
+/*   By: rgolfett <rgolfett@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/23 13:12:53 by kiparis           #+#    #+#             */
-/*   Updated: 2024/10/23 15:35:26 by kiparis          ###   ########.fr       */
+/*   Updated: 2024/11/04 13:08:08 by rgolfett         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,14 +27,16 @@ int	move_mouse(t_cube *data)
 	if (pos_mouse_x > WINDOW_X - lim_x || pos_mouse_y > WINDOW_Y - lim_y || \
 		pos_mouse_x < lim_x || pos_mouse_y < lim_y)
 	{
-		data->old_mouse_x = data->mid_x;
-		data->old_mouse_y = data->mid_y;
-		pos_mouse_x = data->mid_x;
-		pos_mouse_y = data->mid_y;
-		mlx_mouse_move(data->mlx, data->window, data->mid_x, data->mid_y);
+		data->mouse.old_mouse_x = data->mouse.mid_x;
+		data->mouse.old_mouse_y = data->mouse.mid_y;
+		pos_mouse_x = data->mouse.mid_x;
+		pos_mouse_y = data->mouse.mid_y;
+		mlx_mouse_move(data->mlx, data->window, \
+				data->mouse.mid_x, data->mouse.mid_y);
 	}
-	data->player.theta += (pos_mouse_x - data->old_mouse_x) * ROTATION_SPEED;
-	data->old_mouse_x = pos_mouse_x;
+	data->player.theta \
+			+= (pos_mouse_x - data->mouse.old_mouse_x) * ROTATION_SPEED;
+	data->mouse.old_mouse_x = pos_mouse_x;
 	return (0);
 }
 

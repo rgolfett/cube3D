@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   load_texture.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rgolfett <rgolfett@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rgolfett <rgolfett@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/23 13:50:58 by rgolfett          #+#    #+#             */
-/*   Updated: 2024/11/03 19:09:27 by rgolfett         ###   ########.fr       */
+/*   Updated: 2024/11/04 12:59:46 by rgolfett         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,8 @@ int	ft_load_sprites(t_cube *cube, t_wall *wall)
 	wall->west = load_img(cube->mlx, &wall->west, cube->arg.we_file);
 	if (!wall->west.image)
 		return (1);
-	wall->pause = load_img(cube->mlx, &wall->pause, "textures/pause_screen.xpm");
+	wall->pause = load_img(cube->mlx, &wall->pause, \
+			"textures/pause_screen.xpm");
 	return (0);
 }
 
@@ -91,8 +92,6 @@ void	draw_text_wall(t_cube *data, double height, int side)
 			draw_wall_utils(data, &data->arg.wall.east, limit, y_start);
 		else if (side == 4)
 			draw_wall_utils(data, &data->arg.wall.west, limit, y_start);
-		else if (side == 5)
-			draw_wall_utils(data, &data->arg.wall.pause, limit, y_start);
 		else
 			((unsigned int*)(data->image.address)) \
 		[y_start * data->image.width + data->x_line] = 0;
