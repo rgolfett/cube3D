@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing_utils.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rgolfett <rgolfett@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: rgolfett <rgolfett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/03 12:30:31 by rgolfett          #+#    #+#             */
-/*   Updated: 2024/11/04 13:34:06 by rgolfett         ###   ########lyon.fr   */
+/*   Updated: 2024/11/04 18:30:37 by rgolfett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 

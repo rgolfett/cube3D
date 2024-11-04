@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rgolfett <rgolfett@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: rgolfett <rgolfett@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/03 12:40:12 by rgolfett          #+#    #+#             */
-/*   Updated: 2024/11/04 13:42:24 by rgolfett         ###   ########lyon.fr   */
+/*   Updated: 2024/11/04 18:51:18 by rgolfett         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,43 +32,21 @@ void	free_utils(t_arg *arg)
 
 char	*ft_move_str(char *str)
 {
-	char	*tmp;
-	int		i;
-	int 	j;
+	int	i;
 
 	i = 0;
-	j = 0;
-	tmp = malloc(sizeof (char) * ft_strlen(str));
-	if (tmp == NULL)
-		return (NULL);
-	if (str[0] && str[0] == '.' && str[1] && str[1] == '/')
-		i = 2;
-	while (str[i] && str[i] != '\n')
-	{
-		tmp[j] = str[i];
+	while (str[i] && (str[i] != '\n' && is_whitespace(str[i]) == 0))
 		i++;
-		j++;
-	}
-	tmp[j] = '\0';
-	free(str);
-	return (tmp);
+	str[i] = '\0';
+	return (str);
 }
 
-int	ft_get_files_names(t_arg *arg)
+void	ft_get_files_names(t_arg *arg)
 {
 	arg->no_file = ft_move_str(arg->no_file);
-	if (!arg->no_file)
-		return (1);
 	arg->so_file = ft_move_str(arg->so_file);
-	if (!arg->so_file)
-		return (1);
 	arg->ea_file = ft_move_str(arg->ea_file);
-	if (!arg->ea_file)
-		return (1);
 	arg->we_file = ft_move_str(arg->we_file);
-	if (!arg->we_file)
-		return (1);
-	return (0);
 }
 
 void	ft_set_value(t_arg *arg)
@@ -101,8 +79,8 @@ int	main(int argc, char **argv)
 		free_utils(&arg);
 		return (1);
 	}
-	if (ft_get_files_names(&arg) == 0)
-		ft_raycasting(arg);
+	ft_get_files_names(&arg);
+	ft_raycasting(arg);
 	free_utils(&arg);
 	return (0);
 }
