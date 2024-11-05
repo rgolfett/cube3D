@@ -6,7 +6,7 @@
 /*   By: rgolfett <rgolfett@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/03 12:30:31 by rgolfett          #+#    #+#             */
-/*   Updated: 2024/11/05 13:28:30 by rgolfett         ###   ########lyon.fr   */
+/*   Updated: 2024/11/05 13:45:13 by rgolfett         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ void	replace_space(char **map)
 		while (map[i][j])
 		{
 			if (map[i][j] == ' ')
-				map[i][j] = '0';
+				map[i][j] = '1';
 			j++;
 		}
 		i++;
