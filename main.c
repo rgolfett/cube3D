@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rgolfett <rgolfett@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: kiparis <kiparis@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/03 12:40:12 by rgolfett          #+#    #+#             */
-/*   Updated: 2024/11/05 11:52:43 by rgolfett         ###   ########lyon.fr   */
+/*   Updated: 2024/11/05 14:33:26 by kiparis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ int	main(int argc, char **argv)
 	if (WINDOW_X <= 0 || WINDOW_Y <= 0)
 		return (1);
 	if (argc != 2)
-		return (1);
+		return (printf("Usage : \"./cub3D file.cub\"\n"), 1);
 	ft_set_value(&arg);
 	if (check_file(argv[1], &arg) == 1)
 	{

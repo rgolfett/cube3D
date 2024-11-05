@@ -6,7 +6,7 @@
 /*   By: kiparis <kiparis@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/23 13:12:53 by kiparis           #+#    #+#             */
-/*   Updated: 2024/11/05 10:01:07 by kiparis          ###   ########.fr       */
+/*   Updated: 2024/11/05 14:33:41 by kiparis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,24 +103,4 @@ int	deal_key(t_cube *data)
 		if (!data->pause_mode)
 			data->player.theta += ROTATION_SPEED * 10;
 	return (0);
-}
-
-int	deal_mouse(int button, int x, int y, t_cube *data)
-{
-	printf("mouse %d\n", button);
-	if (button == 5)
-		data->player.theta += 3;
-	if (button == 4)
-		data->player.theta -= 3;
-	if (button == 1)
-	{
-	}
-	if (button == 3)
-	{
-	}
-	return (0);
-	(void)button;
-	(void)data;
-	(void)y;
-	(void)x;
 }
