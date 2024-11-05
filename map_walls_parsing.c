@@ -6,7 +6,7 @@
 /*   By: rgolfett <rgolfett@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/03 12:34:22 by rgolfett          #+#    #+#             */
-/*   Updated: 2024/11/05 13:07:48 by rgolfett         ###   ########lyon.fr   */
+/*   Updated: 2024/11/05 13:14:33 by rgolfett         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@ int	ft_walls_utils(char **map, int i, int j)
 	if (map[i][j] == '0' || map[i][j] == 'N' || map[i][j] == 'E' \
 				|| map[i][j] == 'W' || map[i][j] == 'S' || map[i][j] == 32)
 	{
+		if (!map[i] || ft_strlen(map[i - 1]) < j)
+			return (1);
 		if (!map[i - 1] || !map[i - 1][j] || map[i - 1][j] == '\n')
 			return (1);
 		if (!map[i] || ft_strlen(map[i + 1]) < j)

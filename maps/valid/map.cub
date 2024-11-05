@@ -1,14 +1,34 @@
 
 N                                             ./textures/4k.xpm
 SO            ./textures/4k2.xpm       
-F   000,000, 255          
+F   000,  000, 255          
 C              000  ,   255 , 000
 
-W    ./textures/flare.xpm
-
+W    textures/flare.xpm
 
 
 E ./textures/jesus.xpm
+
 1111111
 10001
 111S1
+11111
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
