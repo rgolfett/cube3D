@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing_utils.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rgolfett <rgolfett@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rgolfett <rgolfett@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/03 12:30:31 by rgolfett          #+#    #+#             */
-/*   Updated: 2024/11/04 18:30:37 by rgolfett         ###   ########.fr       */
+/*   Updated: 2024/11/05 11:53:14 by rgolfett         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,19 +23,21 @@ int	file_is_valid(char *file_name)
 	return (0);
 }
 
-int	text_utils(char *str)
+void	replace_space(char **map)
 {
-	// int	i;
+	int	i;
+	int	j;
 
-	// i = 0;
-	// while (str[i])
-	// {
-	// 	if (!str[i] || str[i] != '.')
-	// 		return (1);
-	// 	i++;
-	// 	if (!str[i] || str[i] != '/')
-	// 		return (1);
-	// 	return (0);
-	// }
-	return (0);
+	i = 0;
+	while (map[i])
+	{
+		j = 0;
+		while (map[i][j])
+		{
+			if (map[i][j] == ' ')
+				map[i][j] = '0';
+			j++;
+		}
+		i++;
+	}
 }

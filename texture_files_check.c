@@ -6,7 +6,7 @@
 /*   By: rgolfett <rgolfett@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/03 12:29:17 by rgolfett          #+#    #+#             */
-/*   Updated: 2024/10/03 13:35:14 by rgolfett         ###   ########lyon.fr   */
+/*   Updated: 2024/11/05 12:01:37 by rgolfett         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,12 @@ char	*get_texture_name(char *str, char *texture)
 	i = 0;
 	while (str[i] && is_whitespace(str[i]) == 1)
 		i++;
-	if (text_utils(&str[i]) == 1)
+	if (texture)
+	{
+		free(texture);
 		return (NULL);
+	}
+		
 	texture = malloc(sizeof (char) * (ft_strlen(&str[i]) + 1));
 	if (!texture)
 		return (NULL);

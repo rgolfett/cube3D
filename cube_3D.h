@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cube_3D.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kiparis <kiparis@student.42.fr>            +#+  +:+       +#+        */
+/*   By: rgolfett <rgolfett@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/03 13:37:35 by rgolfett          #+#    #+#             */
-/*   Updated: 2024/11/05 10:00:29 by kiparis          ###   ########.fr       */
+/*   Updated: 2024/11/05 11:51:30 by rgolfett         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -153,10 +153,10 @@ void	free_str(char **str);
 void	free_utils(t_arg *arg);
 
 int		file_is_valid(char *file_name);
-int		text_utils(char *str);
 int		check_file(char *file, t_arg *arg);
 int		ft_create_arg(char *file_name, int file_fd, t_arg *arg);
 int		ft_fill_arg(char *file_name, int file_fd, t_arg *arg);
+void	replace_space(char **map);
 
 int		ft_limits_check(char *str, int tab[6], t_arg *arg);
 int		ft_check_color_validity(t_arg *arg);

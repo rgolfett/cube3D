@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rgolfett <rgolfett@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rgolfett <rgolfett@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/03 12:40:12 by rgolfett          #+#    #+#             */
-/*   Updated: 2024/11/04 18:51:18 by rgolfett         ###   ########.fr       */
+/*   Updated: 2024/11/05 11:52:43 by rgolfett         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,6 +80,7 @@ int	main(int argc, char **argv)
 		return (1);
 	}
 	ft_get_files_names(&arg);
+	replace_space(arg.s_map.map);
 	ft_raycasting(arg);
 	free_utils(&arg);
 	return (0);
